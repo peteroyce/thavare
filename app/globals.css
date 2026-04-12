@@ -1,26 +1,114 @@
 @import "tailwindcss";
 
+/* ============================================================
+   TAILWIND v4 THEME — Thavare Design Tokens
+   ============================================================ */
+@theme {
+  /* Brand Colors */
+  --color-navy:        #1A2744;
+  --color-navy-deep:   #111C35;
+  --color-navy-mid:    #243058;
+  --color-cream:       #EAE4D3;
+  --color-ivory:       #F5F0E8;
+  --color-beige:       #D9C4A9;
+  --color-sand:        #C8B090;
+  --color-terracotta:  #B35F42;
+  --color-terra-h:     #9E4F35;
+  --color-camel:       #A87A53;
+  --color-olive:       #948C6A;
+  --color-teal:        #008493;
+  --color-teal-dark:   #006B78;
+  --color-text-1:      #1A1610;
+  --color-text-2:      #5C5448;
+  --color-text-3:      #8C7F72;
+
+  /* Typography */
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans:  var(--font-nunito), system-ui, sans-serif;
+
+  /* Line Heights */
+  --leading-heading: 1.12;
+  --leading-body:    1.60;
+}
+
+/* ============================================================
+   CSS CUSTOM PROPERTIES — for use in arbitrary CSS values
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --navy:       #1A2744;
+  --navy-deep:  #111C35;
+  --navy-mid:   #243058;
+  --cream:      #EAE4D3;
+  --ivory:      #F5F0E8;
+  --beige:      #D9C4A9;
+  --sand:       #C8B090;
+  --terracotta: #B35F42;
+  --terra-h:    #9E4F35;
+  --camel:      #A87A53;
+  --olive:      #948C6A;
+  --teal:       #008493;
+  --teal-dark:  #006B78;
+  --text-1:     #1A1610;
+  --text-2:     #5C5448;
+  --text-3:     #8C7F72;
+  --text-dark:  #EAE4D3;
+  --text-dim:   rgba(217,196,169,0.55);
+  --border-l:   #E5DDD0;
+  --border-m:   #D4C8B8;
+  --border-d:   rgba(255,255,255,0.07);
+  --border-d2:  rgba(255,255,255,0.13);
+  --shadow:     rgba(26,22,16,0.06) 0 4px 24px;
+  --shadow-h:   rgba(26,22,16,0.12) 0 12px 40px;
+  --ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+html { scroll-behavior: smooth; }
+body { -webkit-font-smoothing: antialiased; overflow-x: hidden; cursor: none; }
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal, .reveal-left, .reveal-right, .reveal-scale {
+  opacity: 0;
+  transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+}
+.reveal        { transform: translateY(28px); }
+.reveal-left   { transform: translateX(-32px); }
+.reveal-right  { transform: translateX(32px); }
+.reveal-scale  { transform: scale(0.93); }
+.reveal.visible, .reveal-left.visible,
+.reveal-right.visible, .reveal-scale.visible {
+  opacity: 1; transform: none;
+}
+.stagger-1 { transition-delay: 0.08s; }
+.stagger-2 { transition-delay: 0.16s; }
+.stagger-3 { transition-delay: 0.24s; }
+.stagger-4 { transition-delay: 0.32s; }
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee-animate { animation: marquee 28s linear infinite; }
+
+@keyframes hero-up { to { opacity: 1; transform: none; } }
+.hero-entry {
+  opacity: 0; transform: translateY(20px);
+  animation: hero-up 0.8s var(--ease-out) forwards;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+@keyframes orb-fade { to { opacity: 1; } }
+.orb-fade { opacity: 0; animation: orb-fade 1.2s var(--ease-out) forwards; }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes pattern-scroll { to { transform: translateX(-50%); } }
+.pattern-animate { animation: pattern-scroll 18s linear infinite; }
+
+@keyframes pulse-teal {
+  0%, 100% { box-shadow: 0 0 0 1px var(--teal), 0 4px 12px rgba(0,132,147,0.4); }
+  50%       { box-shadow: 0 0 0 1px var(--teal), 0 4px 20px rgba(0,132,147,0.7); }
 }
+.pulse-teal { animation: pulse-teal 2.5s ease-in-out infinite; }
