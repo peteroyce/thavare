@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Button } from '@/components/ui/Button';
 
@@ -15,8 +16,8 @@ const EXPERTS = [
 
 export function CircleSection() {
   return (
-    <section className="py-24 px-20 bg-teal">
-      <div className="max-w-[1200px] mx-auto grid grid-cols-2 gap-20 items-center">
+    <section className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-teal">
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-20 items-center">
         <AnimatedSection direction="left">
           <div className="text-[10px] font-medium tracking-[4px] uppercase text-white/50 mb-3">Community</div>
           <h2 className="font-serif text-[38px] font-medium leading-[1.15] text-white mb-4">
@@ -38,7 +39,7 @@ export function CircleSection() {
               </div>
             ))}
           </div>
-          <Button variant="white">Come into the Circle</Button>
+          <Link href="/circle"><Button variant="white">Come into the Circle</Button></Link>
         </AnimatedSection>
         <AnimatedSection direction="right">
           <div className="bg-white/10 rounded-2xl p-7 border border-white/15">

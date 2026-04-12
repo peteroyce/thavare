@@ -10,7 +10,7 @@ export function Bestsellers() {
   const products = FEATURED_IDS.map(id => PRODUCTS.find(p => p.id === id)!);
 
   return (
-    <section className="py-24 px-20 bg-navy">
+    <section className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-navy">
       <div className="max-w-[1200px] mx-auto">
         <AnimatedSection className="text-center mb-14">
           <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-2.5">Most Loved</div>
@@ -19,7 +19,7 @@ export function Bestsellers() {
           </h2>
           <p className="text-[15px] leading-relaxed text-cream/50 mt-3">Loved by athletes. Trusted by everyday movers.</p>
         </AnimatedSection>
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {products.map((p, i) => (
             <AnimatedSection key={p.id} delay={(i + 1) as 1|2|3}>
               <div className="bg-navy-mid rounded-xl overflow-hidden border border-white/10 hover:-translate-y-1 hover:border-terracotta/30 transition-all duration-300 group relative cursor-none">

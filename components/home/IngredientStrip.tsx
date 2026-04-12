@@ -10,9 +10,9 @@ const PANELS = [
 export function IngredientStrip() {
   return (
     <div className="overflow-hidden bg-navy-deep">
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-3">
         {PANELS.map((panel, i) => (
-          <AnimatedSection key={panel.label} direction="scale" delay={(i + 1) as 1|2|3} className="relative h-[460px] overflow-hidden group cursor-none">
+          <AnimatedSection key={panel.label} direction="scale" delay={(i + 1) as 1|2|3} className="relative h-[280px] md:h-[460px] overflow-hidden group cursor-none">
             <Image
               src={panel.img}
               alt={panel.name.replace('\n', ' ')}

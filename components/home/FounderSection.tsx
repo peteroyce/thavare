@@ -1,11 +1,12 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Button } from '@/components/ui/Button';
 
 export function FounderSection() {
   return (
-    <section className="py-24 px-20 bg-navy-deep">
-      <div className="max-w-[1200px] mx-auto grid grid-cols-2 gap-20 items-center">
+    <section className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-navy-deep">
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
         <AnimatedSection direction="left">
           <div className="rounded-2xl overflow-hidden border border-white/5 shadow-[0_32px_80px_rgba(0,0,0,0.4)] relative group hover:scale-[1.02] transition-transform duration-300">
             <div className="absolute font-serif text-[110px] leading-none text-teal/12 top-[-20px] left-2.5 z-10 pointer-events-none">"</div>
@@ -14,7 +15,7 @@ export function FounderSection() {
               alt="Dr. Meena Ramaiah — Founder, Thavare"
               width={480}
               height={380}
-              className="w-full h-[380px] object-cover object-top block"
+              className="w-full h-[280px] md:h-[380px] object-cover object-top block"
             />
             <div className="px-7 py-6" style={{ background: 'linear-gradient(to top, #111C35, rgba(17,28,53,0.85))' }}>
               <div className="font-serif text-[18px] font-medium text-cream">Dr. Meena Ramaiah</div>
@@ -34,7 +35,7 @@ export function FounderSection() {
             My journey began in my mother's kitchen — natural ingredients, trusted recipes, skincare passed down through generations. Then my skin betrayed me. A herbal product I trusted caused a severe reaction. What followed wasn't just a skin problem — it quietly became a mental one.
           </p>
           <p className="font-serif italic text-[14px] text-camel mb-8">Thavare means lotus. It blooms not in spite of the mud — but because of it.</p>
-          <Button variant="outline-cream">Read the Full Story →</Button>
+          <Link href="/founders"><Button variant="outline-cream">Read the Full Story →</Button></Link>
         </AnimatedSection>
       </div>
     </section>

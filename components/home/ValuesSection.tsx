@@ -8,7 +8,7 @@ const VALUES = [
 
 export function ValuesSection() {
   return (
-    <section className="py-24 px-20 bg-ivory">
+    <section className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-ivory">
       <div className="max-w-[1200px] mx-auto">
         <AnimatedSection className="text-center mb-14">
           <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-2.5">The Thavare Difference</div>
@@ -16,7 +16,7 @@ export function ValuesSection() {
             Where the Apothecary<br /><em className="italic text-terracotta">Meets the Laboratory</em>
           </h2>
         </AnimatedSection>
-        <div className="grid grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {VALUES.map((v, i) => (
             <AnimatedSection key={v.title} delay={(i + 1) as 1|2|3} className="text-center group">
               <div className="w-16 h-16 rounded-full flex items-center justify-center text-[26px] mx-auto mb-6 shadow-[0_0_0_1px_#E5DDD0] group-hover:scale-110 transition-transform duration-300">
