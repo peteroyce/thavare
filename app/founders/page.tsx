@@ -7,6 +7,11 @@ export const metadata: Metadata = {
   title: "The Founder's Story — Thavare | Dr. Meena Ramaiah",
   description:
     'Dr. Meena Ramaiah built Thavare from personal suffering — a skin allergy, a gym injury, and the discovery that science and nature must work together. This is her story.',
+  openGraph: {
+    title: "Why I Started Thavare — Dr. Meena Ramaiah's Story",
+    description: 'The founder story behind Thavare — a skin allergy, a gym injury, and the discovery of Sport Ayurveda.',
+    images: [{ url: '/images/lifestyle-model-smile.png', width: 480, height: 380, alt: 'Dr. Meena Ramaiah — Founder, Thavare' }],
+  },
 };
 
 const CHAPTERS = [

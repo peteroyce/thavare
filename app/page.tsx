@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Hero }            from '@/components/home/Hero';
 import { MarqueeStrip }    from '@/components/ui/MarqueeStrip';
 import { CategoryGrid }    from '@/components/home/CategoryGrid';
@@ -9,6 +10,16 @@ import { CircleSection }   from '@/components/home/CircleSection';
 import { NewArrivals }     from '@/components/home/NewArrivals';
 import { WhySection }      from '@/components/home/WhySection';
 import { Newsletter }      from '@/components/home/Newsletter';
+
+export const metadata: Metadata = {
+  title: 'Thavare — Clinically Crafted Ayurveda',
+  description: 'Sport and active Ayurvedic skincare for every body that moves. Clinically formulated by Dr. Meena Ramaiah using ancient Ayurvedic actives.',
+  openGraph: {
+    title: 'Thavare — Clinically Crafted Ayurveda',
+    description: 'Sport and active Ayurvedic skincare for every body that moves.',
+    images: [{ url: '/images/hero-model.png', width: 520, height: 720, alt: 'Thavare active skincare' }],
+  },
+};
 
 const MARQUEE_ITEMS = [
   { label: '🚚 Free Delivery ₹499+' },

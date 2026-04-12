@@ -7,6 +7,11 @@ export const metadata: Metadata = {
   title: 'About Us — Thavare | Clinically Crafted Ayurveda',
   description:
     'Thavare was built for real life — for every body that moves. Where ancient Ayurvedic wisdom meets modern science, clinically crafted for active skin.',
+  openGraph: {
+    title: 'About Thavare — For Every Body That Moves',
+    description: 'Where ancient Ayurvedic wisdom meets modern science. Thavare was built for real life — for every body that moves.',
+    images: [{ url: '/images/editorial-kumkumadi-hand.jpg', width: 1200, height: 630, alt: 'About Thavare' }],
+  },
 };
 
 const STATS = [

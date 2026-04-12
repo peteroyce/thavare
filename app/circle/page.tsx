@@ -5,6 +5,11 @@ export const metadata: Metadata = {
   title: 'The Thavare Circle — Real Answers for Every Body',
   description:
     'The Thavare Circle is a community where every body gets real answers from verified doctors, Ayurvedic practitioners, and wellness specialists. No sponsored content. No generic advice.',
+  openGraph: {
+    title: 'The Thavare Circle — Real Answers from Real Experts',
+    description: 'A community where every body gets honest answers from verified medical and wellness experts.',
+    images: [{ url: '/images/editorial-sunscreen-moody.jpg', width: 1200, height: 630, alt: 'The Thavare Circle' }],
+  },
 };
 
 const BENEFITS = [

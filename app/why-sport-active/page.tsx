@@ -7,6 +7,11 @@ export const metadata: Metadata = {
   title: 'Why Sport. Why Active. — Thavare | Sport Ayurveda & Active Ayurveda',
   description:
     'The human body was built to move. Thavare was built for it. Discover the philosophy behind Sport Ayurveda and Active Ayurveda — ancient intelligence, finally in motion.',
+  openGraph: {
+    title: 'Why Sport. Why Active. — Sport Ayurveda by Thavare',
+    description: 'Sport Ayurveda and Active Ayurveda — ancient intelligence for the modern body in motion.',
+    images: [{ url: '/images/cat-presport-sky.jpg', width: 1200, height: 630, alt: 'Why Sport Active — Thavare' }],
+  },
 };
 
 const KINETIC_WORDS = [

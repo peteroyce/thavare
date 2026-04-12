@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -9,6 +10,30 @@ export function generateStaticParams() {
   return generateProductParams();
 }
 
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> }
+): Promise<Metadata> {
+  const { slug } = await params;
+  const product = getProductBySlug(slug);
+  if (!product) return {};
+  return {
+    title: product.name,
+    description: product.longDescription ?? product.description,
+    openGraph: {
+      title: `${product.name} — Thavare`,
+      description: product.description,
+      images: [{ url: product.images.card, width: 400, height: 500, alt: product.name }],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary',
+      title: `${product.name} — Thavare`,
+      description: product.description,
+      images: [product.images.card],
+    },
+  };
+}
+
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const product = getProductBySlug(slug);
@@ -16,8 +41,28 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   const related = PRODUCTS.filter(p => p.id !== product.id).slice(0, 3);
 
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.longDescription ?? product.description,
+    image: `https://thavare.com${product.images.main}`,
+    brand: { '@type': 'Brand', name: 'Thavare' },
+    offers: {
+      '@type': 'Offer',
+      price: product.price,
+      priceCurrency: 'INR',
+      availability: product.inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      url: `https://thavare.com/products/${product.slug}`,
+    },
+  };
+
   return (
     <div className="bg-cream min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       {/* Breadcrumb */}
       <div className="px-4 md:px-10 lg:px-20 pt-8 pb-0 text-[12px] text-text-3 flex gap-2">
         <Link href="/" className="hover:text-text-1 transition-colors">Home</Link>
