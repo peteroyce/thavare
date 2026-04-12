@@ -112,3 +112,5 @@ body { -webkit-font-smoothing: antialiased; overflow-x: hidden; cursor: none; }
   50%       { box-shadow: 0 0 0 1px var(--teal), 0 4px 20px rgba(0,132,147,0.7); }
 }
 .pulse-teal { animation: pulse-teal 2.5s ease-in-out infinite; }
+
+@keyframes line-grow { to { height: 80px; } }
