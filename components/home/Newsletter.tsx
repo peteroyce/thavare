@@ -1,0 +1,46 @@
+'use client';
+
+import { useState } from 'react';
+import { AnimatedSection } from '@/components/ui/AnimatedSection';
+
+export function Newsletter() {
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) setSubmitted(true);
+  };
+
+  return (
+    <section className="py-24 px-20 bg-beige">
+      <AnimatedSection className="max-w-[520px] mx-auto text-center">
+        <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal-dark mb-3">Stay in the Know</div>
+        <h2 className="font-serif text-[clamp(28px,3vw,38px)] font-medium leading-[1.15] text-navy mb-3">
+          Move Well. <em className="italic text-terracotta">Live Well.</em>
+        </h2>
+        <p className="text-[15px] leading-relaxed text-text-2">
+          Join 12,000+ movers. Get early access, expert tips, and stories from the Thavare community.
+        </p>
+        {submitted ? (
+          <p className="mt-8 font-serif italic text-[18px] text-teal-dark">You're in. Welcome to the circle.</p>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex mt-8 rounded-lg overflow-hidden shadow-[0_0_0_1px_#D4C8B8]">
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder="Your email address"
+              className="flex-1 px-5 py-3.5 bg-ivory text-[14px] text-text-1 outline-none placeholder:text-text-3 focus:bg-white transition-colors"
+              required
+            />
+            <button type="submit" className="px-6 py-3.5 bg-navy text-cream font-sans text-[11px] font-semibold tracking-[1.5px] uppercase hover:bg-navy-mid transition-colors cursor-none">
+              Subscribe
+            </button>
+          </form>
+        )}
+        <p className="text-[12px] text-text-2/70 mt-3">No spam. Unsubscribe anytime. Dr. Meena writes occasionally too.</p>
+      </AnimatedSection>
+    </section>
+  );
+}
