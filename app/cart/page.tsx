@@ -22,16 +22,16 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-cream px-20 py-14">
+    <div className="min-h-screen bg-cream px-4 md:px-10 lg:px-20 py-8 md:py-14">
       <div className="max-w-[1100px] mx-auto">
-        <h1 className="font-serif text-[36px] font-medium text-navy mb-10">Your Bag ({count})</h1>
-        <div className="grid grid-cols-[1fr_380px] gap-12">
+        <h1 className="font-serif text-[36px] font-medium text-navy mb-6 md:mb-10">Your Bag ({count})</h1>
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 md:gap-12">
           {/* Items */}
           <div>
             {items.map(item => <CartItem key={item.product.id} item={item} />)}
           </div>
           {/* Summary */}
-          <div className="bg-ivory rounded-2xl p-8 border border-[#E5DDD0] h-fit">
+          <div className="bg-ivory rounded-2xl p-8 border border-[#E5DDD0] h-fit mt-6 lg:mt-0">
             <h2 className="font-serif text-[22px] font-medium text-navy mb-6">Order Summary</h2>
             <div className="flex justify-between text-[14px] text-text-2 mb-3">
               <span>Subtotal</span><span>₹{total}</span>

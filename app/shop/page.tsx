@@ -18,7 +18,7 @@ export default function ShopPage() {
   const filtered = active === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === active);
 
   return (
-    <div className="min-h-screen bg-cream pt-12 pb-24 px-20">
+    <div className="min-h-screen bg-cream pt-8 md:pt-12 pb-24 px-4 md:px-10 lg:px-20">
       <div className="max-w-[1200px] mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -47,7 +47,7 @@ export default function ShopPage() {
           ))}
         </div>
         {/* Grid */}
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map(p => <ProductCard key={p.id} product={p} />)}
         </div>
       </div>

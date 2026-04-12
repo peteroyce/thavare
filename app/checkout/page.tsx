@@ -11,16 +11,16 @@ export default function CheckoutPage() {
   const shipping = total >= 499 ? 0 : 99;
 
   return (
-    <div className="min-h-screen bg-cream px-20 py-14">
+    <div className="min-h-screen bg-cream px-4 md:px-10 lg:px-20 py-8 md:py-14">
       <div className="max-w-[1100px] mx-auto">
-        <div className="mb-10">
+        <div className="mb-6 md:mb-10">
           <Link href="/cart" className="text-[12px] text-text-3 hover:text-text-1 transition-colors">← Back to Bag</Link>
           <h1 className="font-serif text-[36px] font-medium text-navy mt-2">Checkout</h1>
         </div>
-        <div className="grid grid-cols-[1fr_380px] gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 md:gap-12">
           <CheckoutForm />
           {/* Order summary */}
-          <div className="bg-ivory rounded-2xl p-8 border border-[#E5DDD0] h-fit">
+          <div className="bg-ivory rounded-2xl p-8 border border-[#E5DDD0] h-fit mt-6 lg:mt-0">
             <h2 className="font-serif text-[20px] font-medium text-navy mb-5">Order ({items.length} items)</h2>
             <div className="flex flex-col gap-4 mb-6">
               {items.map(({ product: p, quantity }) => (
