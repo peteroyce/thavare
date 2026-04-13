@@ -27,7 +27,7 @@ export function ProductInfo({ product: p }: { product: Product }) {
       <div className="mb-8">
         <div className="text-[10px] font-semibold tracking-[3px] uppercase text-text-3 mb-3">Key Ingredients</div>
         <div className="flex flex-wrap gap-2">
-          {p.ingredients.map(ing => (
+          {p.ingredients.split(',').map(ing => ing.trim()).filter(Boolean).map(ing => (
             <span key={ing} className="text-[12px] px-3 py-1.5 bg-cream border border-[#D4C8B8] rounded-full text-text-2">
               {ing}
             </span>

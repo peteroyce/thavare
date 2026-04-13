@@ -27,7 +27,11 @@ export type ShopifyProductNode = {
 };
 
 export function mapShopifyProduct(node: ShopifyProductNode): Product {
-  const variant = node.variants.edges[0].node;
+  const variantEdge = node.variants.edges[0];
+  if (!variantEdge) {
+    throw new Error(`Product "${node.handle}" has no variants — cannot map to Product type`);
+  }
+  const variant = variantEdge.node;
   const mainImage = node.images.edges[0]?.node.url ?? '';
   const cardImage = node.images.edges[1]?.node.url ?? mainImage;
 

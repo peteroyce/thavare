@@ -3,9 +3,19 @@ import type { Product } from './products';
 import { mapShopifyProduct, type ShopifyProductNode } from './shopify-mapper';
 import { GET_PRODUCTS, GET_PRODUCT_BY_HANDLE } from './shopify-queries';
 
-const DOMAIN   = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!;
-const TOKEN    = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
-const ENDPOINT = `https://${DOMAIN}/api/2024-01/graphql.json`;
+const DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
+const TOKEN  = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN;
+
+if (!DOMAIN || !TOKEN) {
+  // Only throw in non-test environments — tests mock shopifyFetch directly
+  if (process.env.NODE_ENV !== 'test') {
+    throw new Error(
+      'Missing Shopify env vars: NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN and NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN must be set in .env.local'
+    );
+  }
+}
+
+const ENDPOINT = `https://${DOMAIN ?? 'placeholder'}/api/2025-01/graphql.json`;
 
 export async function shopifyFetch<T>(
   query: string,
@@ -16,7 +26,7 @@ export async function shopifyFetch<T>(
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': TOKEN,
+      'X-Shopify-Storefront-Access-Token': TOKEN!,
     },
     body: JSON.stringify({ query, variables }),
     ...(typeof cache === 'string' ? { cache } : cache),
