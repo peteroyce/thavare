@@ -42,10 +42,12 @@ export async function generateMetadata(
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = await getProductByHandle(slug);
+  const [product, allProducts] = await Promise.all([
+    getProductByHandle(slug),
+    getProducts(),
+  ]);
   if (!product) notFound();
 
-  const allProducts = await getProducts();
   const related = allProducts.filter(p => p.id !== product.id).slice(0, 3);
 
   const productSchema = {
@@ -53,7 +55,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     '@type': 'Product',
     name: product.name,
     description: product.longDescription ?? product.description,
-    image: `https://thavare.com${product.images.main}`,
+    image: product.images.main,
     brand: { '@type': 'Brand', name: 'Thavare' },
     offers: {
       '@type': 'Offer',
