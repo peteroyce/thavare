@@ -29,8 +29,8 @@ export type Product = {
 // Handles of featured products shown in Bestsellers section.
 // Must match Shopify product handles exactly.
 export const FEATURED_IDS = [
-  'body-wash',
-  'body-lotion',
-  'sun-screen',
-  'adolescent-sun-block',
+  'thavare-body-wash',
+  'thavare-body-lotion',
+  'thavare-sun-screen',
+  'thavare-adolescent-sun-block',
 ];
