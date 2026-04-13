@@ -12,6 +12,7 @@ export type ShopifyProductNode = {
   category: { value: string } | null;
   category_label: { value: string } | null;
   ingredients: { value: string } | null;
+  how_to_use: { value: string } | null;
   images: {
     edges: Array<{ node: { url: string; altText: string | null } }>;
   };
@@ -49,6 +50,7 @@ export function mapShopifyProduct(node: ShopifyProductNode): Product {
     variantId: variant.id,
     inStock: variant.availableForSale,
     ingredients: node.ingredients?.value ?? '',
+    howToUse: node.how_to_use?.value ?? undefined,
     images: { main: mainImage, card: cardImage },
   };
 }

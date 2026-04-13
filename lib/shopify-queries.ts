@@ -15,6 +15,7 @@ export const GET_PRODUCTS = `
           category: metafield(namespace: "custom", key: "category") { value }
           category_label: metafield(namespace: "custom", key: "category_label") { value }
           ingredients: metafield(namespace: "custom", key: "ingredients") { value }
+          how_to_use: metafield(namespace: "custom", key: "how_to_use") { value }
           images(first: 2) { edges { node { url altText } } }
           variants(first: 1) {
             edges { node { id price { amount currencyCode } availableForSale } }
@@ -38,6 +39,7 @@ export const GET_PRODUCT_BY_HANDLE = `
       category: metafield(namespace: "custom", key: "category") { value }
       category_label: metafield(namespace: "custom", key: "category_label") { value }
       ingredients: metafield(namespace: "custom", key: "ingredients") { value }
+      how_to_use: metafield(namespace: "custom", key: "how_to_use") { value }
       images(first: 2) { edges { node { url altText } } }
       variants(first: 1) {
         edges { node { id price { amount currencyCode } availableForSale } }
