@@ -3,10 +3,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/lib/cart';
+import { useWishlist } from '@/lib/wishlist';
 import type { Product } from '@/lib/products';
 
 export function ProductCard({ product: p }: { product: Product }) {
   const addItem = useCart(s => s.addItem);
+  const { toggle, has } = useWishlist();
 
   return (
     <div className="bg-ivory rounded-xl overflow-hidden border border-[#E5DDD0] shadow-[rgba(26,22,16,0.06)_0_4px_24px] hover:-translate-y-1.5 hover:shadow-[rgba(26,22,16,0.12)_0_12px_40px] transition-all duration-300 group relative">
@@ -27,6 +29,19 @@ export function ProductCard({ product: p }: { product: Product }) {
           />
         </div>
       </Link>
+      <button
+        onClick={(e) => { e.preventDefault(); toggle(p); }}
+        className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 cursor-none ${
+          has(p.id)
+            ? 'bg-terracotta text-white shadow-md'
+            : 'bg-white/80 text-text-3 hover:bg-white hover:text-terracotta'
+        }`}
+        aria-label={has(p.id) ? 'Remove from wishlist' : 'Add to wishlist'}
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill={has(p.id) ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        </svg>
+      </button>
       <div className="p-5">
         <div className="text-[9px] font-medium tracking-[2.5px] uppercase text-camel mb-1.5">{p.categoryLabel}</div>
         <Link href={`/products/${p.slug}`}>
@@ -39,9 +54,10 @@ export function ProductCard({ product: p }: { product: Product }) {
           </div>
           <button
             onClick={() => addItem(p)}
-            className="px-4 py-2 bg-terracotta text-white text-[10px] font-semibold tracking-wide uppercase rounded-lg hover:opacity-90 transition-all cursor-none"
+            disabled={!p.inStock}
+            className="px-4 py-2 text-[10px] font-semibold tracking-wide uppercase rounded-lg transition-all cursor-none disabled:cursor-not-allowed bg-terracotta text-white hover:opacity-90 disabled:bg-[#D4C8B8] disabled:text-text-3"
           >
-            Add to Bag
+            {p.inStock ? 'Add to Bag' : 'Out of Stock'}
           </button>
         </div>
       </div>

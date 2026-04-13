@@ -15,9 +15,18 @@ const NAV_LINKS = [
 const LEFT_LINKS = NAV_LINKS.slice(0, 3);
 const RIGHT_LINKS = NAV_LINKS.slice(3);
 
+const SHOP_CATEGORIES = [
+  { label: 'Pre-Sport',        href: '/shop?category=sport',            sub: 'Prime your skin before training' },
+  { label: 'During Activity',  href: '/shop?category=sport',            sub: 'Formulated for skin in motion' },
+  { label: 'Recovery',         href: '/shop?category=recovery',         sub: 'Restore and renew post-workout' },
+  { label: 'Daily Essentials', href: '/shop?category=daily-essentials', sub: 'For the everyday mover' },
+  { label: 'Sun Protection',   href: '/shop?category=sun-protection',   sub: 'SPF Ayurvedic defence' },
+];
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [shopOpen, setShopOpen] = useState(false);
   const totalItems = useCart(s => s.totalItems());
 
   useEffect(() => {
@@ -44,7 +53,38 @@ export function Navbar() {
       >
         {/* Left links — desktop only */}
         <div className="hidden md:flex items-center gap-7">
-          {LEFT_LINKS.map(({ label, href }) => (
+          {/* Shop — hover-activated mega flyout */}
+          <div className="relative" onMouseEnter={() => setShopOpen(true)} onMouseLeave={() => setShopOpen(false)}>
+            <button className="text-[11px] font-medium tracking-[1.5px] uppercase text-cream/60 hover:text-cream transition-colors duration-200 relative group flex items-center gap-1 cursor-none">
+              Shop
+              <span className={`text-[8px] transition-transform duration-200 ${shopOpen ? 'rotate-180' : ''}`}>▾</span>
+              <span className="absolute bottom-0 left-0 w-0 h-px bg-teal group-hover:w-full transition-[width] duration-300" />
+            </button>
+
+            {shopOpen && (
+              <div className="absolute top-full left-0 mt-2 w-[220px] bg-navy-deep border border-white/10 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.4)] py-2 z-50">
+                {SHOP_CATEGORIES.map(({ label, href, sub }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    className="flex flex-col px-5 py-3 hover:bg-white/5 transition-colors duration-150 group/item"
+                  >
+                    <span className="text-[12px] font-medium text-cream/80 group-hover/item:text-cream transition-colors">{label}</span>
+                    {sub && <span className="text-[10px] text-cream/35 mt-0.5">{sub}</span>}
+                  </Link>
+                ))}
+                <div className="border-t border-white/10 mt-2 pt-2">
+                  <Link href="/shop" className="flex items-center justify-between px-5 py-3 hover:bg-white/5 transition-colors duration-150">
+                    <span className="text-[11px] font-semibold tracking-[1.5px] uppercase text-teal">View All Products</span>
+                    <span className="text-teal text-[10px]">→</span>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Collections and Our Story */}
+          {LEFT_LINKS.filter(({ label }) => label !== 'Shop').map(({ label, href }) => (
             <Link
               key={label}
               href={href}

@@ -9,9 +9,22 @@ const COMPANY_LINKS: { label: string; href: string }[] = [
   { label: "Contact Us",       href: '/about' },
 ];
 
-const COLS = [
-  { title: 'Shop',    links: ['Pre-Sport','During Activity','Recovery','Daily Essentials','Bestsellers','New Arrivals'] },
-  { title: 'Help',    links: ['FAQs','Shipping & Delivery','Returns & Refunds','Track Order','Privacy Policy','Terms of Service'] },
+const SHOP_LINKS: { label: string; href: string }[] = [
+  { label: 'Pre-Sport',        href: '/shop?category=sport' },
+  { label: 'During Activity',  href: '/shop?category=sport' },
+  { label: 'Recovery',         href: '/shop?category=recovery' },
+  { label: 'Daily Essentials', href: '/shop?category=daily-essentials' },
+  { label: 'Bestsellers',      href: '/shop' },
+  { label: 'New Arrivals',     href: '/shop' },
+];
+
+const HELP_LINKS: { label: string; href: string }[] = [
+  { label: 'FAQs',               href: '/faqs' },
+  { label: 'Shipping & Delivery',href: '/shipping' },
+  { label: 'Returns & Refunds',  href: '/returns' },
+  { label: 'Track Order',        href: '/track-order' },
+  { label: 'Privacy Policy',     href: '/privacy-policy' },
+  { label: 'Terms of Service',   href: '/terms' },
 ];
 
 export function Footer() {
@@ -32,8 +45,17 @@ export function Footer() {
           </p>
           <p className="font-serif italic text-[12px] text-camel/65">Move. Sweat. Heal.</p>
           <div className="flex gap-2.5 mt-5">
-            {['IG', 'FB', 'YT', 'X'].map((icon, i) => (
-              <div key={i} className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/50 hover:border-white/30 hover:text-cream/80 transition-all duration-200 cursor-none">
+            <a
+              href="https://www.instagram.com/thavare_ayurveda"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/50 hover:border-white/30 hover:text-cream/80 transition-all duration-200 cursor-none"
+              aria-label="Thavare on Instagram"
+            >
+              IG
+            </a>
+            {['FB', 'YT', 'X'].map((icon) => (
+              <div key={icon} className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/30 cursor-not-allowed" aria-hidden="true">
                 {icon}
               </div>
             ))}
@@ -43,10 +65,10 @@ export function Footer() {
         <div>
           <h4 className="text-[9px] font-semibold tracking-[3px] uppercase text-cream/30 mb-4">Shop</h4>
           <ul className="flex flex-col gap-2.5">
-            {COLS[0].links.map(link => (
-              <li key={link}>
-                <Link href="#" className="text-[13px] text-cream/45 hover:text-cream/85 transition-colors duration-200">
-                  {link}
+            {SHOP_LINKS.map(({ label, href }) => (
+              <li key={label}>
+                <Link href={href} className="text-[13px] text-cream/45 hover:text-cream/85 transition-colors duration-200">
+                  {label}
                 </Link>
               </li>
             ))}
@@ -69,10 +91,10 @@ export function Footer() {
         <div>
           <h4 className="text-[9px] font-semibold tracking-[3px] uppercase text-cream/30 mb-4">Help</h4>
           <ul className="flex flex-col gap-2.5">
-            {COLS[1].links.map(link => (
-              <li key={link}>
-                <Link href="#" className="text-[13px] text-cream/45 hover:text-cream/85 transition-colors duration-200">
-                  {link}
+            {HELP_LINKS.map(({ label, href }) => (
+              <li key={label}>
+                <Link href={href} className="text-[13px] text-cream/45 hover:text-cream/85 transition-colors duration-200">
+                  {label}
                 </Link>
               </li>
             ))}
@@ -82,11 +104,9 @@ export function Footer() {
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <span className="text-[12px] text-cream/25">© 2026 Thavare Health Sciences Pvt. Ltd. All rights reserved.</span>
         <div className="flex gap-6">
-          {['Privacy','Terms','Sitemap'].map(label => (
-            <Link key={label} href="#" className="text-[12px] text-cream/30 hover:text-cream/60 transition-colors">
-              {label}
-            </Link>
-          ))}
+          <Link href="/privacy-policy" className="text-[12px] text-cream/30 hover:text-cream/60 transition-colors">Privacy</Link>
+          <Link href="/terms" className="text-[12px] text-cream/30 hover:text-cream/60 transition-colors">Terms</Link>
+          <Link href="/sitemap.xml" className="text-[12px] text-cream/30 hover:text-cream/60 transition-colors">Sitemap</Link>
         </div>
       </div>
     </footer>

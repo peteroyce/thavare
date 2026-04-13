@@ -1,10 +1,15 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Button } from '@/components/ui/Button';
 import type { Product } from '@/lib/products';
+import { useCart } from '@/lib/cart';
 
 export function Bestsellers({ products }: { products: Product[] }) {
+  const addItem = useCart(s => s.addItem);
+
   return (
     <section className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-navy">
       <div className="max-w-[1200px] mx-auto">
@@ -33,9 +38,12 @@ export function Bestsellers({ products }: { products: Product[] }) {
                     className="h-[82%] w-auto object-contain group-hover:scale-[1.09] group-hover:-translate-y-1 transition-transform duration-500"
                     style={{ filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.35))' }}
                   />
-                  <div className="absolute bottom-0 left-0 right-0 bg-terracotta text-white text-[11px] font-semibold tracking-[1.5px] uppercase py-3.5 text-center translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <button
+                    onClick={() => addItem(p)}
+                    className="absolute bottom-0 left-0 right-0 bg-terracotta text-white text-[11px] font-semibold tracking-[1.5px] uppercase py-3.5 text-center translate-y-full group-hover:translate-y-0 transition-transform duration-300 cursor-none"
+                  >
                     Quick Add to Bag
-                  </div>
+                  </button>
                 </div>
                 <div className="p-6">
                   <div className="text-[9px] font-medium tracking-[3px] uppercase text-teal mb-1.5">{p.categoryLabel}</div>

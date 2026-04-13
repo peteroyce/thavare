@@ -275,43 +275,14 @@ export default function FoundersPage() {
       {/* ─── 4. THE BIRTH OF THAVARE ─── */}
       <section className="py-16 md:py-28 px-4 md:px-10 lg:px-20 bg-ivory">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
-          {/* Left — CSS lotus / decorative wordmark */}
+          {/* Left — founder photo placeholder */}
           <AnimatedSection direction="left">
-            <div className="relative flex items-center justify-center h-[380px]">
-              {/* Concentric rings */}
-              <div
-                className="absolute w-[320px] h-[320px] rounded-full border"
-                style={{ borderColor: 'rgba(168,122,83,0.15)' }}
-              />
-              <div
-                className="absolute w-[240px] h-[240px] rounded-full border"
-                style={{ borderColor: 'rgba(168,122,83,0.28)' }}
-              />
-              <div
-                className="absolute w-[160px] h-[160px] rounded-full border"
-                style={{ borderColor: 'rgba(168,122,83,0.45)' }}
-              />
-              <div
-                className="absolute w-[88px] h-[88px] rounded-full"
-                style={{
-                  background:
-                    'radial-gradient(circle, rgba(168,122,83,0.2), rgba(179,95,66,0.1))',
-                  border: '1px solid rgba(179,95,66,0.4)',
-                }}
-              />
-              {/* T glyph */}
-              <span
-                className="font-serif text-[80px] font-medium relative z-10"
-                style={{ color: 'var(--terracotta)', opacity: 0.8 }}
-              >
-                T
-              </span>
-              {/* Floating wordmark label */}
-              <div
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[9px] font-semibold tracking-[3.5px] uppercase"
-                style={{ color: 'var(--camel)', opacity: 0.7 }}
-              >
-                Thavare
+            <div className="w-full aspect-[3/4] rounded-2xl bg-gradient-to-br from-[#F5EFE7] to-[#EDE3D8] flex items-center justify-center border border-[#DDD0C0] relative overflow-hidden">
+              <div className="text-center">
+                <div className="font-serif text-[60px] text-[#C4A882] leading-none mb-2">
+                  M
+                </div>
+                <div className="text-[10px] tracking-[2px] uppercase text-[#A88F72]">Photo Coming Soon</div>
               </div>
             </div>
           </AnimatedSection>

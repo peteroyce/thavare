@@ -14,6 +14,7 @@ export type Product = {
   badge?:        string;
   description:   string;
   longDescription?: string;
+  howToUse?:     string;
   category:      ProductCategory;
   categoryLabel: string;
   price:         number;

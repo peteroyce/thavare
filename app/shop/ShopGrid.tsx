@@ -12,8 +12,9 @@ const CATEGORIES: { value: 'all' | ProductCategory; label: string }[] = [
   { value: 'sun-protection',   label: 'Sun Protection' },
 ];
 
-export function ShopGrid({ products }: { products: Product[] }) {
-  const [active, setActive] = useState<'all' | ProductCategory>('all');
+export function ShopGrid({ products, defaultCategory }: { products: Product[]; defaultCategory?: string }) {
+  const validDefault = (CATEGORIES.find(c => c.value === defaultCategory)?.value) ?? 'all';
+  const [active, setActive] = useState<'all' | ProductCategory>(validDefault);
 
   const filtered = active === 'all'
     ? products

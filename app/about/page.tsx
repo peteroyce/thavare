@@ -38,6 +38,15 @@ const PILLARS = [
   },
 ];
 
+const CERTIFICATIONS = [
+  { icon: '🔬', label: 'Clinically Tested', sub: 'Dermatologist validated formulations' },
+  { icon: '🌿', label: '100% Ayurvedic Actives', sub: 'No synthetic fragrances or harsh chemicals' },
+  { icon: '👩‍⚕️', label: 'Doctor Formulated', sub: 'By Dr. Meena Ramaiah, Ayurvedic physician' },
+  { icon: '♻️', label: 'Sustainable Packaging', sub: 'Recyclable materials, minimal plastic' },
+  { icon: '🚫', label: 'Cruelty Free', sub: 'Never tested on animals' },
+  { icon: '🇮🇳', label: 'Made in India', sub: 'Manufactured in GMP-certified facilities' },
+];
+
 const PACE = [
   {
     word: 'Move.',
@@ -354,6 +363,29 @@ export default function AboutPage() {
               </Link>
             </div>
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ─── CERTIFICATIONS ─── */}
+      <section className="py-14 md:py-20 px-4 md:px-10 lg:px-20 bg-ivory">
+        <div className="max-w-[1200px] mx-auto">
+          <AnimatedSection className="text-center mb-12">
+            <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">Our Standards</div>
+            <h2 className="font-serif text-[clamp(24px,2.5vw,36px)] font-medium text-navy leading-[1.2]">
+              What We Stand For
+            </h2>
+          </AnimatedSection>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {CERTIFICATIONS.map((cert, i) => (
+              <AnimatedSection key={cert.label} delay={(i % 4 + 1) as 1|2|3|4}>
+                <div className="flex flex-col items-center text-center p-5 rounded-xl bg-white border border-[#E5DDD0] shadow-[rgba(26,22,16,0.04)_0_2px_12px] hover:-translate-y-0.5 transition-all duration-300 cursor-none h-full">
+                  <div className="text-[28px] mb-3">{cert.icon}</div>
+                  <div className="font-semibold text-[12px] text-navy mb-1.5 leading-tight">{cert.label}</div>
+                  <div className="text-[11px] text-text-3 leading-relaxed">{cert.sub}</div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </section>
     </>

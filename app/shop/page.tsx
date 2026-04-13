@@ -9,7 +9,8 @@ export const metadata: Metadata = {
   description: "Browse Thavare's full range of clinically crafted Ayurvedic skincare for active bodies.",
 };
 
-export default async function ShopPage() {
+export default async function ShopPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
+  const { category } = await searchParams;
   const products = await getProducts();
 
   return (
@@ -23,7 +24,7 @@ export default async function ShopPage() {
             Shop All Products
           </h1>
         </div>
-        <ShopGrid products={products} />
+        <ShopGrid products={products} defaultCategory={category} />
       </div>
     </div>
   );
