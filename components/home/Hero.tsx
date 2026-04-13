@@ -43,9 +43,14 @@ export function Hero() {
         <p className="hero-entry text-base leading-[1.7] font-light text-cream/65 max-w-[400px] mb-9" style={{ animationDelay: '0.6s' }}>
           Ayurvedic actives, clinically crafted for sport and active life. Before you train. During. After. Everything your body deserves.
         </p>
-        <div className="hero-entry flex gap-3" style={{ animationDelay: '0.75s' }}>
+        <div className="hero-entry flex gap-3 flex-wrap" style={{ animationDelay: '0.75s' }}>
           <Link href="/shop"><Button variant="primary">Shop the Range</Button></Link>
           <Link href="/about"><Button variant="ghost">Our Story</Button></Link>
+          <Link href="/quiz">
+            <button className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 cursor-none border border-teal/40 text-teal hover:border-teal hover:bg-teal/10">
+              Find Your Routine →
+            </button>
+          </Link>
         </div>
         <div className="hero-entry flex flex-wrap gap-6 md:gap-10 mt-12 pt-7 border-t border-white/10" style={{ animationDelay: '0.9s' }}>
           {[['5000+','Years of Ayurveda'],['100%','Natural Actives'],['Dr.','Clinically Formulated']].map(([n,l]) => (

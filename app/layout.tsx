@@ -4,6 +4,7 @@ import './globals.css';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { CustomCursor } from '@/components/ui/CustomCursor';
+import { WelcomeBanner } from '@/components/ui/WelcomeBanner';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -63,6 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="font-sans bg-cream text-text-1 antialiased overflow-x-hidden cursor-none">
+        <WelcomeBanner />
         <CustomCursor />
         <Navbar />
         <main>{children}</main>

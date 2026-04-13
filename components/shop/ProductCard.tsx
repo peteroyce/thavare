@@ -1,14 +1,17 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/lib/cart';
 import { useWishlist } from '@/lib/wishlist';
 import type { Product } from '@/lib/products';
+import { QuickViewModal } from '@/components/shop/QuickViewModal';
 
 export function ProductCard({ product: p }: { product: Product }) {
   const addItem = useCart(s => s.addItem);
   const { toggle, has } = useWishlist();
+  const [quickViewOpen, setQuickViewOpen] = useState(false);
 
   return (
     <div className="bg-ivory rounded-xl overflow-hidden border border-[#E5DDD0] shadow-[rgba(26,22,16,0.06)_0_4px_24px] hover:-translate-y-1.5 hover:shadow-[rgba(26,22,16,0.12)_0_12px_40px] transition-all duration-300 group relative">
@@ -27,6 +30,12 @@ export function ProductCard({ product: p }: { product: Product }) {
             className="h-[80%] w-auto object-contain group-hover:scale-[1.08] transition-transform duration-500"
             style={{ filter: 'drop-shadow(0 6px 16px rgba(0,0,0,0.12))' }}
           />
+          <button
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); setQuickViewOpen(true); }}
+            className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm text-navy text-[10px] font-semibold tracking-[1.5px] uppercase px-4 py-2 rounded-full border border-[#E5DDD0] opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 cursor-none whitespace-nowrap z-10"
+          >
+            Quick View
+          </button>
         </div>
       </Link>
       <button
@@ -61,6 +70,9 @@ export function ProductCard({ product: p }: { product: Product }) {
           </button>
         </div>
       </div>
+      {quickViewOpen && (
+        <QuickViewModal product={p} onClose={() => setQuickViewOpen(false)} />
+      )}
     </div>
   );
 }
