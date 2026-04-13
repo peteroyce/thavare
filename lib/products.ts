@@ -12,13 +12,14 @@ export type Product = {
   subtitle: string;
   category: ProductCategory;
   categoryLabel: string;
-  size: string;
+  size?: string;
   price: number;
   originalPrice?: number;
+  variantId?: string;
   badge?: string;
   description: string;
   longDescription: string;
-  ingredients: string[];
+  ingredients: string | string[];
   images: { card: string; main: string };
   inStock: boolean;
 };
