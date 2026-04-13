@@ -1,140 +1,302 @@
-# Thavare Shopify Headless Integration — Design Spec
+# Thavare — Shopify Headless Integration
+## Technical Design Specification
 
-**Goal:** Wire the existing custom Next.js frontend to Shopify as the backend — products managed in Shopify admin, checkout handled by Shopify hosted checkout with Razorpay as the payment gateway. Identical checkout experience to Forest Essentials.
-
-**Architecture:** Headless Shopify. The custom Next.js UI handles browsing, product pages, and cart. At checkout, a Shopify cart is created via Storefront API and the user is redirected to Shopify's hosted checkout. Shopify handles payment (Razorpay), order confirmation emails, inventory, and the admin dashboard.
-
-**Tech Stack:** Next.js 16.2.3 App Router, Shopify Storefront API (GraphQL, 2024-01), Zustand 5, Tailwind v4
-
----
-
-## What Changes vs What Stays the Same
-
-### Stays exactly the same (no visual changes)
-- All UI — shop, product, cart, brand pages, navbar, footer
-- Design tokens, animations, custom cursor
-- SEO — sitemap, robots, Open Graph, JSON-LD
-- All components except `CheckoutForm` (removed)
-
-### Changes
-| File | Change |
-|------|--------|
-| `lib/shopify.ts` | NEW — Storefront API GraphQL client |
-| `lib/shopify-queries.ts` | NEW — GraphQL query strings |
-| `lib/products.ts` | Remove hardcoded `PRODUCTS` array, keep `Product` type + add `variantId` field |
-| `lib/cart.ts` | Add `variantId: string` to `CartItem`, add `shopifyCartId` to store, add `createShopifyCheckout()` action |
-| `app/shop/page.tsx` | Convert to async server component, fetch products from Shopify |
-| `app/shop/ShopGrid.tsx` | NEW — extract client filter/grid component from shop page |
-| `app/products/[slug]/page.tsx` | Fetch product by handle from Shopify |
-| `app/order-success/page.tsx` | NEW — order confirmed screen, Shopify redirects here |
-| `app/checkout/` | REMOVED — Shopify handles checkout |
-| `components/checkout/CheckoutForm.tsx` | REMOVED |
-| `next.config.ts` | Add `cdn.shopify.com` to `images.remotePatterns` |
-| `.env.local` | Add `SHOPIFY_STORE_DOMAIN`, `SHOPIFY_STOREFRONT_ACCESS_TOKEN` |
+| Field | Value |
+|---|---|
+| **Date** | 2026-04-13 |
+| **Status** | Approved |
+| **Version** | 1.0 |
+| **Project** | Thavare E-Commerce Platform |
+| **Scope** | Backend integration — Phase 3A |
 
 ---
 
-## Section 1: Environment Variables
+## Table of Contents
+
+1. [Overview](#1-overview)
+2. [Architecture Decision](#2-architecture-decision)
+3. [Scope](#3-scope)
+4. [Prerequisites — Shopify Admin Configuration](#4-prerequisites--shopify-admin-configuration)
+5. [Data Layer](#5-data-layer)
+6. [API Client](#6-api-client)
+7. [GraphQL Operations](#7-graphql-operations)
+8. [Product Mapping](#8-product-mapping)
+9. [Storefront Pages](#9-storefront-pages)
+10. [Cart & Checkout Flow](#10-cart--checkout-flow)
+11. [Order Success Page](#11-order-success-page)
+12. [Infrastructure Changes](#12-infrastructure-changes)
+13. [Deletions](#13-deletions)
+14. [Out-of-Stock Handling](#14-out-of-stock-handling)
+15. [Shopify-Managed Capabilities](#15-shopify-managed-capabilities)
+16. [Implementation Order](#16-implementation-order)
+
+---
+
+## 1. Overview
+
+Thavare's storefront is a fully custom Next.js 16.2.3 application with a complete design system, brand identity, and all commerce pages already built. This specification covers wiring that frontend to **Shopify as a headless backend** — replacing the static product data and non-functional checkout with live Shopify data and a real payment flow.
+
+**The end state mirrors the Forest Essentials checkout experience:**
+
+- Customers browse and manage their cart entirely within the Thavare-branded frontend
+- At checkout, they are redirected to Shopify's hosted checkout page, which processes payment via Razorpay
+- After payment, Shopify redirects back to `thavare.com/order-success`
+- All order management, inventory, and customer emails are handled by Shopify automatically
+
+**No visual changes are made to the frontend.** This integration is backend-only.
+
+---
+
+## 2. Architecture Decision
+
+### Decision: Headless Shopify with Storefront API
+
+**Rationale:** Shopify was selected as the commerce backend because it provides a complete operational stack (payments, inventory, order management, logistics, customer emails) without requiring a custom backend to be built or maintained. The Storefront API provides a public GraphQL interface suitable for server-side and client-side consumption from a Next.js App Router application.
+
+**Key trade-offs considered:**
+
+| Approach | Pros | Cons | Decision |
+|---|---|---|---|
+| Shopify hosted theme | Simplest; everything built-in | Loses custom Thavare frontend | Rejected |
+| Custom backend (Razorpay + DB) | Full control | Months of backend work | Rejected |
+| Headless Shopify + hosted checkout | Custom frontend + Shopify reliability | Checkout briefly leaves Thavare site | **Selected** |
+| Headless Shopify + custom checkout | Full brand control end-to-end | Significant custom payment code | Rejected |
+
+### Decision: Shopify Storefront API (GraphQL, version 2024-01)
+
+The `2024-01` API version is stable and supports all required operations: product queries with metafields, cart creation, and checkout URL generation.
+
+### Decision: `NEXT_PUBLIC_` Environment Variables
+
+The Storefront API access token is a **public-scoped credential** — Shopify intentionally designs it to be safe for browser exposure. It is scoped exclusively to read product data and create carts; it cannot access orders, customer PII, or administrative functions. Using `NEXT_PUBLIC_` allows both server components (product fetching) and client components (cart creation via Zustand) to access the same configuration.
+
+---
+
+## 3. Scope
+
+### In Scope
+- Shopify Storefront API client and GraphQL operations
+- Product data sourced from Shopify (replaces `lib/products.ts` hardcoded data)
+- Shopify cart creation and redirect to hosted checkout
+- Order success page
+- Shopify admin configuration guide (handles, metafields, branding, payment gateway)
+- Out-of-stock display states
+
+### Out of Scope
+- Custom order management / admin panel (handled by Shopify dashboard)
+- Email notifications (handled by Shopify automatically)
+- Shiprocket logistics integration (Phase 3B)
+- WhatsApp notifications (Phase 3B)
+- Deployment / hosting (Phase 3C)
+- User accounts / authentication
+- Wishlist / saved items
+
+### File Impact Summary
+
+| File | Status | Description |
+|---|---|---|
+| `lib/shopify.ts` | **CREATE** | Storefront API GraphQL client + helper functions |
+| `lib/shopify-queries.ts` | **CREATE** | GraphQL query and mutation strings |
+| `lib/shopify-mapper.ts` | **CREATE** | Maps Shopify response nodes to `Product` type |
+| `lib/products.ts` | **MODIFY** | Remove `PRODUCTS` array; add `variantId` to `Product` type |
+| `lib/cart.ts` | **MODIFY** | Add `variantId` to `CartItem`; add checkout action |
+| `app/shop/page.tsx` | **MODIFY** | Convert to async server component |
+| `app/shop/ShopGrid.tsx` | **CREATE** | Extract client-side filter/grid from shop page |
+| `app/products/[slug]/page.tsx` | **MODIFY** | Fetch product by handle from Shopify |
+| `app/sitemap.ts` | **MODIFY** | Fetch product handles from Shopify |
+| `app/order-success/page.tsx` | **CREATE** | Post-checkout confirmation screen |
+| `app/cart/page.tsx` | **MODIFY** | Wire checkout button to Shopify redirect |
+| `next.config.ts` | **MODIFY** | Allow `cdn.shopify.com` image domain |
+| `.env.local` | **MODIFY** | Add Shopify credentials |
+| `app/checkout/page.tsx` | **DELETE** | Replaced by Shopify hosted checkout |
+| `app/checkout/layout.tsx` | **DELETE** | No longer needed |
+| `components/checkout/CheckoutForm.tsx` | **DELETE** | Replaced by Shopify hosted checkout |
+| `lib/checkout.ts` | **DELETE** | Replaced by Shopify hosted checkout |
+
+---
+
+## 4. Prerequisites — Shopify Admin Configuration
+
+> **These steps must be completed before any code is written.** The integration will not function without them.
+
+### 4.1 Product Handles
+
+Shopify product URL handles must match the existing frontend slugs exactly. A mismatch will cause product detail pages to return 404.
+
+**Path:** Shopify Admin → Products → [product] → SEO section → URL handle
+
+| Product | Required Handle |
+|---|---|
+| Body Wash | `body-wash` |
+| Body Lotion | `body-lotion` |
+| Sun Screen SPF 30 | `sun-screen` |
+| Adolescent Sun Block | `adolescent-sun-block` |
+| Kumkumadi Taila | `kumkumadi-taila` |
+
+### 4.2 Product Metafields
+
+Shopify's default product schema does not include `subtitle`, `ingredients`, `badge`, or `categoryLabel`. These must be defined as custom metafields and populated per product.
+
+**Path:** Shopify Admin → Settings → Custom data → Products → Add definition
+
+| Namespace & Key | Type | Purpose | Example |
+|---|---|---|---|
+| `custom.subtitle` | Single line text | Ingredient tagline shown under product name | `Blue Lotus + Wild Himalayan Cherry` |
+| `custom.ingredients` | JSON (list) | Ingredient list for product detail page | `["Blue Lotus Extract", "Neem Leaf", ...]` |
+| `custom.badge` | Single line text | Product card badge (`Bestseller`, `New`, `Signature`) | `Bestseller` |
+| `custom.category` | Single line text | Internal category key for filtering | `pre-sport` |
+| `custom.category_label` | Single line text | Display label for category filter UI | `Pre-Sport` |
+
+After creating each definition, enable **Storefront API access** via the toggle on each metafield definition page. Without this, metafields will not be returned by GraphQL queries.
+
+### 4.3 Checkout Branding
+
+Apply Thavare brand identity to Shopify's hosted checkout page.
+
+**Path:** Shopify Admin → Settings → Checkout → Branding
+
+| Setting | Value |
+|---|---|
+| Logo | Upload Thavare logo |
+| Background colour | `#EAE4D3` (cream) |
+| Accent / link colour | `#008493` (teal) |
+| Button background | `#1A2744` (navy) |
+| Button text | `#EAE4D3` (cream) |
+| Heading font | Closest available serif (Playfair Display equivalent) |
+| Body font | Closest available sans-serif (Nunito Sans equivalent) |
+
+### 4.4 Payment Gateway — Razorpay
+
+**Path:** Shopify Admin → Settings → Payments → Add payment method → search "Razorpay" → Install
+
+Enter the Razorpay **Key ID** and **Key Secret** from the Razorpay dashboard. Enable test mode during development; switch to live credentials before launch.
+
+### 4.5 Post-Purchase Redirect
+
+After a successful payment, Shopify must redirect customers back to the Thavare order success page.
+
+**Path:** Shopify Admin → Settings → Checkout → Order status page → Additional scripts
+
+```html
+<script>
+  if (Shopify.Checkout.step === 'thank_you') {
+    window.location.href = 'https://thavare.com/order-success';
+  }
+</script>
+```
+
+---
+
+## 5. Data Layer
+
+### 5.1 Environment Variables
 
 ```bash
 # .env.local
 NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN=thavare.myshopify.com
-NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN=<token-from-shopify-admin>
+NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN=<storefront-api-token>
 ```
 
-**How to get the token:**
-Shopify Admin → Apps → Develop apps → Create an app → Configure Storefront API → enable `unauthenticated_read_products`, `unauthenticated_write_checkouts`, `unauthenticated_read_checkouts` → Install app → copy Storefront API access token.
+**Obtaining the token:**
+Shopify Admin → Apps → Develop apps → Create app → API credentials → Configure Storefront API scopes:
+- `unauthenticated_read_product_listings`
+- `unauthenticated_read_product_inventory`
+- `unauthenticated_write_checkouts`
+- `unauthenticated_read_checkouts`
 
-**Why `NEXT_PUBLIC_`:** The Storefront API token is intentionally designed to be public (it's scoped to read-only product data and create carts). The store domain is already public. Both are used in the Zustand store (client-side) for cart creation. Server components read them via `process.env.NEXT_PUBLIC_*`.
+Install the app and copy the Storefront API access token.
 
----
+### 5.2 Updated `Product` Type (`lib/products.ts`)
 
-## Section 2: Shopify Admin Setup (before any code)
+The `PRODUCTS` array is removed. The `Product` type gains one new field: `variantId`, which stores the Shopify variant GID required for cart line creation.
 
-These must be done in Shopify admin before the integration works.
+```typescript
+export type ProductCategory =
+  | 'pre-sport'
+  | 'recovery'
+  | 'daily-essentials'
+  | 'sun-care'
+  | 'teal-ayurveda';
 
-### 2a. Product Handles
-Product handles in Shopify must match our existing slugs exactly:
-| Shopify handle | Our slug |
-|---|---|
-| `body-wash` | `body-wash` |
-| `body-lotion` | `body-lotion` |
-| `sun-screen` | `sun-screen` |
-| `adolescent-sun-block` | `adolescent-sun-block` |
-| `kumkumadi-taila` | `kumkumadi-taila` |
+export type Product = {
+  id:            string;
+  slug:          string;
+  name:          string;
+  subtitle:      string;
+  category:      ProductCategory;
+  categoryLabel: string;
+  size:          string;
+  price:         number;
+  originalPrice?: number;
+  badge?:        string;
+  description:   string;
+  longDescription: string;
+  ingredients:   string[];
+  images:        { card: string; main: string };
+  inStock:       boolean;
+  variantId:     string;   // Shopify variant GID — required for cartCreate
+};
+```
 
-Set handle: Shopify Admin → Products → [product] → scroll to SEO section → edit URL handle.
-
-### 2b. Metafields
-Shopify's default product schema lacks `subtitle`, `ingredients`, `badge`, and `categoryLabel`. Set these up as metafields:
-
-| Metafield key | Type | Example value |
-|---|---|---|
-| `custom.subtitle` | Single line text | `Blue Lotus + Wild Himalayan Cherry` |
-| `custom.ingredients` | List of single line text | `["Blue Lotus Extract", "Neem", ...]` |
-| `custom.badge` | Single line text | `Bestseller` |
-| `custom.category` | Single line text | `pre-sport` |
-| `custom.category_label` | Single line text | `Pre-Sport` |
-
-Shopify Admin → Settings → Custom data → Products → Add definition for each.
-Then populate values per product.
-Expose in Storefront API: each metafield definition → toggle "Storefront API access".
-
-### 2c. Checkout Branding
-Shopify Admin → Settings → Checkout → Branding:
-- Upload Thavare logo
-- Background colour: `#EAE4D3` (cream)
-- Accent colour: `#008493` (teal)
-- Button colour: `#1A2744` (navy)
-- Font: choose a serif + sans pairing closest to Playfair/Nunito
-
-### 2d. Razorpay Payment Gateway
-Shopify Admin → Settings → Payments → Add payment method → search Razorpay → install Razorpay app → enter Razorpay Key ID and Key Secret.
-
-### 2e. Post-purchase Redirect URL
-Shopify Admin → Settings → Checkout → Order status page → Additional scripts:
-Add redirect to `https://thavare.com/order-success` after purchase.
-(Or configure via `lineItems[].customAttributes` in cart — covered in code section.)
+Helper functions `getProductBySlug` and `getProductsByCategory` are removed (data no longer lives in memory). `generateProductParams` is replaced by a Shopify fetch in `generateStaticParams`.
 
 ---
 
-## Section 3: Storefront API Client
+## 6. API Client
 
 ### `lib/shopify.ts`
-Single `shopifyFetch` function. All GraphQL queries go through this.
 
-```ts
-const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!;
-const token  = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
-const endpoint = `https://${domain}/api/2024-01/graphql.json`;
+A single typed fetch wrapper and two exported helper functions used by pages.
 
+```typescript
+const DOMAIN   = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!;
+const TOKEN    = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
+const ENDPOINT = `https://${DOMAIN}/api/2024-01/graphql.json`;
+
+/**
+ * Base GraphQL fetch. Throws on HTTP error or GraphQL errors.
+ * Uses Next.js ISR: revalidates every 3600 seconds.
+ */
 export async function shopifyFetch<T>(
   query: string,
-  variables?: Record<string, unknown>
+  variables?: Record<string, unknown>,
+  cache: RequestCache | { next: { revalidate: number } } = { next: { revalidate: 3600 } }
 ): Promise<T> {
-  const res = await fetch(endpoint, {
+  const res = await fetch(ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': token,
+      'X-Shopify-Storefront-Access-Token': TOKEN,
     },
     body: JSON.stringify({ query, variables }),
-    next: { revalidate: 3600 },
+    ...(typeof cache === 'string' ? { cache } : cache),
   });
-  if (!res.ok) throw new Error(`Shopify API error: ${res.status}`);
+
+  if (!res.ok) throw new Error(`Shopify API ${res.status}: ${res.statusText}`);
+
   const { data, errors } = await res.json();
-  if (errors) throw new Error(errors[0].message);
+  if (errors?.length) throw new Error(errors[0].message);
+
   return data as T;
 }
+
+/** Fetch all products. Used by shop page and generateStaticParams. */
+export async function getProducts(): Promise<Product[]>;
+
+/** Fetch a single product by its URL handle. Returns null if not found. */
+export async function getProductByHandle(handle: string): Promise<Product | null>;
 ```
+
+Implementations of `getProducts` and `getProductByHandle` call `shopifyFetch` with the appropriate query from `lib/shopify-queries.ts` and pass the result through `mapShopifyProduct` from `lib/shopify-mapper.ts`.
 
 ---
 
-## Section 4: GraphQL Queries
+## 7. GraphQL Operations
 
 ### `lib/shopify-queries.ts`
 
-**getProducts** — used by shop page
+#### `GET_PRODUCTS` — Shop page and static params generation
+
 ```graphql
 query GetProducts($first: Int!) {
   products(first: $first) {
@@ -144,57 +306,66 @@ query GetProducts($first: Int!) {
         handle
         title
         description
-        featuredImage { url altText }
+        featuredImage {
+          url
+          altText
+        }
         variants(first: 1) {
           edges {
             node {
               id
-              price { amount }
-              compareAtPrice { amount }
+              price          { amount currencyCode }
+              compareAtPrice { amount currencyCode }
               availableForSale
             }
           }
         }
-        metafield_subtitle:   metafield(namespace:"custom", key:"subtitle")   { value }
-        metafield_badge:      metafield(namespace:"custom", key:"badge")      { value }
-        metafield_category:   metafield(namespace:"custom", key:"category")   { value }
-        metafield_cat_label:  metafield(namespace:"custom", key:"category_label") { value }
-        metafield_ingredients: metafield(namespace:"custom", key:"ingredients") { value }
+        subtitle:      metafield(namespace: "custom", key: "subtitle")       { value }
+        badge:         metafield(namespace: "custom", key: "badge")          { value }
+        category:      metafield(namespace: "custom", key: "category")       { value }
+        categoryLabel: metafield(namespace: "custom", key: "category_label") { value }
+        ingredients:   metafield(namespace: "custom", key: "ingredients")    { value }
       }
     }
   }
 }
 ```
 
-**getProductByHandle** — used by product detail page
+#### `GET_PRODUCT_BY_HANDLE` — Product detail page
+
 ```graphql
-query GetProduct($handle: String!) {
+query GetProductByHandle($handle: String!) {
   productByHandle(handle: $handle) {
     id
     handle
     title
     description
-    images(first: 4) { edges { node { url altText } } }
+    images(first: 4) {
+      edges {
+        node { url altText }
+      }
+    }
     variants(first: 1) {
       edges {
         node {
           id
-          price { amount }
-          compareAtPrice { amount }
+          price          { amount currencyCode }
+          compareAtPrice { amount currencyCode }
           availableForSale
         }
       }
     }
-    metafield_subtitle:    metafield(namespace:"custom", key:"subtitle")    { value }
-    metafield_badge:       metafield(namespace:"custom", key:"badge")       { value }
-    metafield_category:    metafield(namespace:"custom", key:"category")    { value }
-    metafield_cat_label:   metafield(namespace:"custom", key:"category_label") { value }
-    metafield_ingredients: metafield(namespace:"custom", key:"ingredients") { value }
+    subtitle:      metafield(namespace: "custom", key: "subtitle")       { value }
+    badge:         metafield(namespace: "custom", key: "badge")          { value }
+    category:      metafield(namespace: "custom", key: "category")       { value }
+    categoryLabel: metafield(namespace: "custom", key: "category_label") { value }
+    ingredients:   metafield(namespace: "custom", key: "ingredients")    { value }
   }
 }
 ```
 
-**cartCreate** — used when user clicks Checkout
+#### `CART_CREATE` — Triggered on checkout button click
+
 ```graphql
 mutation CartCreate($lines: [CartLineInput!]!) {
   cartCreate(input: { lines: $lines }) {
@@ -202,234 +373,322 @@ mutation CartCreate($lines: [CartLineInput!]!) {
       id
       checkoutUrl
     }
-    userErrors { field message }
+    userErrors {
+      field
+      message
+    }
   }
 }
 ```
-Note: the post-purchase redirect to `thavare.com/order-success` is configured in Shopify admin (Section 2e), not in the cart mutation.
+
+> **Note:** The post-purchase redirect to `thavare.com/order-success` is configured via Shopify Admin (Section 4.5), not through the cart mutation.
 
 ---
 
-## Section 5: Product Type + Mapper
+## 8. Product Mapping
 
-### Updated `lib/products.ts`
+### `lib/shopify-mapper.ts`
 
-Add `variantId` to the `Product` type. Remove the hardcoded `PRODUCTS` array.
+Translates a raw Shopify GraphQL product node into the application's `Product` type. This keeps all Shopify-specific data structures isolated from the rest of the codebase.
 
-```ts
-export type Product = {
-  id: string;
-  slug: string;
-  name: string;
-  subtitle: string;
-  category: ProductCategory;
-  categoryLabel: string;
-  size: string;
-  price: number;
-  originalPrice?: number;
-  badge?: string;
-  description: string;
-  longDescription: string;
-  ingredients: string[];
-  images: { card: string; main: string };
-  inStock: boolean;
-  variantId: string;  // ← NEW: Shopify variant GID
+```typescript
+import type { Product, ProductCategory } from './products';
+
+export type ShopifyMetafield = { value: string } | null;
+
+export type ShopifyVariantNode = {
+  id:              string;
+  price:           { amount: string; currencyCode: string };
+  compareAtPrice?: { amount: string; currencyCode: string } | null;
+  availableForSale: boolean;
 };
-```
 
-### `lib/shopify-mapper.ts` — NEW
+export type ShopifyProductNode = {
+  id:           string;
+  handle:       string;
+  title:        string;
+  description:  string;
+  featuredImage?: { url: string; altText?: string } | null;
+  variants:     { edges: Array<{ node: ShopifyVariantNode }> };
+  subtitle:      ShopifyMetafield;
+  badge:         ShopifyMetafield;
+  category:      ShopifyMetafield;
+  categoryLabel: ShopifyMetafield;
+  ingredients:   ShopifyMetafield;
+};
 
-Maps raw Shopify GraphQL response to our `Product` type.
-
-```ts
 export function mapShopifyProduct(node: ShopifyProductNode): Product {
   const variant = node.variants.edges[0].node;
+
   return {
     id:            node.handle,
     slug:          node.handle,
     name:          node.title,
-    subtitle:      node.metafield_subtitle?.value ?? '',
-    category:      (node.metafield_category?.value ?? 'daily-essentials') as ProductCategory,
-    categoryLabel: node.metafield_cat_label?.value ?? '',
+    subtitle:      node.subtitle?.value ?? '',
+    category:      (node.category?.value ?? 'daily-essentials') as ProductCategory,
+    categoryLabel: node.categoryLabel?.value ?? '',
     size:          '',
     price:         Math.round(parseFloat(variant.price.amount)),
     originalPrice: variant.compareAtPrice
                      ? Math.round(parseFloat(variant.compareAtPrice.amount))
                      : undefined,
-    badge:         node.metafield_badge?.value ?? undefined,
+    badge:         node.badge?.value ?? undefined,
     description:   node.description,
     longDescription: node.description,
-    ingredients:   node.metafield_ingredients?.value
-                     ? JSON.parse(node.metafield_ingredients.value)
+    ingredients:   node.ingredients?.value
+                     ? (JSON.parse(node.ingredients.value) as string[])
                      : [],
     images: {
       card: node.featuredImage?.url ?? '/images/prod-bodywash-box.png',
       main: node.featuredImage?.url ?? '/images/prod-bodywash-box.png',
     },
-    inStock:    variant.availableForSale,
-    variantId:  variant.id,
+    inStock:   variant.availableForSale,
+    variantId: variant.id,
   };
 }
 ```
 
 ---
 
-## Section 6: Shop Page Refactor
+## 9. Storefront Pages
 
-### `app/shop/page.tsx` — async server component
-Fetches all products from Shopify, passes them to the client grid component.
+### 9.1 Shop Page — `app/shop/page.tsx`
 
-```ts
+Converted from a `'use client'` component to an **async server component**. Product data is fetched at request time (ISR, 1-hour revalidation) and passed to a new client component that owns filter state.
+
+```typescript
+// app/shop/page.tsx — server component
+import { getProducts } from '@/lib/shopify';
+import { ShopGrid } from './ShopGrid';
+
 export default async function ShopPage() {
-  const products = await getProducts(); // calls shopifyFetch + mapShopifyProduct
+  const products = await getProducts();
   return <ShopGrid products={products} />;
 }
 ```
 
-`getProducts()` and `getProductByHandle(handle)` are exported helper functions defined in `lib/shopify.ts` that call `shopifyFetch` with the appropriate query and return mapped `Product[]` / `Product | null`.
-
-### `app/shop/ShopGrid.tsx` — NEW client component
-Extracted from the current shop page. Receives `products: Product[]` as a prop, owns the category filter state. No data fetching.
-
-```ts
+```typescript
+// app/shop/ShopGrid.tsx — client component (extracted from current shop page)
 'use client';
+
+import { useState } from 'react';
+import type { Product, ProductCategory } from '@/lib/products';
+
 export function ShopGrid({ products }: { products: Product[] }) {
-  const [active, setActive] = useState<ProductCategory | 'all'>('all');
-  const filtered = active === 'all' ? products : products.filter(...);
-  // renders existing product grid UI
+  const [activeCategory, setActiveCategory] = useState<ProductCategory | 'all'>('all');
+
+  const filtered = activeCategory === 'all'
+    ? products
+    : products.filter(p => p.category === activeCategory);
+
+  // Renders existing category filter bar and product grid UI — no changes to markup.
 }
 ```
 
----
+### 9.2 Product Detail Page — `app/products/[slug]/page.tsx`
 
-## Section 7: Product Detail Page
+Replace the local `getProductBySlug` call with `getProductByHandle`. Static generation now fetches handles from Shopify at build time.
 
-`app/products/[slug]/page.tsx` — already async. Replace `getProductBySlug(slug)` with Shopify fetch:
-
-```ts
+```typescript
 export async function generateStaticParams() {
-  const products = await getProducts(); // Shopify fetch
+  const products = await getProducts();
   return products.map(p => ({ slug: p.slug }));
 }
 
-export default async function ProductPage({ params }) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const product = await getProductByHandle(slug); // Shopify fetch
+  const product  = await getProductByHandle(slug);
+  if (!product) return {};
+  return {
+    title: product.name,
+    description: product.description,
+    openGraph: {
+      title: `${product.name} — Thavare`,
+      description: product.description,
+      images: [{ url: product.images.main }],
+    },
+  };
+}
+
+export default async function ProductPage({ params }: Props) {
+  const { slug } = await params;
+  const product  = await getProductByHandle(slug);
   if (!product) notFound();
-  // rest of page unchanged
+  // Remainder of page JSX is unchanged.
 }
 ```
 
-`generateMetadata` similarly fetches from Shopify.
+### 9.3 Sitemap — `app/sitemap.ts`
 
-The sitemap (`app/sitemap.ts`) also updated to fetch handles from Shopify instead of `PRODUCTS`.
+Replace `PRODUCTS.map(...)` with a Shopify fetch:
+
+```typescript
+const products = await getProducts();
+const productRoutes = products.map(p => ({
+  url:             `${base}/products/${p.slug}`,
+  priority:        0.8,
+  changeFrequency: 'weekly' as const,
+  lastModified:    new Date(),
+}));
+```
 
 ---
 
-## Section 8: Cart → Checkout
+## 10. Cart & Checkout Flow
 
-### Updated `lib/cart.ts`
+### 10.1 Updated Cart Store — `lib/cart.ts`
 
-Add `variantId` to `CartItem`. Add `shopifyCartId` and `createShopifyCheckout` to the store.
+**`CartItem` gains `variantId`:**
 
-```ts
+```typescript
+export type CartItem = {
+  product:   Product;
+  quantity:  number;
+  variantId: string;   // Shopify variant GID — passed to cartCreate
+};
+```
+
+**New store fields and action:**
+
+```typescript
 type CartStore = {
-  items: CartItem[];           // CartItem now includes variantId
-  shopifyCartId: string | null;
-  // ... existing actions
+  items:           CartItem[];
+  shopifyCartId:   string | null;   // persisted to localStorage
+  addItem:         (product: Product) => void;
+  removeItem:      (productId: string) => void;
+  updateQuantity:  (productId: string, quantity: number) => void;
+  clearCart:       () => void;
+  totalItems:      () => number;
+  totalPrice:      () => number;
   createShopifyCheckout: () => Promise<void>;
 };
 ```
 
-`createShopifyCheckout`:
-1. Calls `cartCreate` mutation with `items.map(i => ({ merchandiseId: i.variantId, quantity: i.quantity }))`
-2. Gets back `cart.checkoutUrl`
-3. Stores `cart.id` in `shopifyCartId` (localStorage via Zustand persist)
-4. Redirects: `window.location.href = checkoutUrl`
-5. On error: throws so the cart page can show an error message
+**`createShopifyCheckout` implementation:**
 
-### Updated `app/cart/page.tsx`
+1. Constructs `lines` array: `items.map(i => ({ merchandiseId: i.variantId, quantity: i.quantity }))`
+2. Calls `shopifyFetch` with `CART_CREATE` mutation
+3. Checks `userErrors` — throws if non-empty
+4. Persists `cart.id` to `shopifyCartId` in Zustand state (written to localStorage)
+5. Redirects: `window.location.href = cart.checkoutUrl`
 
-Replace the existing "Checkout" button handler:
+### 10.2 Updated Cart Page — `app/cart/page.tsx`
 
-```tsx
+Replace the existing link to `/checkout` with an async checkout handler:
+
+```typescript
 const [loading, setLoading] = useState(false);
-const [error, setError]     = useState('');
+const [error,   setError]   = useState<string | null>(null);
+const createShopifyCheckout = useCart(s => s.createShopifyCheckout);
 
 async function handleCheckout() {
+  setError(null);
   setLoading(true);
   try {
     await createShopifyCheckout();
-  } catch {
-    setError('Something went wrong. Please try again.');
+    // On success, browser navigates away — no further state update needed
+  } catch (err) {
+    setError('Unable to reach checkout. Please try again.');
     setLoading(false);
   }
 }
 ```
 
-Button UI:
+**Checkout button:**
+
 ```tsx
-<Button onClick={handleCheckout} disabled={loading || items.length === 0}>
-  {loading ? 'Redirecting...' : 'Proceed to Checkout'}
+<Button
+  onClick={handleCheckout}
+  disabled={loading || items.length === 0}
+  className="w-full justify-center"
+>
+  {loading ? 'Redirecting to checkout…' : 'Proceed to Checkout'}
 </Button>
-{error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+
+{error && (
+  <p className="text-[12px] text-red-500 mt-2 text-center">{error}</p>
+)}
+```
+
+### 10.3 End-to-End Checkout Flow
+
+```
+Customer on thavare.com/cart
+         │
+         │  clicks [Proceed to Checkout]
+         ▼
+cartCreate mutation → Shopify Storefront API
+         │
+         │  returns checkoutUrl
+         ▼
+window.location.href = checkoutUrl
+         │
+         ▼
+Shopify hosted checkout
+  (Thavare-branded via Section 4.3)
+  Payment via Razorpay / UPI / cards
+         │
+         │  payment successful
+         ▼
+Shopify sends order confirmation email → customer
+         │
+         ▼
+Redirect → thavare.com/order-success
+         │
+         ▼
+Cart cleared. Order confirmed screen displayed.
 ```
 
 ---
 
-## Section 9: Removed Files
+## 11. Order Success Page
 
-These are deleted entirely — Shopify's hosted checkout replaces them:
+### `app/order-success/page.tsx`
 
-- `app/checkout/page.tsx`
-- `app/checkout/layout.tsx`
-- `components/checkout/CheckoutForm.tsx`
-- `lib/checkout.ts`
+A static server component. Cart is cleared via a lightweight client wrapper using `useEffect`.
 
----
-
-## Section 10: Order Success Page
-
-`app/order-success/page.tsx` — server component, no index.
-
-```ts
-export const metadata = {
+```typescript
+// Metadata — excluded from search indexing
+export const metadata: Metadata = {
   title: 'Order Confirmed — Thavare',
   robots: { index: false, follow: false },
 };
-
-export default function OrderSuccessPage() {
-  return (
-    <section className="min-h-screen bg-cream flex flex-col items-center justify-center px-4 text-center">
-      <div className="text-[56px] mb-6">🌿</div>
-      <h1 className="font-serif text-[36px] font-medium text-navy mb-4">
-        Order Confirmed!
-      </h1>
-      <p className="text-[15px] text-text-2 max-w-[420px] mb-10">
-        Thank you for your order. A confirmation has been sent to your email.
-      </p>
-      <Link href="/shop">
-        <Button variant="primary">Continue Shopping</Button>
-      </Link>
-    </section>
-  );
-}
 ```
 
-The cart is cleared on this page via a `useEffect` in a client wrapper that calls `clearCart()`.
+**UI structure:**
+
+```
+┌─────────────────────────────────────────────┐
+│                                             │
+│                    🌿                       │
+│                                             │
+│            Order Confirmed!                 │
+│                                             │
+│   Thank you for your order. A confirmation  │
+│   has been sent to your email address.      │
+│                                             │
+│           [Continue Shopping]               │
+│                                             │
+└─────────────────────────────────────────────┘
+```
+
+Styling follows existing page conventions: `bg-cream`, `font-serif` heading in `text-navy`, body in `text-text-2`, Button `variant="primary"` linking to `/shop`.
 
 ---
 
-## Section 11: `next.config.ts` Update
+## 12. Infrastructure Changes
 
-Add Shopify CDN to allowed image domains:
+### 12.1 `next.config.ts` — Remote Image Domains
 
-```ts
+Product images are served from Shopify's CDN. Add the following to `images.remotePatterns`:
+
+```typescript
 images: {
   remotePatterns: [
     {
       protocol: 'https',
       hostname: 'cdn.shopify.com',
+      pathname: '/s/files/**',
     },
   ],
 },
@@ -437,38 +696,68 @@ images: {
 
 ---
 
-## Section 12: Out of Stock Handling
+## 13. Deletions
 
-If `product.inStock === false`:
-- Shop page: show "Out of Stock" badge, grey out card
-- Product detail page: replace "Add to Bag" button with disabled "Out of Stock" button
-- Cart: if a carted item goes out of stock, Shopify will reject it at checkout (Shopify handles this automatically)
+The following files are removed entirely. Shopify's hosted checkout replaces all functionality they provided.
 
----
-
-## What Shopify Handles Automatically (zero code)
-
-- Order confirmation email to customer
-- Order management dashboard (Shopify admin)
-- Inventory decrement on purchase
-- Shipping notification emails (if configured)
-- Razorpay payment processing
-- Refunds (via Shopify admin)
+| File | Reason |
+|---|---|
+| `app/checkout/page.tsx` | Replaced by Shopify hosted checkout |
+| `app/checkout/layout.tsx` | No longer required |
+| `components/checkout/CheckoutForm.tsx` | Replaced by Shopify hosted checkout |
+| `lib/checkout.ts` | Validation logic no longer needed |
 
 ---
 
-## Implementation Order
+## 14. Out-of-Stock Handling
 
-1. Shopify admin setup (handles, metafields, branding, Razorpay, redirect URL)
-2. `lib/shopify.ts` + `lib/shopify-queries.ts`
-3. `lib/shopify-mapper.ts`
-4. Update `lib/products.ts` (add variantId, remove PRODUCTS array)
-5. `next.config.ts` image domains
-6. `app/shop/page.tsx` + `app/shop/ShopGrid.tsx`
-7. `app/products/[slug]/page.tsx` + `generateStaticParams` + `generateMetadata`
-8. `app/sitemap.ts` (fetch handles from Shopify)
-9. Update `lib/cart.ts` (variantId + shopifyCartId + createShopifyCheckout)
-10. Update `app/cart/page.tsx` (Checkout button → Shopify redirect)
-11. Delete checkout page + CheckoutForm + lib/checkout.ts
-12. `app/order-success/page.tsx`
-13. End-to-end test with Shopify test mode
+Availability is derived from `variant.availableForSale` returned by the Storefront API and mapped to `product.inStock`.
+
+| Location | Behaviour |
+|---|---|
+| Shop page product card | Display "Out of Stock" overlay badge; disable "Add to Bag" button |
+| Product detail page | Replace "Add to Bag" with a disabled "Out of Stock" button in the same position |
+| Cart page | No change — Shopify will surface an availability error at checkout automatically |
+
+---
+
+## 15. Shopify-Managed Capabilities
+
+The following require **zero custom code** — Shopify handles them through its admin and built-in automations:
+
+- Order confirmation emails to customers
+- Order management and fulfilment dashboard
+- Inventory decrement on successful purchase
+- Shipping and fulfilment notification emails
+- Razorpay payment processing and reconciliation
+- Refunds and cancellations (via Shopify admin)
+- Tax calculation
+
+---
+
+## 16. Implementation Order
+
+Steps must be followed in this sequence. Steps 1–5 are non-code prerequisites; steps 6–18 are code changes.
+
+| # | Task | Notes |
+|---|---|---|
+| 1 | Set product handles in Shopify admin | Must match slugs in Section 4.1 exactly |
+| 2 | Create and populate metafield definitions | Enable Storefront API access on each |
+| 3 | Configure checkout branding | Apply Thavare colours and logo |
+| 4 | Install Razorpay payment gateway | Use test credentials initially |
+| 5 | Configure post-purchase redirect script | Points to `thavare.com/order-success` |
+| 6 | Add credentials to `.env.local` | `NEXT_PUBLIC_SHOPIFY_*` variables |
+| 7 | Create `lib/shopify.ts` | API client + `getProducts` + `getProductByHandle` |
+| 8 | Create `lib/shopify-queries.ts` | Three GraphQL operations |
+| 9 | Create `lib/shopify-mapper.ts` | `mapShopifyProduct` with full TypeScript types |
+| 10 | Update `lib/products.ts` | Add `variantId`; remove `PRODUCTS` array |
+| 11 | Update `next.config.ts` | Add `cdn.shopify.com` remote pattern |
+| 12 | Refactor `app/shop/page.tsx` | Async server component |
+| 13 | Create `app/shop/ShopGrid.tsx` | Extract client filter component |
+| 14 | Update `app/products/[slug]/page.tsx` | Shopify fetch + `generateStaticParams` + `generateMetadata` |
+| 15 | Update `app/sitemap.ts` | Fetch handles from Shopify |
+| 16 | Update `lib/cart.ts` | `variantId` on `CartItem`; `createShopifyCheckout` action |
+| 17 | Update `app/cart/page.tsx` | Checkout handler + loading/error states |
+| 18 | Delete checkout files | `app/checkout/`, `components/checkout/`, `lib/checkout.ts` |
+| 19 | Create `app/order-success/page.tsx` | Confirmation screen with cart clear |
+| 20 | End-to-end test | Shopify test mode — full add-to-cart → payment → success flow |
