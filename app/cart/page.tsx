@@ -1,9 +1,43 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/lib/cart';
 import { CartItem } from '@/components/cart/CartItem';
 import { Button } from '@/components/ui/Button';
+
+function CheckoutButton() {
+  const createShopifyCheckout = useCart(s => s.createShopifyCheckout);
+  const items = useCart(s => s.items);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleCheckout() {
+    setLoading(true);
+    setError(null);
+    try {
+      await createShopifyCheckout();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Checkout failed. Please try again.');
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div>
+      <button
+        onClick={handleCheckout}
+        disabled={loading || items.length === 0}
+        className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 cursor-none bg-navy text-cream hover:bg-navy/90 disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {loading ? 'Redirecting...' : 'Proceed to Checkout'}
+      </button>
+      {error && (
+        <p className="mt-3 text-[12px] text-red-500 text-center">{error}</p>
+      )}
+    </div>
+  );
+}
 
 export default function CartPage() {
   const { items, totalItems, totalPrice } = useCart();
@@ -48,7 +82,7 @@ export default function CartPage() {
                 <span>Total</span><span>₹{total + shipping}</span>
               </div>
             </div>
-            <Link href="/checkout"><Button className="w-full justify-center">Proceed to Checkout</Button></Link>
+            <CheckoutButton />
             <Link href="/shop" className="block text-center text-[12px] text-text-3 hover:text-text-1 mt-4 transition-colors">
               Continue Shopping
             </Link>
