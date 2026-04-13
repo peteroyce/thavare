@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
-import { PRODUCTS } from '@/lib/products';
+import { getProducts } from '@/lib/shopify';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = 'https://thavare.com';
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -13,12 +13,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/why-sport-active`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
   ];
 
-  const productRoutes: MetadataRoute.Sitemap = PRODUCTS.map(p => ({
-    url: `${base}/products/${p.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }));
+  let productRoutes: MetadataRoute.Sitemap = [];
+  try {
+    const products = await getProducts();
+    productRoutes = products.map(p => ({
+      url: `${base}/products/${p.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    }));
+  } catch {
+    // Shopify may be unreachable during build — omit product routes
+  }
 
   return [...staticRoutes, ...productRoutes];
 }

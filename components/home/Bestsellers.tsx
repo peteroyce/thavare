@@ -2,13 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Button } from '@/components/ui/Button';
-import { PRODUCTS } from '@/lib/products';
+import type { Product } from '@/lib/products';
 
-const FEATURED_IDS = ['body-wash', 'sun-screen', 'body-lotion'];
-
-export function Bestsellers() {
-  const products = FEATURED_IDS.map(id => PRODUCTS.find(p => p.id === id)!);
-
+export function Bestsellers({ products }: { products: Product[] }) {
   return (
     <section className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-navy">
       <div className="max-w-[1200px] mx-auto">
@@ -42,13 +38,12 @@ export function Bestsellers() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <div className="text-[9px] font-medium tracking-[3px] uppercase text-teal mb-1.5">{p.categoryLabel} · {p.size}</div>
+                  <div className="text-[9px] font-medium tracking-[3px] uppercase text-teal mb-1.5">{p.categoryLabel}</div>
                   <div className="font-serif text-[18px] font-medium leading-[1.25] text-cream mb-2">{p.name}</div>
                   <div className="text-[13px] leading-relaxed text-cream/55 mb-4">{p.description}</div>
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-[19px] font-semibold text-camel">₹{p.price}</span>
-                      {p.originalPrice && <span className="text-[12px] text-cream/30 line-through ml-2">₹{p.originalPrice}</span>}
+                      <span className="text-[19px] font-semibold text-camel">{'\u20B9'}{p.price}</span>
                     </div>
                     <Link href={`/products/${p.slug}`}>
                       <Button variant="primary" className="text-[10px] px-4 py-2">Add to Bag</Button>

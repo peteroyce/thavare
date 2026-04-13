@@ -2,19 +2,25 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getProductBySlug, generateProductParams, PRODUCTS } from '@/lib/products';
+import { getProducts, getProductByHandle } from '@/lib/shopify';
 import { ProductInfo } from '@/components/product/ProductInfo';
 import { ProductCard } from '@/components/shop/ProductCard';
 
-export function generateStaticParams() {
-  return generateProductParams();
+export async function generateStaticParams() {
+  try {
+    const products = await getProducts();
+    return products.map(p => ({ slug: p.slug }));
+  } catch {
+    // Shopify may be unreachable during build — return empty for on-demand ISR
+    return [];
+  }
 }
 
 export async function generateMetadata(
   { params }: { params: Promise<{ slug: string }> }
 ): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductByHandle(slug);
   if (!product) return {};
   return {
     title: product.name,
@@ -36,10 +42,11 @@ export async function generateMetadata(
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductByHandle(slug);
   if (!product) notFound();
 
-  const related = PRODUCTS.filter(p => p.id !== product.id).slice(0, 3);
+  const allProducts = await getProducts();
+  const related = allProducts.filter(p => p.id !== product.id).slice(0, 3);
 
   const productSchema = {
     '@context': 'https://schema.org',

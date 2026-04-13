@@ -15,12 +15,11 @@ export function ProductInfo({ product: p }: { product: Product }) {
 
   return (
     <div>
-      <div className="text-[10px] font-medium tracking-[3px] uppercase text-teal mb-3">{p.categoryLabel} · {p.size}</div>
+      <div className="text-[10px] font-medium tracking-[3px] uppercase text-teal mb-3">{p.categoryLabel}</div>
       <h1 className="font-serif text-[40px] font-medium leading-[1.1] text-navy mb-2">{p.name}</h1>
       <p className="text-[16px] text-text-2 italic mb-6">{p.subtitle}</p>
       <div className="flex items-baseline gap-3 mb-6">
         <span className="text-[28px] font-semibold text-terracotta">₹{p.price}</span>
-        {p.originalPrice && <span className="text-[16px] text-text-3 line-through">₹{p.originalPrice}</span>}
       </div>
       <p className="text-[15px] leading-[1.75] text-text-2 mb-8">{p.longDescription}</p>
       {/* Ingredients */}

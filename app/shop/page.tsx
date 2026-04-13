@@ -1,21 +1,13 @@
-'use client';
+import { getProducts } from '@/lib/shopify';
+import { ShopFilter }  from '@/components/shop/ShopFilter';
 
-import { useState } from 'react';
-import { PRODUCTS, type ProductCategory } from '@/lib/products';
-import { ProductCard } from '@/components/shop/ProductCard';
-
-const FILTERS: { label: string; value: ProductCategory | 'all' }[] = [
-  { label: 'All',              value: 'all' },
-  { label: 'Pre-Sport',        value: 'pre-sport' },
-  { label: 'Recovery',         value: 'recovery' },
-  { label: 'Sun Care',         value: 'sun-care' },
-  { label: 'Daily Essentials', value: 'daily-essentials' },
-  { label: 'Teal Ayurveda',    value: 'teal-ayurveda' },
-];
-
-export default function ShopPage() {
-  const [active, setActive] = useState<ProductCategory | 'all'>('all');
-  const filtered = active === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === active);
+export default async function ShopPage() {
+  let products: Awaited<ReturnType<typeof getProducts>> = [];
+  try {
+    products = await getProducts();
+  } catch {
+    // Shopify unreachable — render with empty product list
+  }
 
   return (
     <div className="min-h-screen bg-cream pt-8 md:pt-12 pb-24 px-4 md:px-10 lg:px-20">
@@ -30,26 +22,7 @@ export default function ShopPage() {
             Clinically crafted Ayurveda for every body that moves.
           </p>
         </div>
-        {/* Filter bar */}
-        <div className="flex gap-3 justify-center flex-wrap mb-12">
-          {FILTERS.map(f => (
-            <button
-              key={f.value}
-              onClick={() => setActive(f.value)}
-              className={`px-5 py-2 rounded-full text-[11px] font-medium tracking-[1px] uppercase transition-all cursor-none ${
-                active === f.value
-                  ? 'bg-navy text-cream'
-                  : 'bg-ivory text-text-2 border border-[#D4C8B8] hover:border-navy hover:text-navy'
-              }`}
-            >
-              {f.label}
-            </button>
-          ))}
-        </div>
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map(p => <ProductCard key={p.id} product={p} />)}
-        </div>
+        <ShopFilter products={products} />
       </div>
     </div>
   );

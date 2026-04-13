@@ -10,6 +10,8 @@ import { CircleSection }   from '@/components/home/CircleSection';
 import { NewArrivals }     from '@/components/home/NewArrivals';
 import { WhySection }      from '@/components/home/WhySection';
 import { Newsletter }      from '@/components/home/Newsletter';
+import { getProducts }     from '@/lib/shopify';
+import { FEATURED_IDS }    from '@/lib/products';
 
 export const metadata: Metadata = {
   title: 'Thavare — Clinically Crafted Ayurveda',
@@ -35,19 +37,27 @@ const PATTERN_ITEMS = [
   { label: '◈  ⊙  ❋  ◉' },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  let allProducts: Awaited<ReturnType<typeof getProducts>> = [];
+  try {
+    allProducts = await getProducts();
+  } catch {
+    // Shopify unreachable — render with empty product lists
+  }
+  const featured = allProducts.filter(p => FEATURED_IDS.includes(p.id));
+
   return (
     <>
       <Hero />
       <MarqueeStrip items={MARQUEE_ITEMS} className="bg-teal py-3" />
       <CategoryGrid />
-      <Bestsellers />
+      <Bestsellers products={featured} />
       <ValuesSection />
       <IngredientStrip />
       <MarqueeStrip items={PATTERN_ITEMS} className="bg-teal py-3" />
       <FounderSection />
       <CircleSection />
-      <NewArrivals />
+      <NewArrivals products={allProducts} />
       <WhySection />
       <Newsletter />
     </>

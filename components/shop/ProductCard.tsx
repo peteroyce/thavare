@@ -28,7 +28,7 @@ export function ProductCard({ product: p }: { product: Product }) {
         </div>
       </Link>
       <div className="p-5">
-        <div className="text-[9px] font-medium tracking-[2.5px] uppercase text-camel mb-1.5">{p.categoryLabel} · {p.size}</div>
+        <div className="text-[9px] font-medium tracking-[2.5px] uppercase text-camel mb-1.5">{p.categoryLabel}</div>
         <Link href={`/products/${p.slug}`}>
           <div className="font-serif text-[17px] font-medium text-navy mb-1.5 leading-[1.25] hover:text-terracotta transition-colors">{p.name}</div>
         </Link>
@@ -36,7 +36,6 @@ export function ProductCard({ product: p }: { product: Product }) {
         <div className="flex items-center justify-between">
           <div>
             <span className="text-[18px] font-semibold text-terracotta">₹{p.price}</span>
-            {p.originalPrice && <span className="text-[12px] text-text-3 line-through ml-2">₹{p.originalPrice}</span>}
           </div>
           <button
             onClick={() => addItem(p)}

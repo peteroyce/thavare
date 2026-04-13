@@ -1,10 +1,23 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { act, renderHook } from '@testing-library/react';
 import { useCart } from '../cart';
-import { PRODUCTS } from '../products';
+import type { Product } from '../products';
 
-const p1 = PRODUCTS[0]; // Body Wash ₹499
-const p2 = PRODUCTS[1]; // Body Lotion ₹599
+const p1: Product = {
+  id: 'body-wash', slug: 'body-wash', name: 'Body Wash',
+  subtitle: 'Blue Lotus + Wild Himalayan Cherry', badge: 'Bestseller',
+  description: 'Cleanses and primes active skin.', category: 'sport',
+  categoryLabel: 'Sport', price: 499, variantId: 'gid://shopify/ProductVariant/1',
+  inStock: true, ingredients: 'Blue Lotus, Neem', images: { card: '/a.png', main: '/a.png' },
+};
+
+const p2: Product = {
+  id: 'body-lotion', slug: 'body-lotion', name: 'Body Lotion',
+  subtitle: 'Blue Lotus + Sandalwood', badge: 'New',
+  description: 'Deep post-workout recovery.', category: 'recovery',
+  categoryLabel: 'Recovery', price: 599, variantId: 'gid://shopify/ProductVariant/2',
+  inStock: true, ingredients: 'Blue Lotus, Sandalwood', images: { card: '/b.png', main: '/b.png' },
+};
 
 beforeEach(() => {
   useCart.setState({ items: [] });
