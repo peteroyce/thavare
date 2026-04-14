@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/lib/cart';
+import { useToast } from '@/lib/toast';
 import { useWishlist } from '@/lib/wishlist';
 import type { Product } from '@/lib/products';
 
@@ -14,6 +15,20 @@ type Props = {
 
 export function QuickViewModal({ product: p, onClose }: Props) {
   const addItem = useCart(s => s.addItem);
+  const addToast = useToast(s => s.add);
+
+  function handleAddToCart() {
+    const wasInCart = useCart.getState().items.some(i => i.product.id === p.id);
+    addItem(p);
+    const newCount = useCart.getState().totalItems();
+    if (wasInCart) {
+      const newQty = useCart.getState().items.find(i => i.product.id === p.id)?.quantity ?? 1;
+      addToast({ type: 'cart-update', productName: p.name, count: newCount, quantity: newQty });
+    } else {
+      addToast({ type: 'cart-add', productName: p.name, count: newCount });
+    }
+  }
+
   const { toggle, has } = useWishlist();
 
   // Close on Escape key
@@ -130,7 +145,7 @@ export function QuickViewModal({ product: p, onClose }: Props) {
             <div className="flex flex-col gap-3 mt-auto pt-2">
               {/* Add to Bag */}
               <button
-                onClick={() => { addItem(p); }}
+                onClick={handleAddToCart}
                 disabled={!p.inStock}
                 className="w-full py-3 text-[11px] font-semibold tracking-[1.5px] uppercase rounded-xl transition-all cursor-none disabled:cursor-not-allowed bg-terracotta text-white hover:opacity-90 disabled:bg-[#D4C8B8] disabled:text-text-3"
               >
