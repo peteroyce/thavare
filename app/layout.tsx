@@ -6,6 +6,7 @@ import { Footer } from '@/components/layout/Footer';
 import { CustomCursor } from '@/components/ui/CustomCursor';
 import { WelcomeBanner } from '@/components/ui/WelcomeBanner';
 import { ToastContainer } from '@/components/ui/ToastContainer';
+import { FloatingVideo } from '@/components/ui/FloatingVideo';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -71,6 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Footer />
         <ToastContainer />
+        <FloatingVideo />
       </body>
     </html>
   );
