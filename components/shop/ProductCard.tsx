@@ -5,13 +5,39 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/lib/cart';
 import { useWishlist } from '@/lib/wishlist';
+import { useToast } from '@/lib/toast';
 import type { Product } from '@/lib/products';
 import { QuickViewModal } from '@/components/shop/QuickViewModal';
 
 export function ProductCard({ product: p }: { product: Product }) {
   const addItem = useCart(s => s.addItem);
   const { toggle, has } = useWishlist();
+  const addToast = useToast(s => s.add);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
+
+  function handleAddToCart() {
+    const wasInCart = useCart.getState().items.some(i => i.product.id === p.id);
+    addItem(p);
+    const newCount = useCart.getState().totalItems();
+    if (wasInCart) {
+      const newQty = useCart.getState().items.find(i => i.product.id === p.id)?.quantity ?? 1;
+      addToast({ type: 'cart-update', productName: p.name, count: newCount, quantity: newQty });
+    } else {
+      addToast({ type: 'cart-add', productName: p.name, count: newCount });
+    }
+  }
+
+  function handleWishlistToggle(e: React.MouseEvent) {
+    e.preventDefault();
+    const wasWishlisted = has(p.id);
+    toggle(p);
+    const newCount = useWishlist.getState().items.length;
+    if (wasWishlisted) {
+      addToast({ type: 'wishlist-remove', productName: p.name });
+    } else {
+      addToast({ type: 'wishlist-add', productName: p.name, count: newCount });
+    }
+  }
 
   return (
     <div className="bg-ivory rounded-xl overflow-hidden border border-[#E5DDD0] shadow-[rgba(26,22,16,0.06)_0_4px_24px] hover:-translate-y-1.5 hover:shadow-[rgba(26,22,16,0.12)_0_12px_40px] transition-all duration-300 group relative">
@@ -39,7 +65,7 @@ export function ProductCard({ product: p }: { product: Product }) {
         </div>
       </Link>
       <button
-        onClick={(e) => { e.preventDefault(); toggle(p); }}
+        onClick={handleWishlistToggle}
         className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 cursor-none ${
           has(p.id)
             ? 'bg-terracotta text-white shadow-md'
@@ -58,11 +84,9 @@ export function ProductCard({ product: p }: { product: Product }) {
         </Link>
         <div className="text-[13px] leading-relaxed text-text-2 mb-4 line-clamp-2">{p.description}</div>
         <div className="flex items-center justify-between">
-          <div>
-            <span className="text-[18px] font-semibold text-terracotta">₹{p.price}</span>
-          </div>
+          <span className="text-[18px] font-semibold text-terracotta">₹{p.price}</span>
           <button
-            onClick={() => addItem(p)}
+            onClick={handleAddToCart}
             disabled={!p.inStock}
             className="px-4 py-2 text-[10px] font-semibold tracking-wide uppercase rounded-lg transition-all cursor-none disabled:cursor-not-allowed bg-terracotta text-white hover:opacity-90 disabled:bg-[#D4C8B8] disabled:text-text-3"
           >
