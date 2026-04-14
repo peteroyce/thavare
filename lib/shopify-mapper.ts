@@ -41,7 +41,7 @@ export function mapShopifyProduct(node: ShopifyProductNode): Product {
     slug: node.handle,
     name: node.title,
     subtitle: node.subtitle?.value ?? '',
-    badge: node.badge?.value ?? '',
+    badge: node.badge?.value?.replace(/^`+$/, '') ?? '',
     description: node.description,
     longDescription: node.descriptionHtml,
     category: (node.category?.value ?? 'daily-essentials') as ProductCategory,
