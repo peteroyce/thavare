@@ -6,9 +6,23 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Button } from '@/components/ui/Button';
 import type { Product } from '@/lib/products';
 import { useCart } from '@/lib/cart';
+import { useToast } from '@/lib/toast';
 
 export function Bestsellers({ products }: { products: Product[] }) {
   const addItem = useCart(s => s.addItem);
+  const addToast = useToast(s => s.add);
+
+  function handleQuickAdd(p: Product) {
+    const wasInCart = useCart.getState().items.some(i => i.product.id === p.id);
+    addItem(p);
+    const newCount = useCart.getState().totalItems();
+    if (wasInCart) {
+      const newQty = useCart.getState().items.find(i => i.product.id === p.id)?.quantity ?? 1;
+      addToast({ type: 'cart-update', productName: p.name, count: newCount, quantity: newQty });
+    } else {
+      addToast({ type: 'cart-add', productName: p.name, count: newCount });
+    }
+  }
 
   return (
     <section className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-navy">
@@ -39,7 +53,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
                     style={{ filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.35))' }}
                   />
                   <button
-                    onClick={() => addItem(p)}
+                    onClick={() => handleQuickAdd(p)}
                     className="absolute bottom-0 left-0 right-0 bg-terracotta text-white text-[11px] font-semibold tracking-[1.5px] uppercase py-3.5 text-center translate-y-full group-hover:translate-y-0 transition-transform duration-300 cursor-none"
                   >
                     Quick Add to Bag
