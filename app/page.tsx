@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Hero }            from '@/components/home/Hero';
+import { HeroCarousel }    from '@/components/home/HeroCarousel';
 import { MarqueeStrip }    from '@/components/ui/MarqueeStrip';
 import { CategoryGrid }    from '@/components/home/CategoryGrid';
 import { Bestsellers }     from '@/components/home/Bestsellers';
@@ -51,7 +51,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero />
+      <HeroCarousel />
       <MarqueeStrip items={MARQUEE_ITEMS} className="bg-teal py-3" />
       <CategoryGrid />
       <Bestsellers products={featured} />
