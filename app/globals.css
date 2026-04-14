@@ -113,4 +113,13 @@ body { -webkit-font-smoothing: antialiased; overflow-x: hidden; cursor: none; }
 }
 .pulse-teal { animation: pulse-teal 2.5s ease-in-out infinite; }
 
+/* Toast notifications */
+@keyframes toast-slide-in {
+  from { transform: translateX(110%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+.toast-slide-in { animation: toast-slide-in 0.25s cubic-bezier(0.16,1,0.3,1) forwards; }
+
+@keyframes toast-progress { to { width: 0%; } }
+
 @keyframes line-grow { to { height: 80px; } }
