@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useCart } from '@/lib/cart';
 import { useWishlist } from '@/lib/wishlist';
+import { useToast } from '@/lib/toast';
 import type { Product } from '@/lib/products';
 import { Button } from '@/components/ui/Button';
 import { NotifyMeForm } from '@/components/product/NotifyMeForm';
@@ -12,14 +13,20 @@ export function ProductInfo({ product: p }: { product: Product }) {
   const addItem = useCart(s => s.addItem);
   const updateQuantity = useCart(s => s.updateQuantity);
   const { toggle, has } = useWishlist();
+  const addToast = useToast(s => s.add);
 
   const handleAdd = () => {
     const current = useCart.getState().items.find(i => i.product.id === p.id);
     if (current) {
-      updateQuantity(p.id, current.quantity + qty);
+      const newQty = current.quantity + qty;
+      updateQuantity(p.id, newQty);
+      const newCount = useCart.getState().totalItems();
+      addToast({ type: 'cart-update', productName: p.name, count: newCount, quantity: newQty });
     } else {
       addItem(p);
       if (qty > 1) updateQuantity(p.id, qty);
+      const newCount = useCart.getState().totalItems();
+      addToast({ type: 'cart-add', productName: p.name, count: newCount });
     }
   };
 
@@ -31,7 +38,16 @@ export function ProductInfo({ product: p }: { product: Product }) {
       <div className="flex items-center justify-between mb-6">
         <span className="text-[28px] font-semibold text-terracotta">₹{p.price}</span>
         <button
-          onClick={() => toggle(p)}
+          onClick={() => {
+            const wasWishlisted = has(p.id);
+            toggle(p);
+            const newCount = useWishlist.getState().items.length;
+            if (wasWishlisted) {
+              addToast({ type: 'wishlist-remove', productName: p.name });
+            } else {
+              addToast({ type: 'wishlist-add', productName: p.name, count: newCount });
+            }
+          }}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-all duration-200 cursor-none text-[11px] font-semibold tracking-wide uppercase ${
             has(p.id)
               ? 'border-terracotta bg-terracotta/5 text-terracotta'
