@@ -27,17 +27,11 @@ export const metadata: Metadata = {
 };
 
 const MARQUEE_ITEMS = [
-  { label: '🚚 Free Delivery ₹499+' },
-  { label: '🌿 100% Ayurvedic Actives' },
-  { label: '🔬 Clinically Tested' },
-  { label: '♻️ Sustainable Packaging' },
-  { label: '👩‍⚕️ Doctor Formulated' },
-];
-
-const PATTERN_ITEMS = [
-  { label: '◈  ⊙  ❋  ◉' },
-  { label: '◈  ⊙  ❋  ◉' },
-  { label: '◈  ⊙  ❋  ◉' },
+  { label: 'Free Delivery ₹499+' },
+  { label: 'Ayurvedic Actives' },
+  { label: 'Clinically Tested' },
+  { label: 'Sustainable Packaging' },
+  { label: 'Doctor Formulated' },
 ];
 
 export default async function HomePage() {
@@ -57,7 +51,6 @@ export default async function HomePage() {
       <Bestsellers products={featured} />
       <ValuesSection />
       <IngredientStrip />
-      <MarqueeStrip items={PATTERN_ITEMS} className="bg-teal py-3" />
       <FounderSection />
       <CircleSection />
       <NewArrivals products={allProducts} />
