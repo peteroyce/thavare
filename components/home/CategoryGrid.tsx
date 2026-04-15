@@ -11,7 +11,7 @@ const CATS = [
 
 export function CategoryGrid() {
   return (
-    <section className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-cream">
+    <section className="py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-cream">
       <div className="max-w-[1200px] mx-auto">
         <AnimatedSection className="text-center mb-14">
           <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-2.5">Find Your Ritual</div>
@@ -25,7 +25,13 @@ export function CategoryGrid() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {CATS.map((cat, i) => (
             <AnimatedSection key={cat.name} delay={(i + 1) as 1|2|3|4}>
-              <Link href={cat.href} className="block bg-ivory rounded-xl overflow-hidden border border-[#E5DDD0] shadow-[rgba(26,22,16,0.06)_0_4px_24px] hover:-translate-y-1.5 hover:shadow-[rgba(26,22,16,0.12)_0_12px_40px] transition-all duration-300 group">
+              <Link
+                href={cat.href}
+                className="block bg-ivory rounded-xl overflow-hidden hover:-translate-y-1.5 transition-all duration-300 group"
+                style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
+                onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
+                onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}
+              >
                 <div className="h-[155px] overflow-hidden relative">
                   <Image
                     src={cat.img}
