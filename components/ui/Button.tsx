@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 
-type Variant = 'primary' | 'ghost' | 'outline-light' | 'outline-cream' | 'white';
+type Variant = 'primary' | 'ghost' | 'outline' | 'outline-light' | 'outline-cream' | 'white';
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: Variant;
@@ -18,6 +18,9 @@ const variants: Record<Variant, string> = {
   ghost:
     'bg-transparent text-cream/75 border border-cream/20 ' +
     'hover:border-cream/45 hover:text-cream hover:bg-cream/5',
+  outline:
+    'bg-transparent text-navy border border-navy/25 ' +
+    'hover:border-navy/50 hover:bg-navy/5',
   'outline-light':
     'bg-transparent text-cream/70 border border-cream/20 ' +
     'hover:border-cream/40 hover:text-cream hover:bg-cream/5',

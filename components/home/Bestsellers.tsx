@@ -25,20 +25,25 @@ export function Bestsellers({ products }: { products: Product[] }) {
   }
 
   return (
-    <section className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-navy">
+    <section className="py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-ivory">
       <div className="max-w-[1200px] mx-auto">
         <AnimatedSection className="text-center mb-14">
-          <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-2.5">Most Loved</div>
-          <h2 className="font-serif text-[clamp(28px,3vw,42px)] font-medium leading-[1.15] text-cream">
+          <div className="text-[10px] font-medium tracking-[4px] uppercase text-[#A87A53] mb-2.5">Most Loved</div>
+          <h2 className="font-serif text-[clamp(28px,3vw,42px)] font-medium leading-[1.15] text-navy">
             Our <em className="italic text-terracotta">Bestsellers</em>
           </h2>
-          <p className="text-[15px] leading-relaxed text-cream/50 mt-3">Loved by athletes. Trusted by everyday movers.</p>
+          <p className="text-[15px] leading-relaxed text-text-2 mt-3">Loved by athletes. Trusted by everyday movers.</p>
         </AnimatedSection>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {products.map((p, i) => (
             <AnimatedSection key={p.id} delay={(i + 1) as 1|2|3}>
-              <div className="bg-navy-mid rounded-xl overflow-hidden border border-white/10 hover:-translate-y-1 hover:border-terracotta/30 transition-all duration-300 group relative cursor-none">
-                <div className="h-[220px] flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #3D2910, #243058)' }}>
+              <div
+                className="bg-white rounded-xl overflow-hidden hover:-translate-y-1 transition-all duration-300 group relative cursor-none"
+                style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
+                onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
+                onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}
+              >
+                <div className="h-[220px] bg-[#F0EBE0] flex items-center justify-center relative overflow-hidden">
                   {p.badge && (
                     <span className="absolute top-3.5 left-3.5 bg-terracotta text-white text-[9px] font-semibold tracking-[1.5px] uppercase px-3 py-1 rounded-full">
                       {p.badge}
@@ -50,7 +55,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
                     width={160}
                     height={180}
                     className="h-[82%] w-auto object-contain group-hover:scale-[1.09] group-hover:-translate-y-1 transition-transform duration-500"
-                    style={{ filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.35))' }}
+                    style={{ filter: 'drop-shadow(0 8px 24px rgba(168,122,83,0.22))' }}
                   />
                   <button
                     onClick={() => handleQuickAdd(p)}
@@ -60,12 +65,12 @@ export function Bestsellers({ products }: { products: Product[] }) {
                   </button>
                 </div>
                 <div className="p-6">
-                  <div className="text-[9px] font-medium tracking-[3px] uppercase text-teal mb-1.5">{p.categoryLabel}</div>
-                  <div className="font-serif text-[18px] font-medium leading-[1.25] text-cream mb-2">{p.name}</div>
-                  <div className="text-[13px] leading-relaxed text-cream/55 mb-4">{p.description}</div>
+                  <div className="text-[9px] font-medium tracking-[3px] uppercase text-[#A87A53] mb-1.5">{p.categoryLabel}</div>
+                  <div className="font-serif text-[18px] font-medium leading-[1.25] text-navy mb-2">{p.name}</div>
+                  <div className="text-[13px] leading-relaxed text-text-2 mb-4">{p.description}</div>
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-[19px] font-semibold text-camel">{'\u20B9'}{p.price}</span>
+                      <span className="text-[19px] font-semibold text-terracotta">{'\u20B9'}{p.price}</span>
                     </div>
                     <Link href={`/products/${p.slug}`}>
                       <Button variant="primary" className="text-[10px] px-4 py-2">Add to Bag</Button>
@@ -78,7 +83,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
         </div>
         <AnimatedSection className="text-center mt-12">
           <Link href="/shop">
-            <Button variant="outline-light">View All Products</Button>
+            <Button variant="outline">View All Products</Button>
           </Link>
         </AnimatedSection>
       </div>
