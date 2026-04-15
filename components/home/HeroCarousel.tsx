@@ -8,7 +8,7 @@ import Link from 'next/link';
 type CTA = {
   text: string;
   href: string;
-  variant: 'primary' | 'ghost' | 'dark' | 'terracotta' | 'teal';
+  variant: 'primary' | 'ghost' | 'dark';
 };
 
 type Slide = {
@@ -16,11 +16,12 @@ type Slide = {
   bg: string;
   label: string;
   headline: string[];
-  accentLine: number | null; // index of headline line shown in accent colour
+  accentLine: number | null;
   sub: string;
   ctas: CTA[];
   image: string | null;
-  darkText: boolean; // false = navy text, true = cream text
+  imageLabel?: string;
+  darkText: boolean; // false = cream text (dark bg), true = navy text (light bg)
   press?: string[];
   attribution?: string;
 };
@@ -28,7 +29,7 @@ type Slide = {
 const SLIDES: Slide[] = [
   {
     id: 1,
-    bg: 'linear-gradient(120deg, #1A2744 60%, #2A4070)',
+    bg: '#3D1F0A',
     label: '',
     headline: ['Clinically Crafted', 'Ayurveda', 'for the Active Body'],
     accentLine: 1,
@@ -42,40 +43,42 @@ const SLIDES: Slide[] = [
   },
   {
     id: 2,
-    bg: 'linear-gradient(120deg, #F5F0E8 60%, #EDE5D8)',
+    bg: '#F5F0E8',
     label: 'Pre-Sport Ritual',
     headline: ['Thavare', 'Body Wash'],
     accentLine: null,
     sub: 'Clean. Revive. Go.',
     ctas: [{ text: 'Shop Body Wash — ₹1,200', href: '/products/thavare-body-wash', variant: 'dark' }],
     image: '/images/prod-bodywash-botanicals.png',
+    imageLabel: 'Thavare Body Wash',
     darkText: true,
   },
   {
     id: 3,
-    bg: 'linear-gradient(120deg, #2A3C2A 60%, #3A5034)',
+    bg: '#F0EAD8',
     label: 'Outdoor Protection',
     headline: ['Thavare', 'Sun Screen'],
     accentLine: null,
     sub: 'Train outdoors. Stay protected. Always.',
-    ctas: [{ text: 'Shop Sun Screen — ₹1,100', href: '/products/thavare-sun-screen', variant: 'terracotta' }],
+    ctas: [{ text: 'Shop Sun Screen — ₹1,100', href: '/products/thavare-sun-screen', variant: 'dark' }],
     image: '/images/prod-sunscreen.png',
-    darkText: false,
+    imageLabel: 'Thavare Sun Screen',
+    darkText: true,
   },
   {
     id: 4,
-    bg: 'linear-gradient(120deg, #F0EBE0 60%, #EAE0D0)',
+    bg: '#F5F0E8',
     label: 'Personalised For You',
     headline: ['Find Your', 'Perfect Routine'],
     accentLine: null,
     sub: 'Answer 5 questions. Get your Ayurvedic match.',
-    ctas: [{ text: 'Take the Quiz →', href: '/quiz', variant: 'teal' }],
+    ctas: [{ text: 'Take the Quiz →', href: '/quiz', variant: 'dark' }],
     image: null,
     darkText: true,
   },
   {
     id: 5,
-    bg: 'linear-gradient(120deg, #1A2744 60%, #14203A)',
+    bg: '#3D1F0A',
     label: '',
     headline: ['"The active skincare brand', 'rewriting Ayurvedic rules"'],
     accentLine: null,
@@ -89,11 +92,9 @@ const SLIDES: Slide[] = [
 ];
 
 const CTA_STYLES: Record<CTA['variant'], string> = {
-  primary:    'bg-[#E8A87C] text-navy font-bold',
-  ghost:      'border border-cream/50 text-cream hover:border-cream',
-  dark:       'bg-navy text-cream hover:bg-navy/90',
-  terracotta: 'bg-[#E8A87C] text-navy font-bold hover:opacity-90',
-  teal:       'bg-[#2A7A6A] text-cream hover:opacity-90',
+  primary: 'bg-[#C4A882] text-[#3D1F0A] font-bold hover:opacity-90',
+  ghost:   'border border-[rgba(196,168,130,0.4)] text-cream hover:border-[#C4A882]',
+  dark:    'bg-navy text-cream hover:bg-navy/90',
 };
 
 const INTERVAL_MS = 5000;
@@ -129,8 +130,9 @@ export function HeroCarousel() {
   }, []);
 
   const slide = SLIDES[active];
+  const isDark = !slide.darkText; // dark bg = cream text
   const textBase = slide.darkText ? 'text-navy' : 'text-cream';
-  const labelColor = slide.darkText ? 'text-[#2A7A6A]' : 'text-[#C4A882]';
+  const labelColor = slide.darkText ? 'text-[#008493]' : 'text-[#C4A882]';
 
   return (
     <section
@@ -144,6 +146,20 @@ export function HeroCarousel() {
         style={{ background: slide.bg, opacity: fading ? 0 : 1 }}
       />
 
+      {/* Gold hairlines — dark slides only */}
+      {isDark && (
+        <>
+          <div
+            className="absolute top-0 left-0 right-0 z-10 h-px"
+            style={{ background: 'linear-gradient(90deg, transparent, #C4A882, transparent)', opacity: fading ? 0 : 1, transition: 'opacity 0.3s' }}
+          />
+          <div
+            className="absolute bottom-0 left-0 right-0 z-10 h-px"
+            style={{ background: 'linear-gradient(90deg, transparent, #C4A882, transparent)', opacity: fading ? 0 : 1, transition: 'opacity 0.3s' }}
+          />
+        </>
+      )}
+
       {/* Content */}
       <div
         className="relative z-10 h-full flex items-center px-6 md:px-16 lg:px-24 max-w-[1400px] mx-auto"
@@ -151,7 +167,7 @@ export function HeroCarousel() {
       >
         <div className="flex-1 max-w-[560px]">
           {slide.label && (
-            <div className={`text-[10px] font-semibold tracking-[3px] uppercase mb-4 ${labelColor}`}>
+            <div className={`text-[10px] font-semibold tracking-[4px] uppercase mb-4 ${labelColor}`}>
               {slide.label}
             </div>
           )}
@@ -165,12 +181,12 @@ export function HeroCarousel() {
             ))}
           </h1>
           {slide.sub && (
-            <p className={`text-[16px] leading-relaxed mb-8 ${slide.darkText ? 'text-[#7A6E63]' : 'text-cream/65'}`}>
+            <p className={`text-[16px] leading-relaxed mb-8 ${slide.darkText ? 'text-[#5C5448]' : 'text-cream/65'}`}>
               {slide.sub}
             </p>
           )}
           {slide.press && (
-            <p className={`text-[13px] mb-6 ${slide.darkText ? 'text-[#7A6E63]' : 'text-cream/50'}`}>
+            <p className={`text-[13px] mb-6 ${slide.darkText ? 'text-[#5C5448]' : 'text-cream/50'}`}>
               {slide.attribution}
             </p>
           )}
@@ -196,15 +212,21 @@ export function HeroCarousel() {
           )}
         </div>
         {slide.image && (
-          <div className="hidden md:flex flex-1 items-center justify-center">
+          <div className="hidden md:flex flex-1 flex-col items-center justify-center gap-3">
             <Image
               src={slide.image}
               alt={slide.headline.join(' ')}
               width={320}
               height={420}
-              className="h-[65vh] w-auto object-contain drop-shadow-2xl"
+              className="h-[65vh] w-auto object-contain"
+              style={{ filter: isDark ? 'drop-shadow(0 8px 24px rgba(0,0,0,0.30))' : 'drop-shadow(0 6px 16px rgba(168,122,83,0.18))' }}
               priority={active === 0}
             />
+            {slide.imageLabel && (
+              <span className="text-[11px] font-medium tracking-[2px] uppercase text-[#A87A53]">
+                {slide.imageLabel}
+              </span>
+            )}
           </div>
         )}
       </div>
