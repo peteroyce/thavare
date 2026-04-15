@@ -43,12 +43,21 @@ export function Navbar() {
 
   const closeMenu = () => setMenuOpen(false);
 
+  const linkCls     = scrolled ? 'text-navy/60 hover:text-navy' : 'text-cream/60 hover:text-cream';
+  const logoCls     = scrolled ? 'text-navy' : 'text-cream';
+  const logoSubCls  = scrolled ? 'text-navy/40' : 'text-cream/40';
+  const bagCls      = scrolled
+    ? 'border-navy/20 text-navy hover:border-navy/40 hover:bg-navy/5'
+    : 'border-cream/20 text-cream hover:border-cream/45 hover:bg-cream/5';
+  const mobileBagCls   = scrolled ? 'text-navy/70 hover:text-navy' : 'text-cream/70 hover:text-cream';
+  const hamburgerCls   = `block w-6 h-px ${scrolled ? 'bg-navy' : 'bg-cream'}`;
+
   return (
     <>
       <nav
         className={`sticky top-0 z-50 h-[72px] flex items-center justify-between px-6 md:px-16 transition-all duration-300 border-b ${
           scrolled
-            ? 'bg-navy-deep backdrop-blur-2xl border-white/10'
+            ? 'bg-ivory/95 backdrop-blur-2xl border-[#E5DDD0]'
             : 'bg-transparent border-transparent'
         }`}
       >
@@ -56,7 +65,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-7">
           {/* Shop — hover-activated mega flyout */}
           <div className="relative" onMouseEnter={() => setShopOpen(true)} onMouseLeave={() => setShopOpen(false)}>
-            <button className="text-[11px] font-medium tracking-[1.5px] uppercase text-cream/60 hover:text-cream transition-colors duration-200 relative group flex items-center gap-1 cursor-none">
+            <button className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 relative group flex items-center gap-1 cursor-none ${linkCls}`}>
               Shop
               <span className={`text-[8px] transition-transform duration-200 ${shopOpen ? 'rotate-180' : ''}`}>▾</span>
               <span className="absolute bottom-0 left-0 w-0 h-px bg-teal group-hover:w-full transition-[width] duration-300" />
@@ -89,7 +98,7 @@ export function Navbar() {
             <Link
               key={label}
               href={href}
-              className="text-[11px] font-medium tracking-[1.5px] uppercase text-cream/60 hover:text-cream transition-colors duration-200 relative group"
+              className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 relative group ${linkCls}`}
             >
               {label}
               <span className="absolute bottom-0 left-0 w-0 h-px bg-teal group-hover:w-full transition-[width] duration-300" />
@@ -103,8 +112,8 @@ export function Navbar() {
             ◎
           </div>
           <div>
-            <span className="block font-serif text-lg font-medium tracking-[5px] text-cream leading-none">THAVARE</span>
-            <span className="block text-[8px] tracking-[2px] uppercase text-cream/40 mt-0.5">Clinically Crafted Ayurveda</span>
+            <span className={`block font-serif text-lg font-medium tracking-[5px] leading-none ${logoCls}`}>THAVARE</span>
+            <span className={`block text-[8px] tracking-[2px] uppercase mt-0.5 ${logoSubCls}`}>Clinically Crafted Ayurveda</span>
           </div>
         </Link>
 
@@ -114,7 +123,7 @@ export function Navbar() {
             <Link
               key={label}
               href={href}
-              className="text-[11px] font-medium tracking-[1.5px] uppercase text-cream/60 hover:text-cream transition-colors duration-200 relative group"
+              className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 relative group ${linkCls}`}
             >
               {label}
               <span className="absolute bottom-0 left-0 w-0 h-px bg-teal group-hover:w-full transition-[width] duration-300" />
@@ -122,7 +131,7 @@ export function Navbar() {
           ))}
           <Link
             href="/cart"
-            className="px-5 py-2 rounded-lg border border-cream/20 text-[11px] font-medium tracking-wide uppercase text-cream hover:border-cream/45 hover:bg-cream/5 transition-all duration-200"
+            className={`px-5 py-2 rounded-lg border text-[11px] font-medium tracking-wide uppercase transition-all duration-200 ${bagCls}`}
           >
             Bag ({totalItems})
           </Link>
@@ -132,7 +141,7 @@ export function Navbar() {
         <div className="flex md:hidden items-center gap-4 ml-auto">
           <Link
             href="/cart"
-            className="text-[11px] font-medium tracking-wide uppercase text-cream/70 hover:text-cream transition-colors duration-200"
+            className={`text-[11px] font-medium tracking-wide uppercase transition-colors duration-200 ${mobileBagCls}`}
           >
             Bag ({totalItems})
           </Link>
@@ -148,9 +157,9 @@ export function Navbar() {
             ) : (
               /* 3-line hamburger */
               <span className="flex flex-col gap-[5px]">
-                <span className="block w-6 h-px bg-cream" />
-                <span className="block w-6 h-px bg-cream" />
-                <span className="block w-6 h-px bg-cream" />
+                <span className={hamburgerCls} />
+                <span className={hamburgerCls} />
+                <span className={hamburgerCls} />
               </span>
             )}
           </button>
