@@ -3,8 +3,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getProducts, getProductByHandle } from '@/lib/shopify';
+import { getProductReviews } from '@/lib/judgeme';
 import { ProductInfo } from '@/components/product/ProductInfo';
 import { ProductCard } from '@/components/shop/ProductCard';
+import { ReviewsSection } from '@/components/product/ReviewsSection';
 
 export async function generateStaticParams() {
   try {
@@ -42,11 +44,24 @@ export async function generateMetadata(
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  let reviewsData: { reviews: import('@/lib/judgeme').JudgemeReview[]; aggregate: import('@/lib/judgeme').JudgemeAggregate } = {
+    reviews: [],
+    aggregate: { rating: 0, reviews_count: 0 },
+  };
+
   const [product, allProducts] = await Promise.all([
     getProductByHandle(slug),
     getProducts(),
   ]);
   if (!product) notFound();
+
+  try {
+    reviewsData = await getProductReviews(slug);
+  } catch {
+    // Judge.me unavailable — render page without reviews
+  }
+
+  const { reviews, aggregate } = reviewsData;
 
   const related = allProducts.filter(p => p.id !== product.id).slice(0, 3);
 
@@ -100,6 +115,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <ProductInfo product={product} />
         </div>
       </div>
+
+      {/* Reviews */}
+      <ReviewsSection reviews={reviews} aggregate={aggregate} />
 
       {/* Related */}
       <div className="px-4 md:px-10 lg:px-20 pb-14 md:pb-24 max-w-[1200px] mx-auto">
