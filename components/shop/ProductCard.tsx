@@ -40,9 +40,14 @@ export function ProductCard({ product: p }: { product: Product }) {
   }
 
   return (
-    <div className="bg-ivory rounded-xl overflow-hidden border border-[#E5DDD0] shadow-[rgba(26,22,16,0.06)_0_4px_24px] hover:-translate-y-1.5 hover:shadow-[rgba(26,22,16,0.12)_0_12px_40px] transition-all duration-300 group relative">
+    <div
+      className="bg-white rounded-xl overflow-hidden hover:-translate-y-1.5 transition-all duration-300 group relative"
+      style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
+      onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
+      onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}
+    >
       <Link href={`/products/${p.slug}`}>
-        <div className="h-[240px] bg-gradient-to-br from-cream to-sand flex items-center justify-center overflow-hidden relative">
+        <div className="h-[240px] bg-[#F0EBE0] flex items-center justify-center overflow-hidden relative">
           {p.badge && (
             <span className="absolute top-3 left-3 bg-terracotta text-white text-[9px] font-semibold tracking-[1.5px] uppercase px-3 py-1 rounded-full z-10">
               {p.badge}
@@ -54,7 +59,7 @@ export function ProductCard({ product: p }: { product: Product }) {
             width={160}
             height={200}
             className="h-[80%] w-auto object-contain group-hover:scale-[1.08] transition-transform duration-500"
-            style={{ filter: 'drop-shadow(0 6px 16px rgba(0,0,0,0.12))' }}
+            style={{ filter: 'drop-shadow(0 6px 16px rgba(168,122,83,0.18))' }}
           />
           <button
             onClick={(e) => { e.preventDefault(); e.stopPropagation(); setQuickViewOpen(true); }}
@@ -88,7 +93,7 @@ export function ProductCard({ product: p }: { product: Product }) {
           <button
             onClick={handleAddToCart}
             disabled={!p.inStock}
-            className="px-4 py-2 text-[10px] font-semibold tracking-wide uppercase rounded-lg transition-all cursor-none disabled:cursor-not-allowed bg-terracotta text-white hover:opacity-90 disabled:bg-[#D4C8B8] disabled:text-text-3"
+            className="px-4 py-2 text-[10px] font-semibold tracking-wide uppercase rounded-lg transition-all cursor-none disabled:cursor-not-allowed bg-navy text-cream hover:bg-navy/90 disabled:bg-[#D4C8B8] disabled:text-text-3"
           >
             {p.inStock ? 'Add to Bag' : 'Out of Stock'}
           </button>
