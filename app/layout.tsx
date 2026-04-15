@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Playfair_Display, Nunito_Sans } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
@@ -64,6 +65,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
         />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script src="/gtag-init.js" strategy="afterInteractive" />
       </head>
       <body className="font-sans bg-cream text-text-1 antialiased overflow-x-hidden cursor-none">
         <WelcomeBanner />
