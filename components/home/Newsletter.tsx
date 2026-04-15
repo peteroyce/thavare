@@ -2,14 +2,26 @@
 
 import { useState } from 'react';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
+import { subscribeToNewsletter } from '@/lib/klaviyo';
 
 export function Newsletter() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) setSubmitted(true);
+    if (!email) return;
+    setLoading(true);
+    setError(null);
+    try {
+      await subscribeToNewsletter(email);
+      setSubmitted(true);
+    } catch {
+      setError('Something went wrong. Please try again.');
+      setLoading(false);
+    }
   };
 
   return (
@@ -34,11 +46,12 @@ export function Newsletter() {
               className="flex-1 px-5 py-3.5 bg-ivory text-[14px] text-text-1 outline-none placeholder:text-text-3 focus:bg-white transition-colors rounded-lg sm:rounded-none sm:rounded-l-lg"
               required
             />
-            <button type="submit" className="px-6 py-3.5 bg-navy text-cream font-sans text-[11px] font-semibold tracking-[1.5px] uppercase hover:bg-navy-mid transition-colors cursor-none rounded-lg sm:rounded-none sm:rounded-r-lg w-full sm:w-auto">
-              Subscribe
+            <button type="submit" disabled={loading} className="px-6 py-3.5 bg-navy text-cream font-sans text-[11px] font-semibold tracking-[1.5px] uppercase hover:bg-navy-mid transition-colors cursor-none rounded-lg sm:rounded-none sm:rounded-r-lg w-full sm:w-auto">
+              {loading ? 'Subscribing...' : 'Subscribe'}
             </button>
           </form>
         )}
+        {error && <p className="text-[12px] text-red-500 mt-2">{error}</p>}
         <p className="text-[12px] text-text-2/70 mt-3">No spam. Unsubscribe anytime. Dr. Meena writes occasionally too.</p>
       </AnimatedSection>
     </section>

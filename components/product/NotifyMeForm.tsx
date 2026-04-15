@@ -1,15 +1,26 @@
 'use client';
 
 import { useState } from 'react';
+import { notifyBackInStock } from '@/lib/klaviyo';
 
 export function NotifyMeForm({ productName }: { productName: string }) {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
-    setSubmitted(true);
+    setLoading(true);
+    setError(null);
+    try {
+      await notifyBackInStock(email, productName);
+      setSubmitted(true);
+    } catch {
+      setError('Something went wrong. Please try again.');
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -36,10 +47,12 @@ export function NotifyMeForm({ productName }: { productName: string }) {
       />
       <button
         type="submit"
+        disabled={loading}
         className="w-full py-3 rounded-lg bg-navy text-cream text-[11px] font-semibold tracking-widest uppercase hover:bg-navy/90 transition-colors cursor-none"
       >
-        Notify Me
+        {loading ? 'Saving...' : 'Notify Me'}
       </button>
+      {error && <p className="text-[12px] text-red-500 mt-1">{error}</p>}
     </form>
   );
 }
