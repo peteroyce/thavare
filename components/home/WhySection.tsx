@@ -1,3 +1,5 @@
+'use client';
+
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { BotanicalStrength, BotanicalWalk, BotanicalHerb, BotanicalMicroscope } from '@/components/ui/icons/botanical';
 

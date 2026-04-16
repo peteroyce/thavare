@@ -535,5 +535,4 @@ export default function QuizClient() {
     );
   }
 
-  return null;
 }

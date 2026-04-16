@@ -10,12 +10,15 @@ import { NotifyMeForm } from '@/components/product/NotifyMeForm';
 
 export function ProductInfo({ product: p }: { product: Product }) {
   const [qty, setQty] = useState(1);
+  const [adding, setAdding] = useState(false);
   const addItem = useCart(s => s.addItem);
   const updateQuantity = useCart(s => s.updateQuantity);
   const { toggle, has } = useWishlist();
   const addToast = useToast(s => s.add);
 
   const handleAdd = () => {
+    if (adding) return;
+    setAdding(true);
     const current = useCart.getState().items.find(i => i.product.id === p.id);
     if (current) {
       const newQty = current.quantity + qty;
@@ -28,6 +31,7 @@ export function ProductInfo({ product: p }: { product: Product }) {
       const newCount = useCart.getState().totalItems();
       addToast({ type: 'cart-add', productName: p.name, count: newCount });
     }
+    setTimeout(() => setAdding(false), 600);
   };
 
   return (
@@ -88,7 +92,7 @@ export function ProductInfo({ product: p }: { product: Product }) {
             <span className="w-10 text-center text-[15px] font-medium text-text-1">{qty}</span>
             <button onClick={() => setQty(q => q + 1)} className="w-11 h-11 text-[18px] text-text-2 hover:bg-cream transition-colors cursor-none">+</button>
           </div>
-          <Button onClick={handleAdd} className="flex-1">Add to Bag</Button>
+          <Button onClick={handleAdd} disabled={adding} className="flex-1">{adding ? 'Adding…' : 'Add to Bag'}</Button>
         </div>
       ) : (
         <div className="space-y-3">

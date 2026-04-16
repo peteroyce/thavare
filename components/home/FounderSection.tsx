@@ -32,7 +32,10 @@ export function FounderSection() {
             "My own skin reaction taught me the hardest lesson — even natural is not always safe. Science and nature must work together, carefully and honestly."
           </blockquote>
           <p className="text-[14px] leading-[1.75] text-cream/55 mb-3">
-            My journey began in my mother's kitchen — natural ingredients, trusted recipes, skincare passed down through generations. Then my skin betrayed me. A herbal product I trusted caused a severe reaction. What followed wasn't just a skin problem — it quietly became a mental one.
+            My journey began in my mother's kitchen — trusted recipes, natural remedies, skincare passed down through generations. Then my skin betrayed me. A herbal product I trusted caused a severe reaction. What followed wasn't just a skin problem — it quietly became a mental one.
+          </p>
+          <p className="text-[14px] leading-[1.75] text-cream/55 mb-3">
+            That experience drove me to build Thavare — a performance-led wellness brand that creates high-performance, clinically-backed Ayurvedic solutions specifically engineered for active bodies. For every athlete, every walker, every body that moves.
           </p>
           <p className="font-serif italic text-[14px] text-camel mb-8">Thavare means lotus. It blooms not in spite of the mud — but because of it.</p>
           <Link href="/founders"><Button variant="outline-cream">Read the Full Story →</Button></Link>

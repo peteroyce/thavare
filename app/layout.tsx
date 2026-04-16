@@ -71,7 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <Script src="/gtag-init.js" strategy="afterInteractive" />
       </head>
-      <body className="font-sans bg-cream text-text-1 antialiased overflow-x-hidden cursor-none">
+      <body className="font-sans bg-cream text-text-1 antialiased overflow-x-hidden">
         <WelcomeBanner />
         <CustomCursor />
         <Navbar />

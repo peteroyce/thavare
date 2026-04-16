@@ -31,6 +31,9 @@ export async function getProductReviews(handle: string): Promise<{
     ),
   ]);
 
+  if (!reviewsRes.ok) throw new Error(`Judge.me reviews fetch failed: ${reviewsRes.status}`);
+  if (!productRes.ok) throw new Error(`Judge.me product fetch failed: ${productRes.status}`);
+
   const [reviewsData, productData] = await Promise.all([
     reviewsRes.json(),
     productRes.json(),
