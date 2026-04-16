@@ -35,7 +35,7 @@ export function FounderSection() {
             My journey began in my mother's kitchen — trusted recipes, natural remedies, skincare passed down through generations. Then my skin betrayed me. A herbal product I trusted caused a severe reaction. What followed wasn't just a skin problem — it quietly became a mental one.
           </p>
           <p className="text-[14px] leading-[1.75] text-cream/55 mb-3">
-            That experience drove me to build Thavare — a performance-led wellness brand that creates high-performance, clinically-backed Ayurvedic solutions specifically engineered for active bodies. For every athlete, every walker, every body that moves.
+            A gym injury left me unable to walk. Lying there, I genuinely thought my life was over. But that stillness became my teacher. As a doctor I understood science — but my journey led me to Ayurveda, and what I found was not a contradiction but a conversation. The two don&apos;t compete. They complete each other.
           </p>
           <p className="font-serif italic text-[14px] text-camel mb-8">Thavare means lotus. It blooms not in spite of the mud — but because of it.</p>
           <Link href="/founders"><Button variant="outline-cream">Read the Full Story →</Button></Link>

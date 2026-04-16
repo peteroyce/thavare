@@ -4,9 +4,9 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { BotanicalStrength, BotanicalWalk, BotanicalHerb, BotanicalMicroscope } from '@/components/ui/icons/botanical';
 
 const WHYS = [
-  { Icon: BotanicalStrength,   title: 'For Sport',            desc: "For those who train hard, compete, and push limits. Performance isn't just muscle and mind — it's every layer of the body that shows up." },
-  { Icon: BotanicalWalk,       title: 'For Active',           desc: 'For everyone else. The one who walks, stretches, cycles, chases children, carries groceries, and moves through life with intention.' },
-  { Icon: BotanicalHerb,       title: 'Ancient Intelligence', desc: 'Ayurveda has always had the answers for the body in motion. We are simply bringing it into the conversation it was always meant to have.' },
+  { Icon: BotanicalStrength,   title: 'For Sport',            desc: "For those who train hard, compete, and push limits. The professional. The dedicated. The one who understands that performance is not just about muscle and mind — it is about every layer of the body that shows up to the fight." },
+  { Icon: BotanicalWalk,       title: 'For Active',           desc: "For everyone else. The one who walks, stretches, cycles, dances, chases children, carries groceries, and moves through life with intention. You don't need to be an athlete for your body to deserve better care." },
+  { Icon: BotanicalHerb,       title: 'Ancient Intelligence', desc: "Ayurveda — one of the world's oldest and most intelligent systems of healing — has always had the answers for the body in motion. We are simply bringing it into the conversation it was always meant to have." },
   { Icon: BotanicalMicroscope, title: 'Modern Precision',     desc: 'Every ingredient selected, extracted, and clinically validated. The best of both worlds — rooted in nature, proven by science.' },
 ];
 
