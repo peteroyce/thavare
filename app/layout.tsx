@@ -72,10 +72,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script src="/gtag-init.js" strategy="afterInteractive" />
       </head>
       <body className="font-sans bg-cream text-text-1 antialiased overflow-x-hidden">
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:bg-navy focus:text-cream focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-medium"
+          >
+            Skip to content
+          </a>
         <WelcomeBanner />
         <CustomCursor />
         <Navbar />
-        <main>{children}</main>
+        <main id="main-content">{children}</main>
         <Footer />
         <ToastContainer />
         <FloatingVideo />
