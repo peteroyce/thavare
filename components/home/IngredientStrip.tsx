@@ -17,9 +17,9 @@ export function IngredientStrip() {
               src={panel.img}
               alt={panel.name.replace('\n', ' ')}
               fill
-              className="object-cover group-hover:scale-[1.07] transition-transform duration-700"
+              className="object-cover md:group-hover:scale-[1.07] transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#111C35]/90 to-[#111C35]/10 flex flex-col justify-end p-9 px-8">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#111C35]/90 to-[#111C35]/10 flex flex-col justify-end p-5 md:p-9 md:px-8">
               <div className="text-[9px] font-semibold tracking-[3px] uppercase text-teal mb-2">{panel.label}</div>
               <div className="font-serif text-2xl font-medium text-cream leading-[1.2] mb-2" style={{ whiteSpace: 'pre-line' }}>{panel.name}</div>
               <div className="text-[13px] leading-[1.6] text-cream/62 max-w-[230px]">{panel.desc}</div>

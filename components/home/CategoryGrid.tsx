@@ -29,7 +29,7 @@ export function CategoryGrid() {
             <AnimatedSection key={cat.name} delay={(i + 1) as 1|2|3|4}>
               <Link
                 href={cat.href}
-                className="block bg-ivory rounded-xl overflow-hidden hover:-translate-y-1.5 transition-all duration-300 group"
+                className="block bg-ivory rounded-xl overflow-hidden md:hover:-translate-y-1.5 transition-all duration-300 group"
                 style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}
@@ -44,7 +44,7 @@ export function CategoryGrid() {
                 </div>
                 <div className="p-5 pb-6">
                   <div className="font-serif text-[17px] font-medium text-navy mb-1.5">{cat.name}</div>
-                  <div className="text-[13px] leading-relaxed text-text-2 mb-3">{cat.desc}</div>
+                  <div className="text-[13px] leading-relaxed text-text-2 mb-3 line-clamp-3 sm:line-clamp-none">{cat.desc}</div>
                   <span className="text-[10px] font-semibold tracking-[2px] uppercase text-teal">Explore →</span>
                 </div>
               </Link>

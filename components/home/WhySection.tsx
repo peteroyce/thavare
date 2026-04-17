@@ -24,7 +24,7 @@ export function WhySection() {
           {WHYS.map((w, i) => (
             <AnimatedSection key={w.title} delay={(i + 1) as 1|2|3|4}>
               <div
-                className="bg-white border border-[#E5DDD0] rounded-xl p-8 flex gap-4 items-start hover:-translate-y-0.5 transition-all duration-300 cursor-none group"
+                className="bg-white border border-[#E5DDD0] rounded-xl p-5 md:p-8 flex gap-4 items-start md:hover:-translate-y-0.5 transition-all duration-300 cursor-none group"
                 style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}

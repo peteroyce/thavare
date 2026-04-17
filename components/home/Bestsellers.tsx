@@ -38,7 +38,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
           {products.map((p, i) => (
             <AnimatedSection key={p.id} delay={(i + 1) as 1|2|3}>
               <div
-                className="bg-white rounded-xl overflow-hidden hover:-translate-y-1 transition-all duration-300 group relative cursor-none"
+                className="bg-white rounded-xl overflow-hidden md:hover:-translate-y-1 transition-all duration-300 group relative cursor-none"
                 style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}
@@ -54,12 +54,12 @@ export function Bestsellers({ products }: { products: Product[] }) {
                     alt={p.name}
                     width={160}
                     height={180}
-                    className="h-[82%] w-auto object-contain group-hover:scale-[1.09] group-hover:-translate-y-1 transition-transform duration-500"
+                    className="h-[82%] w-auto object-contain md:group-hover:scale-[1.09] md:group-hover:-translate-y-1 transition-transform duration-500"
                     style={{ filter: 'drop-shadow(0 8px 24px rgba(168,122,83,0.22))' }}
                   />
                   <button
                     onClick={() => handleQuickAdd(p)}
-                    className="absolute bottom-0 left-0 right-0 bg-terracotta text-white text-[11px] font-semibold tracking-[1.5px] uppercase py-3.5 text-center translate-y-full group-hover:translate-y-0 transition-transform duration-300 cursor-none"
+                    className="absolute bottom-0 left-0 right-0 bg-terracotta text-white text-[11px] font-semibold tracking-[1.5px] uppercase py-3.5 text-center translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-300 cursor-none"
                   >
                     Quick Add to Bag
                   </button>

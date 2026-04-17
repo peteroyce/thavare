@@ -27,7 +27,7 @@ export function NewArrivals({ products }: { products: Product[] }) {
             <AnimatedSection key={p.id} delay={((i % 4) + 1) as 1|2|3|4}>
               <Link
                 href={`/products/${p.slug}`}
-                className="block bg-white rounded-xl overflow-hidden hover:-translate-y-1.5 transition-all duration-300 group"
+                className="block bg-white rounded-xl overflow-hidden md:md:hover:-translate-y-1.5 transition-all duration-300 group"
                 style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}
@@ -41,7 +41,7 @@ export function NewArrivals({ products }: { products: Product[] }) {
                     alt={p.name}
                     width={120}
                     height={140}
-                    className="h-[78%] w-auto object-contain group-hover:scale-110 group-hover:-translate-y-1 transition-transform duration-500"
+                    className="h-[78%] w-auto object-contain group-hover:scale-110 group-md:hover:-translate-y-1 transition-transform duration-500"
                     style={{ filter: 'drop-shadow(0 4px 14px rgba(0,0,0,0.12))' }}
                   />
                 </div>
