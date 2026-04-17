@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/lib/cart';
@@ -31,6 +31,35 @@ export function QuickViewModal({ product: p, onClose }: Props) {
 
   const { toggle, has } = useWishlist();
 
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+
+  // Capture the element that opened us
+  useEffect(() => {
+    triggerRef.current = document.activeElement as HTMLElement;
+    closeRef.current?.focus();
+    return () => { triggerRef.current?.focus(); };
+  }, []);
+
+  // Trap focus within dialog
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key !== 'Tab' || !dialogRef.current) return;
+    const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }, []);
+
   // Close on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -59,11 +88,14 @@ export function QuickViewModal({ product: p, onClose }: Props) {
       onClick={onClose}
     >
       <div
+        ref={dialogRef}
         className="bg-cream rounded-2xl max-w-[760px] w-full max-h-[90vh] overflow-y-auto shadow-2xl relative"
         onClick={(e) => e.stopPropagation()}
+        onKeyDown={handleKeyDown}
       >
         {/* Close button */}
         <button
+          ref={closeRef}
           onClick={onClose}
           className="absolute top-4 right-4 w-8 h-8 rounded-full bg-ivory border border-[#E5DDD0] flex items-center justify-center text-text-3 hover:text-navy transition-colors cursor-none z-10"
           aria-label="Close quick view"
@@ -103,7 +135,16 @@ export function QuickViewModal({ product: p, onClose }: Props) {
                 </h2>
               </div>
               <button
-                onClick={() => toggle(p)}
+                onClick={() => {
+                    const wasWishlisted = has(p.id);
+                    toggle(p);
+                    const newCount = useWishlist.getState().items.length;
+                    if (wasWishlisted) {
+                      addToast({ type: 'wishlist-remove', productName: p.name });
+                    } else {
+                      addToast({ type: 'wishlist-add', productName: p.name, count: newCount });
+                    }
+                  }}
                 className={`mt-1 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 cursor-none flex-shrink-0 ${
                   has(p.id)
                     ? 'bg-terracotta text-white shadow-md'
