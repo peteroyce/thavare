@@ -8,14 +8,14 @@ export function FounderSection() {
     <section className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-navy-deep">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
         <AnimatedSection direction="left">
-          <div className="rounded-2xl overflow-hidden border border-white/5 shadow-[0_32px_80px_rgba(0,0,0,0.4)] relative group hover:scale-[1.02] transition-transform duration-300">
+          <div className="rounded-2xl overflow-hidden border border-white/5 shadow-[0_32px_80px_rgba(0,0,0,0.4)] relative group md:hover:scale-[1.02] transition-transform duration-300">
             <div className="absolute font-serif text-[110px] leading-none text-teal/12 top-[-20px] left-2.5 z-10 pointer-events-none">"</div>
             <Image
-              src="/images/lifestyle-model-smile.png"
+              src="/images/founder-meena.jpg"
               alt="Dr. Meena Ramaiah — Founder, Thavare"
               width={480}
-              height={380}
-              className="w-full h-[280px] md:h-[380px] object-cover object-top block"
+              height={580}
+              className="w-full h-[340px] md:h-[480px] object-cover object-[center_15%] block"
             />
             <div className="px-7 py-6" style={{ background: 'linear-gradient(to top, #111C35, rgba(17,28,53,0.85))' }}>
               <div className="font-serif text-[18px] font-medium text-cream">Dr. Meena Ramaiah</div>
@@ -25,7 +25,7 @@ export function FounderSection() {
         </AnimatedSection>
         <AnimatedSection direction="right">
           <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">The Founder's Story</div>
-          <h2 className="font-serif text-[36px] font-medium leading-[1.15] text-cream mb-6">
+          <h2 className="font-serif text-[clamp(26px,4vw,36px)] font-medium leading-[1.15] text-cream mb-5 md:mb-6">
             The Lotus Blooms<br /><em className="italic text-terracotta">Through the Mud.</em>
           </h2>
           <blockquote className="font-serif text-[17px] italic leading-[1.65] text-beige border-l-2 border-teal pl-6 mb-6">
