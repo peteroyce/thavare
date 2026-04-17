@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useCart } from '@/lib/cart';
+import { ProfilePanel } from './ProfilePanel';
 
 const NAV_LINKS = [
   { label: 'Shop', href: '/shop' },
@@ -28,7 +29,11 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const totalItems = useCart(s => s.totalItems());
+
+  useEffect(() => { setMounted(true); }, []);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 60);
@@ -58,7 +63,7 @@ export function Navbar() {
         className={`sticky top-0 z-50 h-[72px] flex items-center justify-between px-6 md:px-16 transition-all duration-300 border-b ${
           scrolled
             ? 'bg-ivory/95 backdrop-blur-2xl border-[#E5DDD0]'
-            : 'bg-transparent border-transparent'
+            : 'bg-navy-deep/92 backdrop-blur-md border-white/8'
         }`}
       >
         {/* Left links — desktop only */}
@@ -133,18 +138,29 @@ export function Navbar() {
             href="/cart"
             className={`px-5 py-2 rounded-lg border text-[11px] font-medium tracking-wide uppercase transition-all duration-200 ${bagCls}`}
           >
-            Bag ({totalItems})
+            Bag ({mounted ? totalItems : 0})
           </Link>
         </div>
 
-        {/* Mobile right: bag icon + hamburger */}
-        <div className="flex md:hidden items-center gap-4 ml-auto">
+        {/* Mobile right: bag + profile + hamburger */}
+        <div className="flex md:hidden items-center gap-3.5 ml-auto">
           <Link
             href="/cart"
             className={`text-[11px] font-medium tracking-wide uppercase transition-colors duration-200 ${mobileBagCls}`}
           >
-            Bag ({totalItems})
+            Bag ({mounted ? totalItems : 0})
           </Link>
+
+          {/* Profile icon */}
+          <button
+            aria-label="My account"
+            onClick={() => { setProfileOpen(true); setMenuOpen(false); }}
+            className={`flex items-center justify-center w-8 h-8 transition-colors duration-200 ${scrolled ? 'text-navy/60 hover:text-navy' : 'text-cream/60 hover:text-cream'}`}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+              <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+            </svg>
+          </button>
 
           <button
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -152,10 +168,8 @@ export function Navbar() {
             className="flex flex-col justify-center items-center w-8 h-8 gap-0 relative"
           >
             {menuOpen ? (
-              /* X icon */
               <span className="text-cream text-xl leading-none select-none">✕</span>
             ) : (
-              /* 3-line hamburger */
               <span className="flex flex-col gap-[5px]">
                 <span className={hamburgerCls} />
                 <span className={hamburgerCls} />
@@ -166,36 +180,127 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile menu overlay — slides in from right */}
+      {/* Mobile menu drawer */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-transform duration-300 ${
+        className={`fixed inset-0 z-40 md:hidden transition-transform duration-300 flex flex-col ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
-        style={{ background: 'rgba(17,28,53,0.97)', backdropFilter: 'blur(16px)' }}
+        style={{ background: '#0E1930', backdropFilter: 'blur(20px)' }}
       >
-        {/* Close tap on backdrop area — covered by the panel itself so not needed,
-            but we add a top padding to sit below the sticky nav */}
-        <div className="flex flex-col items-center justify-center h-full gap-10 px-8 pt-[72px]">
-          {NAV_LINKS.map(({ label, href }) => (
-            <Link
-              key={label}
-              href={href}
-              onClick={closeMenu}
-              className="font-serif text-[28px] text-cream hover:text-camel transition-colors duration-200 tracking-wide"
-            >
-              {label}
-            </Link>
-          ))}
+        {/* Drawer header */}
+        <div className="flex items-center justify-between px-5 h-[68px] border-b border-white/8 shrink-0">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-full border border-camel/40 flex items-center justify-center text-camel text-xs">◎</div>
+            <span className="font-serif text-[15px] tracking-[4px] text-cream/80">THAVARE</span>
+          </div>
+          <button onClick={closeMenu} aria-label="Close menu" className="w-8 h-8 flex items-center justify-center text-cream/40 text-lg">✕</button>
+        </div>
 
+        {/* Scrollable body */}
+        <div className="flex-1 overflow-y-auto px-5 py-5">
+
+          {/* Profile — first, most prominent */}
+          <button
+            onClick={() => { setMenuOpen(false); setProfileOpen(true); }}
+            className="w-full flex items-center gap-3.5 px-4 py-3.5 rounded-2xl mb-5 text-left"
+            style={{ background: 'linear-gradient(135deg, rgba(196,168,130,0.14) 0%, rgba(255,255,255,0.04) 100%)', border: '1px solid rgba(196,168,130,0.22)' }}
+          >
+            <div className="w-10 h-10 rounded-full bg-white/8 border border-white/15 flex items-center justify-center text-cream/50 shrink-0">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+              </svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[14px] font-semibold text-cream leading-tight">My Profile</div>
+              <div className="text-[11px] text-cream/40 mt-0.5">Sign in · Orders · Wishlist</div>
+            </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-camel/50 shrink-0">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+
+          {/* Explore */}
+          <p className="text-[9px] font-semibold tracking-[3px] uppercase text-cream/25 mb-3 px-1">Explore</p>
+          <div className="flex flex-col mb-5">
+            {[
+              { label: 'Shop All',     href: '/shop',             sub: 'Browse the full range' },
+              { label: 'Collections',  href: '/shop',             sub: 'Pre-Sport · Recovery · Daily' },
+              { label: 'Our Story',    href: '/about',            sub: 'The science behind Thavare' },
+              { label: 'Journal',      href: '/journal',          sub: 'Expert skin & movement tips' },
+              { label: 'The Circle',   href: '/circle',           sub: 'Expert community & advice' },
+              { label: 'Skin Quiz',    href: '/quiz',             sub: 'Find your Ayurvedic match' },
+            ].map(({ label, href, sub }) => (
+              <Link
+                key={label}
+                href={href}
+                onClick={closeMenu}
+                className="flex items-center justify-between py-3.5 border-b border-white/6 group active:bg-white/4 rounded-lg px-1"
+              >
+                <div>
+                  <div className="text-[15px] font-medium text-cream/85 group-active:text-cream leading-tight">{label}</div>
+                  <div className="text-[11px] text-cream/30 mt-0.5">{sub}</div>
+                </div>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-cream/20 shrink-0">
+                  <path d="M9 18l6-6-6-6"/>
+                </svg>
+              </Link>
+            ))}
+          </div>
+
+          {/* Support */}
+          <p className="text-[9px] font-semibold tracking-[3px] uppercase text-cream/25 mb-3 px-1">Support</p>
+          <div className="flex flex-col mb-6">
+            {[
+              { label: 'Track My Order', href: '/track-order' },
+              { label: 'FAQs',           href: '/faqs' },
+              { label: 'Contact Us',     href: '/about' },
+            ].map(({ label, href }) => (
+              <Link
+                key={label}
+                href={href}
+                onClick={closeMenu}
+                className="flex items-center justify-between py-3 border-b border-white/6 px-1 active:bg-white/4 rounded-lg"
+              >
+                <span className="text-[14px] text-cream/55">{label}</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-cream/20 shrink-0">
+                  <path d="M9 18l6-6-6-6"/>
+                </svg>
+              </Link>
+            ))}
+          </div>
+
+          {/* IG link */}
+          <a
+            href="https://www.instagram.com/thavare_ayurveda"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2.5 px-1 py-2 text-cream/30 text-[12px] tracking-wide"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+            </svg>
+            @thavare_ayurveda
+          </a>
+
+        </div>
+
+        {/* Fixed bottom — Bag CTA */}
+        <div className="shrink-0 px-5 pb-8 pt-3 border-t border-white/8">
           <Link
             href="/cart"
             onClick={closeMenu}
-            className="mt-4 px-8 py-3 rounded-lg border border-cream/30 text-[13px] font-medium tracking-[1.5px] uppercase text-cream hover:border-cream/60 hover:bg-cream/5 transition-all duration-200"
+            className="flex items-center justify-between w-full px-6 py-4 rounded-2xl bg-teal text-white text-[12px] font-semibold tracking-[2px] uppercase"
           >
-            Bag ({totalItems})
+            <span>My Bag</span>
+            <span className="bg-white/20 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full min-w-[24px] text-center">
+              {mounted ? totalItems : 0}
+            </span>
           </Link>
         </div>
       </div>
+
+      {/* Profile panel */}
+      <ProfilePanel open={profileOpen} onClose={() => setProfileOpen(false)} />
     </>
   );
 }
