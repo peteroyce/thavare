@@ -11,7 +11,7 @@ export function middleware(request: NextRequest) {
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob: https://cdn.shopify.com https://www.googletagmanager.com https://www.google-analytics.com https://a.klaviyo.com https://static.klaviyo.com",
     "font-src 'self' data:",
-    "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://a.klaviyo.com https://static.klaviyo.com",
+    "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://a.klaviyo.com https://static.klaviyo.com",
     "media-src 'self' https://videos.pexels.com",
     "frame-src 'self'",
     "frame-ancestors 'none'",

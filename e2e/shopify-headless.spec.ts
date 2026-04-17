@@ -121,7 +121,7 @@ test.describe('Product detail page', () => {
 
     // Quantity controls (minus and plus buttons)
     await expect(page.getByText('\u2212')).toBeVisible(); // minus sign
-    await expect(page.getByText('+')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Increase quantity' })).toBeVisible();
 
     // "You May Also Like" related products section
     await expect(page.getByRole('heading', { name: /you may also like/i })).toBeVisible();

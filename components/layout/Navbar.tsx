@@ -296,7 +296,7 @@ export function Navbar() {
             href="https://www.instagram.com/thavare_ayurveda"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2.5 px-1 py-2 text-cream/30 text-[12px] tracking-wide"
+            className="flex items-center gap-2.5 px-1 py-2 text-cream/65 text-[12px] tracking-wide"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>

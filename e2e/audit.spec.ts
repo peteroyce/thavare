@@ -42,7 +42,12 @@ test.describe('Homepage', () => {
 
   test('Hero quiz CTA button links to /quiz', async ({ page }) => {
     await page.goto('/');
-    const quizLink = page.locator('a[href="/quiz"]').first();
+    // Quiz link is on slide 4 — click dot indicator to navigate there
+    const dot = page.locator('button[aria-label="Go to slide 4"]');
+    await expect(dot).toBeVisible({ timeout: 5000 });
+    await dot.click();
+    // Target the quiz link within the hero section (not the mobile nav)
+    const quizLink = page.locator('section a[href="/quiz"]');
     await expect(quizLink).toBeVisible({ timeout: 5000 });
   });
 
@@ -102,13 +107,14 @@ test.describe('Shop page', () => {
     await expect(card).toBeVisible({ timeout: 10000 });
     await card.hover();
     await page.getByRole('button', { name: /quick view/i }).first().click();
-    // Modal has role="dialog" (added in code fix)
-    await expect(page.locator('[role="dialog"]').first()).toBeVisible({ timeout: 3000 });
+    // Modal has role="dialog" with specific aria-label
+    const modal = page.locator('[role="dialog"][aria-label="Quick view"]');
+    await expect(modal).toBeVisible({ timeout: 3000 });
     // Should show add-to-bag inside the modal
     await expect(page.getByRole('button', { name: /add to bag/i }).first()).toBeVisible();
     // Close with Escape
     await page.keyboard.press('Escape');
-    await expect(page.locator('[role="dialog"]').first()).not.toBeVisible({ timeout: 3000 });
+    await expect(modal).not.toBeVisible({ timeout: 3000 });
   });
 
   test('Wishlist heart button toggles on product card', async ({ page }) => {
@@ -310,17 +316,24 @@ test.describe('/wishlist', () => {
   });
 
   test('saved items persist from shop to wishlist page', async ({ page }) => {
-    // Clear wishlist once, then add item, then navigate
+    // Clear wishlist, reload so Zustand hydrates empty, then add item
     await page.goto('/shop');
     await page.evaluate(() => localStorage.removeItem('thavare-wishlist'));
+    await page.reload();
+    await page.waitForTimeout(300);
     const heartBtn = page.locator('button[aria-label*="wishlist"]').first();
     await expect(heartBtn).toBeVisible({ timeout: 10000 });
     await heartBtn.click();
-    // Navigate to wishlist — localStorage persists across goto() within same page context
+    // Wait for Zustand persist to flush to localStorage
+    await page.waitForFunction(() => {
+      const data = localStorage.getItem('thavare-wishlist');
+      if (!data) return false;
+      const parsed = JSON.parse(data);
+      return parsed?.state?.items?.length > 0;
+    }, { timeout: 5000 });
+    // Navigate to wishlist — Zustand rehydrates async, so poll for updated count
     await page.goto('/wishlist');
-    await expect(page.getByRole('heading', { level: 1 })).toBeVisible({ timeout: 5000 });
-    const heading = await page.getByRole('heading', { level: 1 }).textContent();
-    expect(heading).toMatch(/\(1\)/);
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('(1)', { timeout: 5000 });
   });
 });
 
@@ -398,8 +411,10 @@ test.describe('Footer links', () => {
 
   test('Instagram link points to thavare_ayurveda', async ({ page }) => {
     await page.goto('/');
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    const igLink = page.locator('a[href*="instagram.com/thavare"]');
+    // Scroll footer into view and target the footer IG link specifically
+    const footer = page.locator('footer');
+    await footer.scrollIntoViewIfNeeded();
+    const igLink = footer.locator('a[href*="instagram.com/thavare"]');
     await expect(igLink.first()).toBeVisible({ timeout: 3000 });
   });
 });
