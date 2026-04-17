@@ -29,7 +29,7 @@ type Slide = {
 const SLIDES: Slide[] = [
   {
     id: 1,
-    bg: 'linear-gradient(to right, rgba(240,228,208,0.72) 0%, rgba(240,228,208,0.35) 55%, rgba(225,208,180,0.08) 100%), url("/images/brand-slide-icon.png") right center / cover no-repeat',
+    bg: 'linear-gradient(to right, rgba(255,248,235,0.46) 0%, rgba(252,242,225,0.18) 48%, rgba(240,225,200,0.0) 100%), url("/images/brand-slide-icon.png") right center / cover no-repeat',
     label: '',
     headline: ['Clinically Crafted', 'Ayurveda', 'for the Active Body'],
     accentLine: 1,
@@ -105,6 +105,7 @@ export function HeroCarousel() {
   const [paused, setPaused] = useState(false);
   const [fading, setFading] = useState(false);
   const fadeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   const goTo = useCallback((idx: number) => {
     if (fadeTimerRef.current) clearTimeout(fadeTimerRef.current);
@@ -135,11 +136,29 @@ export function HeroCarousel() {
   const textBase = slide.darkText ? 'text-navy' : 'text-cream';
   const labelColor = slide.darkText ? 'text-[#008493]' : 'text-[#C4A882]';
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartRef.current) return;
+    const dx = e.changedTouches[0].clientX - touchStartRef.current.x;
+    const dy = e.changedTouches[0].clientY - touchStartRef.current.y;
+    touchStartRef.current = null;
+    // Only act on taps (no significant movement), skip links/buttons
+    if (Math.abs(dx) > 12 || Math.abs(dy) > 12) return;
+    if ((e.target as HTMLElement).closest('a, button')) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    if (e.changedTouches[0].clientX - rect.left < rect.width / 2) prev(); else next();
+  };
+
   return (
     <section
       className="relative w-full h-[100svh] min-h-[560px] max-h-[900px] overflow-hidden select-none group"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       {/* Background */}
       <div
@@ -172,7 +191,7 @@ export function HeroCarousel() {
               {slide.label}
             </div>
           )}
-          <h1 className={`font-serif text-[clamp(36px,5vw,72px)] font-medium leading-[1.08] mb-4 ${textBase}`}>
+          <h1 className={`font-serif text-[clamp(24px,5vw,72px)] font-medium leading-[1.08] mb-3 md:mb-4 ${textBase}`}>
             {slide.headline.map((line, i) => (
               <span key={i} className="block">
                 {slide.accentLine === i
@@ -182,7 +201,7 @@ export function HeroCarousel() {
             ))}
           </h1>
           {slide.sub && (
-            <p className={`text-[16px] leading-relaxed mb-8 ${slide.darkText ? 'text-[#5C5448]' : 'text-cream/65'}`}>
+            <p className={`text-[14px] md:text-[16px] leading-relaxed mb-6 md:mb-8 ${slide.darkText ? 'text-[#5C5448]' : 'text-cream/65'}`}>
               {slide.sub}
             </p>
           )}
@@ -232,21 +251,9 @@ export function HeroCarousel() {
         )}
       </div>
 
-      {/* Prev / Next arrows */}
-      <button
-        onClick={prev}
-        aria-label="Previous slide"
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center text-white transition-all cursor-none opacity-0 hover:opacity-100 focus:opacity-100 group-hover:opacity-100 text-lg"
-      >
-        ‹
-      </button>
-      <button
-        onClick={next}
-        aria-label="Next slide"
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center text-white transition-all cursor-none opacity-0 hover:opacity-100 focus:opacity-100 group-hover:opacity-100 text-lg"
-      >
-        ›
-      </button>
+      {/* Desktop-only prev/next arrows */}
+      <button onClick={prev} aria-label="Previous slide" className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 items-center justify-center text-black transition-all cursor-none opacity-0 group-hover:opacity-100 text-base">‹</button>
+      <button onClick={next} aria-label="Next slide" className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 items-center justify-center text-black transition-all cursor-none opacity-0 group-hover:opacity-100 text-base">›</button>
 
       {/* Dot indicators */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
