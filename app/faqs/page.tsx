@@ -106,9 +106,29 @@ function FaqItem({ q, a }: FaqItem) {
   );
 }
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ_CATEGORIES.flatMap((cat) =>
+    cat.items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    }))
+  ),
+};
+
 export default function FAQsPage() {
   return (
-    <div className="bg-cream min-h-screen px-4 md:px-10 lg:px-20 py-14 md:py-24">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <div className="bg-cream min-h-screen px-4 md:px-10 lg:px-20 py-14 md:py-24">
       <div className="max-w-[800px] mx-auto">
 
         <AnimatedSection>
@@ -167,5 +187,6 @@ export default function FAQsPage() {
 
       </div>
     </div>
+    </>
   );
 }

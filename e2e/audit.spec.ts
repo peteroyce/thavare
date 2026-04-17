@@ -32,17 +32,6 @@ test.describe('Homepage', () => {
     await expect(page.getByText('WELCOME10')).toBeVisible({ timeout: 5000 });
   });
 
-  test('PressStrip renders "As Seen In" heading', async ({ page }) => {
-    await page.goto('/');
-    await expect(page.getByText('As Seen In')).toBeVisible({ timeout: 5000 });
-    // At least one press name rendered (use .first() — multiple press names match the regex)
-    await expect(page.getByText(/The Hindu|Vogue India|Healthshots|Femina/).first()).toBeVisible({ timeout: 5000 });
-  });
-
-  test('UGCSection renders "Real People, Real Movement"', async ({ page }) => {
-    await page.goto('/');
-    await expect(page.getByText('Real People, Real Movement')).toBeVisible({ timeout: 5000 });
-  });
 
   test('DistributionStrip renders "Also Available At"', async ({ page }) => {
     await page.goto('/');

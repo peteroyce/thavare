@@ -43,3 +43,12 @@ next-env.d.ts
 # local dev
 CLAUDE.md
 .worktrees/
+
+# Business documents
+New/
+
+# Test artifacts
+test-results/
+
+# Superpowers cache
+.superpowers/

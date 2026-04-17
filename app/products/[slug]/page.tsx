@@ -81,11 +81,23 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     },
   };
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://thavare.com' },
+      { '@type': 'ListItem', position: 2, name: 'Shop', item: 'https://thavare.com/shop' },
+      { '@type': 'ListItem', position: 3, name: product.name },
+    ],
+  };
+
+  const schemas = [productSchema, breadcrumbSchema];
+
   return (
     <div className="bg-cream min-h-screen">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
       />
       {/* Breadcrumb */}
       <div className="px-4 md:px-10 lg:px-20 pt-8 pb-0 text-[12px] text-text-3 flex gap-2">
