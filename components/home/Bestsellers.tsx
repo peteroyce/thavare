@@ -28,7 +28,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
     <section className="py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-ivory">
       <div className="max-w-[1200px] mx-auto">
         <AnimatedSection className="text-center mb-14">
-          <div className="text-[10px] font-medium tracking-[4px] uppercase text-[#A87A53] mb-2.5">Most Loved</div>
+          <div className="text-[10px] font-medium tracking-[4px] uppercase text-[#7A5D3A] mb-2.5">Most Loved</div>
           <h2 className="font-serif text-[clamp(28px,3vw,42px)] font-medium leading-[1.15] text-navy">
             Our <em className="italic text-terracotta">Bestsellers</em>
           </h2>
@@ -65,16 +65,19 @@ export function Bestsellers({ products }: { products: Product[] }) {
                   </button>
                 </div>
                 <div className="p-6">
-                  <div className="text-[9px] font-medium tracking-[3px] uppercase text-[#A87A53] mb-1.5">{p.categoryLabel}</div>
+                  <div className="text-[9px] font-medium tracking-[3px] uppercase text-[#7A5D3A] mb-1.5">{p.categoryLabel}</div>
                   <div className="font-serif text-[18px] font-medium leading-[1.25] text-navy mb-2">{p.name}</div>
                   <div className="text-[13px] leading-relaxed text-text-2 mb-4">{p.description}</div>
                   <div className="flex items-center justify-between">
                     <div>
                       <span className="text-[19px] font-semibold text-terracotta">{'\u20B9'}{p.price}</span>
                     </div>
-                    <Link href={`/products/${p.slug}`}>
-                      <Button variant="primary" className="text-[10px] px-4 py-2">Add to Bag</Button>
-                    </Link>
+                    <button
+                      onClick={() => handleQuickAdd(p)}
+                      className="text-[10px] px-4 py-2 bg-navy text-cream font-semibold tracking-wide uppercase rounded-lg hover:bg-navy/90 transition-colors"
+                    >
+                      Add to Bag
+                    </button>
                   </div>
                 </div>
               </div>

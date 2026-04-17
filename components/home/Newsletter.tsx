@@ -27,7 +27,7 @@ export function Newsletter() {
   return (
     <section className="py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-beige">
       <AnimatedSection className="max-w-[520px] mx-auto text-center">
-        <div className="text-[10px] font-medium tracking-[4px] uppercase text-[#A87A53] mb-3">Stay in the Know</div>
+        <div className="text-[10px] font-medium tracking-[4px] uppercase text-[#7A5D3A] mb-3">Stay in the Know</div>
         <h2 className="font-serif text-[clamp(28px,3vw,38px)] font-medium leading-[1.15] text-navy mb-3">
           Move Well. <em className="italic text-terracotta">Live Well.</em>
         </h2>
@@ -38,7 +38,9 @@ export function Newsletter() {
           <p className="mt-8 font-serif italic text-[18px] text-teal-dark">You're in. Welcome to the circle.</p>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row mt-8 rounded-lg overflow-hidden shadow-[0_0_0_1px_#D4C8B8]">
+            <label htmlFor="newsletter-email" className="sr-only">Email address</label>
             <input
+              id="newsletter-email"
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}

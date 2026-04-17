@@ -55,7 +55,7 @@ export function Footer() {
               IG
             </a>
             {['FB', 'YT', 'X'].map((icon) => (
-              <div key={icon} className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/30 cursor-not-allowed" aria-hidden="true">
+              <div key={icon} className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/50 cursor-not-allowed" aria-hidden="true">
                 {icon}
               </div>
             ))}
@@ -63,11 +63,11 @@ export function Footer() {
         </div>
         {/* Shop column */}
         <div>
-          <h4 className="text-[9px] font-semibold tracking-[3px] uppercase text-cream/30 mb-4">Shop</h4>
+          <h3 className="text-[9px] font-semibold tracking-[3px] uppercase text-cream/50 mb-4">Shop</h3>
           <ul className="flex flex-col gap-2.5">
             {SHOP_LINKS.map(({ label, href }) => (
               <li key={label}>
-                <Link href={href} className="text-[13px] text-cream/45 hover:text-cream/85 transition-colors duration-200">
+                <Link href={href} className="text-[13px] text-cream/65 hover:text-cream/85 transition-colors duration-200">
                   {label}
                 </Link>
               </li>
@@ -76,11 +76,11 @@ export function Footer() {
         </div>
         {/* Company column — real routes */}
         <div>
-          <h4 className="text-[9px] font-semibold tracking-[3px] uppercase text-cream/30 mb-4">Company</h4>
+          <h3 className="text-[9px] font-semibold tracking-[3px] uppercase text-cream/50 mb-4">Company</h3>
           <ul className="flex flex-col gap-2.5">
             {COMPANY_LINKS.map(({ label, href }) => (
               <li key={label}>
-                <Link href={href} className="text-[13px] text-cream/45 hover:text-cream/85 transition-colors duration-200">
+                <Link href={href} className="text-[13px] text-cream/65 hover:text-cream/85 transition-colors duration-200">
                   {label}
                 </Link>
               </li>
@@ -89,11 +89,11 @@ export function Footer() {
         </div>
         {/* Help column */}
         <div>
-          <h4 className="text-[9px] font-semibold tracking-[3px] uppercase text-cream/30 mb-4">Help</h4>
+          <h3 className="text-[9px] font-semibold tracking-[3px] uppercase text-cream/50 mb-4">Help</h3>
           <ul className="flex flex-col gap-2.5">
             {HELP_LINKS.map(({ label, href }) => (
               <li key={label}>
-                <Link href={href} className="text-[13px] text-cream/45 hover:text-cream/85 transition-colors duration-200">
+                <Link href={href} className="text-[13px] text-cream/65 hover:text-cream/85 transition-colors duration-200">
                   {label}
                 </Link>
               </li>
@@ -102,11 +102,11 @@ export function Footer() {
         </div>
         {/* Contact column */}
         <div>
-          <h4 className="text-[9px] font-semibold tracking-[3px] uppercase text-cream/30 mb-4">Contact</h4>
+          <h3 className="text-[9px] font-semibold tracking-[3px] uppercase text-cream/50 mb-4">Contact</h3>
           <div className="flex flex-col gap-4">
             <div>
-              <div className="text-[10px] font-semibold tracking-[2px] uppercase text-cream/25 mb-1">Address</div>
-              <p className="text-[12px] leading-[1.7] text-cream/45">
+              <div className="text-[10px] font-semibold tracking-[2px] uppercase text-cream/40 mb-1">Address</div>
+              <p className="text-[12px] leading-[1.7] text-cream/65">
                 4/A, &apos;RESHMA Building&apos;, First Floor,<br />
                 80 Feet Road, RMV 2nd Stage,<br />
                 Ashwath Nagar, Sanjayanagara,<br />
@@ -114,14 +114,14 @@ export function Footer() {
               </p>
             </div>
             <div>
-              <div className="text-[10px] font-semibold tracking-[2px] uppercase text-cream/25 mb-1">Phone</div>
-              <a href="tel:+919513971515" className="text-[13px] text-cream/45 hover:text-cream/85 transition-colors duration-200">
+              <div className="text-[10px] font-semibold tracking-[2px] uppercase text-cream/40 mb-1">Phone</div>
+              <a href="tel:+919513971515" className="text-[13px] text-cream/65 hover:text-cream/85 transition-colors duration-200">
                 +91 95139 71515
               </a>
             </div>
             <div>
-              <div className="text-[10px] font-semibold tracking-[2px] uppercase text-cream/25 mb-1">Email</div>
-              <a href="mailto:support@thavare.com" className="text-[13px] text-cream/45 hover:text-cream/85 transition-colors duration-200">
+              <div className="text-[10px] font-semibold tracking-[2px] uppercase text-cream/40 mb-1">Email</div>
+              <a href="mailto:support@thavare.com" className="text-[13px] text-cream/65 hover:text-cream/85 transition-colors duration-200">
                 support@thavare.com
               </a>
             </div>
@@ -129,11 +129,11 @@ export function Footer() {
         </div>
       </div>
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <span className="text-[12px] text-cream/25">© 2026 Thavare Health Sciences Pvt. Ltd. All rights reserved.</span>
+        <span className="text-[12px] text-cream/40">© 2026 Thavare Health Sciences Pvt. Ltd. All rights reserved.</span>
         <div className="flex gap-6">
-          <Link href="/privacy-policy" className="text-[12px] text-cream/30 hover:text-cream/60 transition-colors">Privacy</Link>
-          <Link href="/terms" className="text-[12px] text-cream/30 hover:text-cream/60 transition-colors">Terms</Link>
-          <Link href="/sitemap.xml" className="text-[12px] text-cream/30 hover:text-cream/60 transition-colors">Sitemap</Link>
+          <Link href="/privacy-policy" className="text-[12px] text-cream/50 hover:text-cream/60 transition-colors">Privacy</Link>
+          <Link href="/terms" className="text-[12px] text-cream/50 hover:text-cream/60 transition-colors">Terms</Link>
+          <Link href="/sitemap.xml" className="text-[12px] text-cream/50 hover:text-cream/60 transition-colors">Sitemap</Link>
         </div>
       </div>
     </footer>

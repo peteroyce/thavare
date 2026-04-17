@@ -15,7 +15,7 @@ export function WhySection() {
     <section className="py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-ivory">
       <div className="max-w-[1200px] mx-auto">
         <AnimatedSection className="text-center mb-14">
-          <div className="text-[10px] font-medium tracking-[4px] uppercase text-[#A87A53] mb-2.5">Why Sport. Why Active.</div>
+          <div className="text-[10px] font-medium tracking-[4px] uppercase text-[#7A5D3A] mb-2.5">Why Sport. Why Active.</div>
           <h2 className="font-serif text-[clamp(28px,3vw,42px)] font-medium leading-[1.15] text-navy">
             This Is <em className="italic text-terracotta">Sport Ayurveda.</em>
           </h2>
