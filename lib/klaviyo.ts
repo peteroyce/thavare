@@ -1,5 +1,5 @@
 const COMPANY_ID = process.env.NEXT_PUBLIC_KLAVIYO_PUBLIC_KEY!;
-const LIST_ID = 'TGt6Zc';
+const LIST_ID = process.env.NEXT_PUBLIC_KLAVIYO_LIST_ID ?? 'TGt6Zc';
 const ENDPOINT = `https://a.klaviyo.com/client/subscriptions/?company_id=${COMPANY_ID}`;
 
 export async function subscribeToNewsletter(email: string): Promise<void> {

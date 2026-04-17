@@ -86,7 +86,9 @@ export const useCart = create<CartStore>()(
           throw new Error(data.cartCreate.userErrors[0].message);
         }
 
-        const { id, checkoutUrl } = data.cartCreate.cart!;
+        const cart = data.cartCreate.cart;
+        if (!cart) throw new Error('Shopify returned no cart');
+        const { id, checkoutUrl } = cart;
         set({ shopifyCartId: id });
         window.location.href = checkoutUrl;
       },

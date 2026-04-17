@@ -1,16 +1,20 @@
 'use client';
 
 import { useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useCart } from '@/lib/cart';
 
-// Clears the cart on mount. Separated into a client component so the parent
-// order-success page can remain a server component.
 export function OrderSuccessClearer() {
   const clearCart = useCart(s => s.clearCart);
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    clearCart();
-  }, [clearCart]);
+    // Only clear cart if Shopify redirected back with a checkout key
+    const hasOrder = searchParams.has('key') || searchParams.has('order_id');
+    if (hasOrder) {
+      clearCart();
+    }
+  }, [clearCart, searchParams]);
 
   return null;
 }

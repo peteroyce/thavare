@@ -14,14 +14,14 @@ export function FloatingVideo() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    if (sessionStorage.getItem('thavare-video-dismissed')) return;
+    try { if (sessionStorage.getItem('thavare-video-dismissed')) return; } catch { return; }
     const timer = setTimeout(() => setStatus('expanded'), 4000);
     return () => clearTimeout(timer);
   }, []);
 
   function dismiss() {
     setStatus('hidden');
-    sessionStorage.setItem('thavare-video-dismissed', '1');
+    try { sessionStorage.setItem('thavare-video-dismissed', '1'); } catch {}
   }
 
   if (status === 'hidden') return null;
@@ -47,6 +47,7 @@ export function FloatingVideo() {
           muted
           loop
           playsInline
+          onError={() => setStatus('hidden')}
           className="w-full h-[124px] object-cover"
         />
         <div className="absolute top-1.5 right-1.5 flex gap-1">

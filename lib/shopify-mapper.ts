@@ -27,6 +27,11 @@ export type ShopifyProductNode = {
   };
 };
 
+const VALID_CATEGORIES: ProductCategory[] = ['sport', 'daily-essentials', 'recovery', 'sun-protection'];
+function isValidCategory(val: string | undefined): val is ProductCategory {
+  return VALID_CATEGORIES.includes(val as ProductCategory);
+}
+
 export function mapShopifyProduct(node: ShopifyProductNode): Product {
   const variantEdge = node.variants.edges[0];
   if (!variantEdge) {
@@ -44,7 +49,7 @@ export function mapShopifyProduct(node: ShopifyProductNode): Product {
     badge: node.badge?.value?.replace(/^`+$/, '') ?? '',
     description: node.description,
     longDescription: node.descriptionHtml,
-    category: (node.category?.value ?? 'daily-essentials') as ProductCategory,
+    category: isValidCategory(node.category?.value) ? node.category!.value : 'daily-essentials',
     categoryLabel: node.category_label?.value ?? '',
     price: Math.round(parseFloat(variant.price.amount)),
     variantId: variant.id,

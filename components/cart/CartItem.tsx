@@ -26,14 +26,14 @@ export function CartItem({ item }: { item: CartItemType }) {
         <div className="text-[13px] text-text-3 mt-0.5">{p.subtitle}</div>
         <div className="flex items-center justify-between mt-4">
           <div className="flex items-center border border-[#D4C8B8] rounded-lg overflow-hidden">
-            <button onClick={() => updateQuantity(p.id, quantity - 1)} className="w-9 h-9 text-text-2 hover:bg-cream transition-colors cursor-none">−</button>
+            <button onClick={() => updateQuantity(p.id, quantity - 1)} aria-label="Decrease quantity" className="w-9 h-9 text-text-2 hover:bg-cream transition-colors cursor-none">−</button>
             <span className="w-8 text-center text-[14px] font-medium">{quantity}</span>
-            <button onClick={() => updateQuantity(p.id, quantity + 1)} className="w-9 h-9 text-text-2 hover:bg-cream transition-colors cursor-none">+</button>
+            <button onClick={() => updateQuantity(p.id, quantity + 1)} aria-label="Increase quantity" className="w-9 h-9 text-text-2 hover:bg-cream transition-colors cursor-none">+</button>
           </div>
           <span className="text-[17px] font-semibold text-terracotta">₹{p.price * quantity}</span>
         </div>
       </div>
-      <button onClick={() => removeItem(p.id)} className="text-text-3 hover:text-text-1 transition-colors text-[18px] self-start cursor-none">×</button>
+      <button onClick={() => removeItem(p.id)} aria-label="Remove item" className="text-text-3 hover:text-text-1 transition-colors text-[18px] self-start cursor-none">×</button>
     </div>
   );
 }

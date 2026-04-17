@@ -27,7 +27,10 @@ export function ProductInfo({ product: p }: { product: Product }) {
       addToast({ type: 'cart-update', productName: p.name, count: newCount, quantity: newQty });
     } else {
       addItem(p);
-      if (qty > 1) updateQuantity(p.id, qty);
+      if (qty > 1) {
+        // Schedule quantity update after addItem's state settles
+        setTimeout(() => updateQuantity(p.id, qty), 0);
+      }
       const newCount = useCart.getState().totalItems();
       addToast({ type: 'cart-add', productName: p.name, count: newCount });
     }
@@ -88,9 +91,9 @@ export function ProductInfo({ product: p }: { product: Product }) {
       {p.inStock ? (
         <div className="flex gap-4 items-center">
           <div className="flex items-center border border-[#D4C8B8] rounded-lg overflow-hidden">
-            <button onClick={() => setQty(q => Math.max(1, q - 1))} className="w-11 h-11 text-[18px] text-text-2 hover:bg-cream transition-colors cursor-none">−</button>
+            <button onClick={() => setQty(q => Math.max(1, q - 1))} aria-label="Decrease quantity" className="w-11 h-11 text-[18px] text-text-2 hover:bg-cream transition-colors cursor-none">−</button>
             <span className="w-10 text-center text-[15px] font-medium text-text-1">{qty}</span>
-            <button onClick={() => setQty(q => q + 1)} className="w-11 h-11 text-[18px] text-text-2 hover:bg-cream transition-colors cursor-none">+</button>
+            <button onClick={() => setQty(q => q + 1)} aria-label="Increase quantity" className="w-11 h-11 text-[18px] text-text-2 hover:bg-cream transition-colors cursor-none">+</button>
           </div>
           <Button onClick={handleAdd} disabled={adding} className="flex-1">{adding ? 'Adding…' : 'Add to Bag'}</Button>
         </div>
