@@ -30,7 +30,7 @@ const HELP_LINKS: { label: string; href: string }[] = [
 export function Footer() {
   return (
     <footer className="bg-navy-deep px-4 md:px-10 lg:px-20 pt-16 pb-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-white/10 mb-7">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-12 border-b border-white/10 mb-7">
         {/* Brand */}
         <div className="md:col-span-2 lg:col-span-1">
           <div className="flex items-center gap-3 mb-4">
@@ -99,6 +99,33 @@ export function Footer() {
               </li>
             ))}
           </ul>
+        </div>
+        {/* Contact column */}
+        <div>
+          <h4 className="text-[9px] font-semibold tracking-[3px] uppercase text-cream/30 mb-4">Contact</h4>
+          <div className="flex flex-col gap-4">
+            <div>
+              <div className="text-[10px] font-semibold tracking-[2px] uppercase text-cream/25 mb-1">Address</div>
+              <p className="text-[12px] leading-[1.7] text-cream/45">
+                4/A, &apos;RESHMA Building&apos;, First Floor,<br />
+                80 Feet Road, RMV 2nd Stage,<br />
+                Ashwath Nagar, Sanjayanagara,<br />
+                Bengaluru, Karnataka – 560094
+              </p>
+            </div>
+            <div>
+              <div className="text-[10px] font-semibold tracking-[2px] uppercase text-cream/25 mb-1">Phone</div>
+              <a href="tel:+919513971515" className="text-[13px] text-cream/45 hover:text-cream/85 transition-colors duration-200">
+                +91 95139 71515
+              </a>
+            </div>
+            <div>
+              <div className="text-[10px] font-semibold tracking-[2px] uppercase text-cream/25 mb-1">Email</div>
+              <a href="mailto:support@thavare.com" className="text-[13px] text-cream/45 hover:text-cream/85 transition-colors duration-200">
+                support@thavare.com
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
