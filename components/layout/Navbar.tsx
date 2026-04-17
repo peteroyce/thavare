@@ -46,9 +46,18 @@ export function Navbar() {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && menuOpen) setMenuOpen(false);
+      if (e.key === 'Escape' && profileOpen) setProfileOpen(false);
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [menuOpen, profileOpen]);
+
   const closeMenu = () => setMenuOpen(false);
 
-  const linkCls     = scrolled ? 'text-navy/60 hover:text-navy' : 'text-cream/60 hover:text-cream';
+  const linkCls     = scrolled ? 'text-navy/70 hover:text-navy' : 'text-cream/70 hover:text-cream';
   const logoCls     = scrolled ? 'text-navy' : 'text-cream';
   const logoSubCls  = scrolled ? 'text-navy/40' : 'text-cream/40';
   const bagCls      = scrolled
@@ -70,7 +79,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-7">
           {/* Shop — hover-activated mega flyout */}
           <div className="relative" onMouseEnter={() => setShopOpen(true)} onMouseLeave={() => setShopOpen(false)}>
-            <button className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 relative group flex items-center gap-1 cursor-none ${linkCls}`}>
+            <button aria-expanded={shopOpen} aria-haspopup="true" className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 relative group flex items-center gap-1 cursor-none ${linkCls}`}>
               Shop
               <span className={`text-[8px] transition-transform duration-200 ${shopOpen ? 'rotate-180' : ''}`}>▾</span>
               <span className="absolute bottom-0 left-0 w-0 h-px bg-teal group-hover:w-full transition-[width] duration-300" />
@@ -140,6 +149,15 @@ export function Navbar() {
           >
             Bag ({mounted ? totalItems : 0})
           </Link>
+          <button
+            aria-label="My account"
+            onClick={() => setProfileOpen(prev => !prev)}
+            className={`flex items-center justify-center w-8 h-8 transition-colors duration-200 ${scrolled ? 'text-navy/70 hover:text-navy' : 'text-cream/70 hover:text-cream'}`}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+              <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+            </svg>
+          </button>
         </div>
 
         {/* Mobile right: bag + profile + hamburger */}
@@ -155,7 +173,7 @@ export function Navbar() {
           <button
             aria-label="My account"
             onClick={() => { setProfileOpen(true); setMenuOpen(false); }}
-            className={`flex items-center justify-center w-8 h-8 transition-colors duration-200 ${scrolled ? 'text-navy/60 hover:text-navy' : 'text-cream/60 hover:text-cream'}`}
+            className={`flex items-center justify-center w-8 h-8 transition-colors duration-200 ${scrolled ? 'text-navy/70 hover:text-navy' : 'text-cream/70 hover:text-cream'}`}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
               <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
@@ -164,6 +182,7 @@ export function Navbar() {
 
           <button
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
             onClick={() => setMenuOpen(prev => !prev)}
             className="flex flex-col justify-center items-center w-8 h-8 gap-0 relative"
           >
@@ -186,6 +205,9 @@ export function Navbar() {
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{ background: '#0E1930', backdropFilter: 'blur(20px)' }}
+        aria-hidden={!menuOpen}
+        role="dialog"
+        aria-label="Navigation menu"
       >
         {/* Drawer header */}
         <div className="flex items-center justify-between px-5 h-[68px] border-b border-white/8 shrink-0">

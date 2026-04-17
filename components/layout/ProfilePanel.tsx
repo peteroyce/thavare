@@ -73,6 +73,8 @@ export function ProfilePanel({ open, onClose }: Props) {
       style={{ background: 'rgba(15,25,48,0.98)', backdropFilter: 'blur(20px)' }}
       aria-modal="true"
       aria-label="Profile panel"
+      aria-hidden={!open}
+      tabIndex={-1}
     >
       {/* Header */}
       <div className="flex items-center justify-between px-6 h-[72px] border-b border-white/10 shrink-0">
