@@ -95,7 +95,7 @@ export default function PrivacyPolicyPage() {
             Under the DPDP Act, 2023, you have the right to access the personal data we hold about you, correct inaccurate information, withdraw your consent at any time, and request erasure of your data where it is no longer necessary for the purpose it was collected. You also have the right to nominate a person to exercise these rights on your behalf.
           </p>
           <p className="text-[14px] leading-[1.75] text-text-2">
-            To exercise any of these rights, please write to us at <span className="text-teal">hello@thavare.com</span>. We will respond within 30 days of receiving your request.
+            To exercise any of these rights, please write to us at <span className="text-teal">support@thavare.com</span>. We will respond within 30 days of receiving your request.
           </p>
         </AnimatedSection>
 
@@ -123,8 +123,11 @@ export default function PrivacyPolicyPage() {
           </p>
           <p className="text-[14px] leading-[1.75] text-text-2">
             <strong className="text-navy font-medium">Thavare Health Sciences Pvt. Ltd.</strong><br />
-            Email: <span className="text-teal">hello@thavare.com</span><br />
-            Headquarters: India
+            4/A, &apos;RESHMA Building&apos;, First Floor, 80 Feet Road,<br />
+            RMV 2nd Stage, Ashwath Nagar, Sanjayanagara,<br />
+            Bengaluru, Karnataka – 560094<br />
+            Email: <a href="mailto:support@thavare.com" className="text-teal hover:underline">support@thavare.com</a><br />
+            Phone: <a href="tel:+919513971515" className="text-teal hover:underline">+91 95139 71515</a>
           </p>
           <p className="text-[13px] leading-[1.75] text-text-3 mt-5">
             We reserve the right to update this Privacy Policy from time to time. Any material changes will be notified to you via email or a prominent notice on our website. Continued use of our services after the effective date of any changes constitutes your acceptance of the revised policy.

@@ -20,11 +20,11 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         q: 'Can I modify or cancel my order after placing it?',
-        a: 'Orders can be modified or cancelled within 2 hours of placement, provided they have not yet been dispatched. Please write to us immediately at hello@thavare.com with your order number. Once an order has been handed over to our courier partner, we are unable to make changes.',
+        a: 'Orders can be modified or cancelled within 2 hours of placement, provided they have not yet been dispatched. Please write to us immediately at support@thavare.com with your order number. Once an order has been handed over to our courier partner, we are unable to make changes.',
       },
       {
         q: 'My payment failed but the amount was debited. What should I do?',
-        a: 'In the rare event of a payment failure with a debit to your account, please do not retry the payment immediately. Amounts debited for failed transactions are automatically reversed to your source account within 5\u20137 business days by your bank or payment provider. If the reversal does not appear after 7 business days, contact us at hello@thavare.com with your transaction reference.',
+        a: 'In the rare event of a payment failure with a debit to your account, please do not retry the payment immediately. Amounts debited for failed transactions are automatically reversed to your source account within 5\u20137 business days by your bank or payment provider. If the reversal does not appear after 7 business days, contact us at support@thavare.com with your transaction reference.',
       },
       {
         q: 'Is it safe to pay on Thavare?',
@@ -58,7 +58,7 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         q: 'How do I initiate a return?',
-        a: 'To start a return, email us at hello@thavare.com within 7 days of receiving your order. Include your order number, the product(s) you wish to return, and the reason for return. Our team will review your request within 1\u20132 business days and send you a return authorisation along with pickup instructions.',
+        a: 'To start a return, email us at support@thavare.com within 7 days of receiving your order. Include your order number, the product(s) you wish to return, and the reason for return. Our team will review your request within 1\u20132 business days and send you a return authorisation along with pickup instructions.',
       },
       {
         q: 'When will I receive my refund?',
@@ -121,7 +121,7 @@ export default function FAQsPage() {
           <p className="text-[14px] leading-[1.75] text-text-2">
             Everything you need to know about ordering, shipping, returns, and our products.
             Can&rsquo;t find your answer?{' '}
-            <a href="mailto:hello@thavare.com" className="text-teal underline underline-offset-2">
+            <a href="mailto:support@thavare.com" className="text-teal underline underline-offset-2">
               Write to us
             </a>{' '}
             and we&rsquo;ll get back to you within one business day.
@@ -158,8 +158,8 @@ export default function FAQsPage() {
             </p>
             <p className="text-[14px] leading-[1.75] text-text-2">
               Email us at{' '}
-              <a href="mailto:hello@thavare.com" className="text-teal underline underline-offset-2">
-                hello@thavare.com
+              <a href="mailto:support@thavare.com" className="text-teal underline underline-offset-2">
+                support@thavare.com
               </a>
             </p>
           </div>

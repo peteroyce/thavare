@@ -11,7 +11,7 @@ const RETURN_STEPS = [
   {
     step: '01',
     title: 'Contact Us',
-    desc: 'Email hello@thavare.com within 7 days of receiving your order. Include your order number, the item(s) you wish to return, and the reason for return.',
+    desc: 'Email support@thavare.com within 7 days of receiving your order. Include your order number, the item(s) you wish to return, and the reason for return.',
   },
   {
     step: '02',
@@ -67,8 +67,8 @@ export default function ReturnsPage() {
           </p>
           <p className="text-[14px] leading-[1.75] text-text-2">
             Returns must be initiated by emailing us at{' '}
-            <a href="mailto:hello@thavare.com" className="text-teal underline underline-offset-2">
-              hello@thavare.com
+            <a href="mailto:support@thavare.com" className="text-teal underline underline-offset-2">
+              support@thavare.com
             </a>{' '}
             within 7 days of the delivery date noted in your shipping confirmation. Requests received
             after this window cannot be processed.
@@ -203,8 +203,8 @@ export default function ReturnsPage() {
           <p className="text-[14px] leading-[1.75] text-text-2">
             For damaged or incorrect items, we will arrange a priority replacement dispatch at no
             additional cost once the return is approved. Contact us at{' '}
-            <a href="mailto:hello@thavare.com" className="text-teal underline underline-offset-2">
-              hello@thavare.com
+            <a href="mailto:support@thavare.com" className="text-teal underline underline-offset-2">
+              support@thavare.com
             </a>{' '}
             and include a photo of the damaged or incorrect item for fastest resolution.
           </p>

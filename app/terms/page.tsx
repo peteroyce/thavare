@@ -137,7 +137,7 @@ export default function TermsPage() {
           </p>
           <p className="text-[14px] leading-[1.75] text-text-2">
             If you have any questions about these Terms, please contact us at{' '}
-            <span className="text-teal">hello@thavare.com</span>.
+            <span className="text-teal">support@thavare.com</span>.
           </p>
         </AnimatedSection>
 

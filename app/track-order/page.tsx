@@ -99,10 +99,10 @@ export default function TrackOrderPage() {
                 Please check your email for the shipping confirmation with your tracking link,
                 or contact us at{' '}
                 <a
-                  href="mailto:hello@thavare.com"
+                  href="mailto:support@thavare.com"
                   className="text-teal underline underline-offset-2"
                 >
-                  hello@thavare.com
+                  support@thavare.com
                 </a>{' '}
                 quoting your order number and we&rsquo;ll send you an update directly.
               </p>
@@ -140,8 +140,8 @@ export default function TrackOrderPage() {
           </p>
           <p className="text-[14px] leading-[1.75] text-text-2">
             Still can&rsquo;t find it? Email us at{' '}
-            <a href="mailto:hello@thavare.com" className="text-teal underline underline-offset-2">
-              hello@thavare.com
+            <a href="mailto:support@thavare.com" className="text-teal underline underline-offset-2">
+              support@thavare.com
             </a>{' '}
             with the name and email address used during checkout and we&rsquo;ll locate your order.
           </p>

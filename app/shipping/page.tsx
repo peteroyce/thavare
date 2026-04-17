@@ -193,8 +193,8 @@ export default function ShippingPage() {
             </a>{' '}
             page. If you have not received a tracking update within 3 business days of your shipping
             confirmation, please contact us at{' '}
-            <a href="mailto:hello@thavare.com" className="text-teal underline underline-offset-2">
-              hello@thavare.com
+            <a href="mailto:support@thavare.com" className="text-teal underline underline-offset-2">
+              support@thavare.com
             </a>
             .
           </p>
