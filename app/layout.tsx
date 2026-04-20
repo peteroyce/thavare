@@ -8,6 +8,7 @@ import { CustomCursor } from '@/components/ui/CustomCursor';
 import { WelcomeBanner } from '@/components/ui/WelcomeBanner';
 import { ToastContainer } from '@/components/ui/ToastContainer';
 import { FloatingVideo } from '@/components/ui/FloatingVideo';
+import { CookieConsent } from '@/components/ui/CookieConsent';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -66,10 +67,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
         />
         <Script
+          id="gtag-loader"
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"
         />
-        <Script src="/gtag-init.js" strategy="afterInteractive" />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}', { anonymize_ip: true });`}
+        </Script>
       </head>
       <body className="font-sans bg-cream text-text-1 antialiased overflow-x-hidden">
           <a
@@ -85,6 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <ToastContainer />
         <FloatingVideo />
+        <CookieConsent />
       </body>
     </html>
   );

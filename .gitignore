@@ -52,3 +52,8 @@ test-results/
 
 # Superpowers cache
 .superpowers/
+
+# Credentials (safety net)
+*.key
+*.secret
+credentials*
