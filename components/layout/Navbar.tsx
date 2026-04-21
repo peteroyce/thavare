@@ -166,7 +166,7 @@ export function Navbar() {
         <div className="flex md:hidden items-center gap-3.5 ml-auto">
           <Link
             href="/cart"
-            className={`text-[11px] font-medium tracking-wide uppercase transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${mobileBagCls}`}
+            className={`text-[11px] font-medium tracking-wide uppercase transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] min-w-[44px] min-h-[44px] flex items-center justify-center ${mobileBagCls}`}
           >
             Bag ({mounted ? totalItems : 0})
           </Link>
@@ -175,7 +175,7 @@ export function Navbar() {
           <button
             aria-label="My account"
             onClick={() => { setProfileOpen(true); setMenuOpen(false); }}
-            className={`flex items-center justify-center w-8 h-8 transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${scrolled ? 'text-navy/70 hover:text-navy' : 'text-cream/70 hover:text-cream'}`}
+            className={`flex items-center justify-center w-11 h-11 transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${scrolled ? 'text-navy/70 hover:text-navy' : 'text-cream/70 hover:text-cream'}`}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
               <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
@@ -186,7 +186,7 @@ export function Navbar() {
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen(prev => !prev)}
-            className="flex flex-col justify-center items-center w-8 h-8 gap-0 relative"
+            className="flex flex-col justify-center items-center w-11 h-11 gap-0 relative"
           >
             {menuOpen ? (
               <span className="text-cream text-xl leading-none select-none">✕</span>

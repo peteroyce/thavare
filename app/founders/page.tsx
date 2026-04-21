@@ -51,7 +51,7 @@ const CREDENTIALS = [
 
 export default function FoundersPage() {
   return (
-    <>
+    <div className="overflow-x-hidden">
       {/* ─── 1. HERO ─── */}
       <section
         className="min-h-[65vh] bg-navy-deep flex flex-col justify-center px-4 md:px-10 lg:px-20 py-14 md:py-24 relative overflow-hidden"
@@ -186,7 +186,7 @@ export default function FoundersPage() {
                     </div>
 
                     {/* Left content */}
-                    <div className={`pr-14 ${isLeft ? '' : 'opacity-0 pointer-events-none'}`}>
+                    <div className={`pr-4 md:pr-14 ${isLeft ? '' : 'opacity-0 pointer-events-none'}`}>
                       {isLeft && (
                         <AnimatedSection direction="left" delay={(i % 4) as 0 | 1 | 2 | 3}>
                           <div className="text-right">
@@ -202,7 +202,7 @@ export default function FoundersPage() {
                     </div>
 
                     {/* Right content */}
-                    <div className={`pl-14 ${!isLeft ? '' : 'opacity-0 pointer-events-none'}`}>
+                    <div className={`pl-4 md:pl-14 ${!isLeft ? '' : 'opacity-0 pointer-events-none'}`}>
                       {!isLeft && (
                         <AnimatedSection direction="right" delay={(i % 4) as 0 | 1 | 2 | 3}>
                           <div>
@@ -430,6 +430,6 @@ export default function FoundersPage() {
           </AnimatedSection>
         </div>
       </section>
-    </>
+    </div>
   );
 }

@@ -64,7 +64,7 @@ const PACE = [
 
 export default function AboutPage() {
   return (
-    <>
+    <div className="overflow-x-hidden">
       {/* ─── HERO ─── */}
       <section
         className="min-h-[70vh] bg-navy-deep flex flex-col justify-center px-4 md:px-10 lg:px-20 py-14 md:py-24 relative overflow-hidden"
@@ -125,7 +125,7 @@ export default function AboutPage() {
 
           {/* Stats row */}
           <div
-            className="hero-entry flex gap-10 pt-7 border-t border-white/10 w-fit"
+            className="hero-entry flex flex-wrap gap-6 md:gap-10 pt-7 border-t border-white/10 w-fit"
             style={{ animationDelay: '0.75s' }}
           >
             {STATS.map(([n, l]) => (
@@ -388,6 +388,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
