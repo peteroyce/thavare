@@ -69,9 +69,9 @@ export function Toast({
     return null;
   })();
 
-  return (
+  const content = (
     <div
-      className="flex flex-col overflow-hidden rounded-r-xl shadow-[0_6px_28px_rgba(0,0,0,0.11)]"
+      className={`flex flex-col overflow-hidden rounded-r-xl shadow-[0_6px_28px_rgba(0,0,0,0.11)] ${cfg.ctaHref ? 'hover:shadow-[0_8px_32px_rgba(0,0,0,0.16)] transition-shadow' : ''}`}
       style={{ borderLeft: `3px solid ${cfg.borderColor}`, background: '#F5F0E8', width: 280 }}
     >
       <div className="flex items-start gap-3 px-4 py-3">
@@ -89,20 +89,12 @@ export function Toast({
             <div className="text-[11px] text-text-3 mt-1 leading-snug">
               {countLine}
               {cfg.ctaHref && (
-                <>
-                  {' · '}
-                  <Link
-                    href={cfg.ctaHref}
-                    className="font-semibold hover:underline"
-                    style={{ color: cfg.labelColor }}
-                  >
-                    {cfg.ctaText} →
-                  </Link>
-                </>
+                <span className="font-semibold ml-1" style={{ color: cfg.labelColor }}>
+                  {cfg.ctaText} →
+                </span>
               )}
             </div>
           )}
-          {/* cart-update: show product name below the count line */}
           {toast.type !== 'cart-update' ? null : (
             <div className="font-serif text-[13px] text-navy leading-snug truncate mt-0.5">
               {toast.productName}
@@ -110,14 +102,13 @@ export function Toast({
           )}
         </div>
         <button
-          onClick={() => onDismiss(toast.id)}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); onDismiss(toast.id); }}
           aria-label="Dismiss notification"
           className="w-6 h-6 rounded-full border border-[#D4C8B8] flex items-center justify-center text-text-3 text-[13px] flex-shrink-0 mt-0.5 cursor-none hover:border-[#B4A898] transition-colors"
         >
           ×
         </button>
       </div>
-      {/* Progress bar */}
       <div className="h-[2px]" style={{ background: '#E5DDD0' }}>
         <div
           className="h-full"
@@ -130,4 +121,9 @@ export function Toast({
       </div>
     </div>
   );
+
+  if (cfg.ctaHref) {
+    return <Link href={cfg.ctaHref} onClick={() => onDismiss(toast.id)}>{content}</Link>;
+  }
+  return content;
 }

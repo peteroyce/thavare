@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
@@ -11,8 +12,15 @@ import { useToast } from '@/lib/toast';
 export function Bestsellers({ products }: { products: Product[] }) {
   const addItem = useCart(s => s.addItem);
   const addToast = useToast(s => s.add);
+  const addingRef = useRef<Set<string>>(new Set());
 
-  function handleQuickAdd(p: Product) {
+  function handleQuickAdd(p: Product, e: React.MouseEvent) {
+    e.stopPropagation();
+    // Guard: skip if already processing this product
+    if (addingRef.current.has(p.id)) return;
+    addingRef.current.add(p.id);
+    setTimeout(() => addingRef.current.delete(p.id), 800);
+
     const wasInCart = useCart.getState().items.some(i => i.product.id === p.id);
     addItem(p);
     const newCount = useCart.getState().totalItems();
@@ -59,7 +67,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
                     style={{ filter: 'drop-shadow(0 8px 24px rgba(168,122,83,0.22))' }}
                   />
                   <button
-                    onClick={() => handleQuickAdd(p)}
+                    onClick={(e) => handleQuickAdd(p, e)}
                     className="absolute bottom-0 left-0 right-0 bg-terracotta text-white text-[11px] font-semibold tracking-[1.5px] uppercase py-3.5 text-center translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-300 cursor-none"
                   >
                     Quick Add to Bag
@@ -74,7 +82,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
                       <span className="text-[19px] font-semibold text-terracotta">{'\u20B9'}{p.price}</span>
                     </div>
                     <button
-                      onClick={() => handleQuickAdd(p)}
+                      onClick={(e) => handleQuickAdd(p, e)}
                       className="text-[10px] px-4 py-2 bg-navy text-cream font-semibold tracking-wide uppercase rounded-lg hover:bg-navy/90 transition-colors"
                     >
                       Add to Bag

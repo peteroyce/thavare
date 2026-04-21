@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/lib/cart';
@@ -14,8 +14,15 @@ export function ProductCard({ product: p }: { product: Product }) {
   const { toggle, has } = useWishlist();
   const addToast = useToast(s => s.add);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
+  const [added, setAdded] = useState(false);
+  const addingRef = useRef(false);
 
   function handleAddToCart() {
+    if (addingRef.current) return;
+    addingRef.current = true;
+    setAdded(true);
+    setTimeout(() => { addingRef.current = false; setAdded(false); }, 800);
+
     const wasInCart = useCart.getState().items.some(i => i.product.id === p.id);
     addItem(p);
     const newCount = useCart.getState().totalItems();
@@ -95,7 +102,7 @@ export function ProductCard({ product: p }: { product: Product }) {
             disabled={!p.inStock}
             className="px-4 py-2 text-[10px] font-semibold tracking-wide uppercase rounded-lg transition-all cursor-none disabled:cursor-not-allowed bg-navy text-cream hover:bg-navy/90 disabled:bg-[#D4C8B8] disabled:text-text-3"
           >
-            {p.inStock ? 'Add to Bag' : 'Out of Stock'}
+            {!p.inStock ? 'Out of Stock' : added ? 'Added ✓' : 'Add to Bag'}
           </button>
         </div>
       </div>
