@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/lib/cart';
 import { CartItem } from '@/components/cart/CartItem';
@@ -72,9 +72,21 @@ function CheckoutButton() {
 
 export default function CartPage() {
   const { items, totalItems, totalPrice } = useCart();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const count = totalItems();
   const total = totalPrice();
   const shipping = total >= 499 ? 0 : 99;
+
+  // Wait for client hydration (cart loads from localStorage)
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-cream flex items-center justify-center">
+        <div className="text-text-3 text-[14px]">Loading your bag...</div>
+      </div>
+    );
+  }
 
   if (count === 0) {
     return (
