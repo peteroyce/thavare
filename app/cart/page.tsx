@@ -5,10 +5,12 @@ import Link from 'next/link';
 import { useCart } from '@/lib/cart';
 import { CartItem } from '@/components/cart/CartItem';
 import { Button } from '@/components/ui/Button';
+import { openRazorpayCheckout, verifyRazorpayPayment } from '@/lib/razorpay';
 
 function CheckoutButton() {
-  const createShopifyCheckout = useCart(s => s.createShopifyCheckout);
   const items = useCart(s => s.items);
+  const totalPrice = useCart(s => s.totalPrice);
+  const clearCart = useCart(s => s.clearCart);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -16,9 +18,31 @@ function CheckoutButton() {
     setLoading(true);
     setError(null);
     try {
-      await createShopifyCheckout();
+      const total = totalPrice();
+      const shipping = total >= 499 ? 0 : 99;
+      const amount = total + shipping;
+
+      const cartItems = items.map(i => ({
+        name: i.product.name,
+        quantity: i.quantity,
+        price: i.product.price,
+      }));
+
+      const response = await openRazorpayCheckout(amount, cartItems);
+      const result = await verifyRazorpayPayment(response);
+
+      if (result.verified) {
+        clearCart();
+        window.location.href = `/order-success?payment_id=${result.paymentId}`;
+      } else {
+        setError('Payment verification failed. Please contact support.');
+        setLoading(false);
+      }
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Checkout failed. Please try again.');
+      const msg = e instanceof Error ? e.message : 'Checkout failed. Please try again.';
+      if (msg !== 'Payment cancelled') {
+        setError(msg);
+      }
       setLoading(false);
     }
   }
@@ -30,8 +54,15 @@ function CheckoutButton() {
         disabled={loading || items.length === 0}
         className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 cursor-none bg-navy text-cream hover:bg-navy/90 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {loading ? 'Redirecting...' : 'Proceed to Checkout'}
+        {loading ? 'Processing...' : 'Pay Now'}
       </button>
+      <div className="flex items-center justify-center gap-3 mt-3">
+        <span className="text-[10px] text-text-3 tracking-wide uppercase">UPI</span>
+        <span className="text-text-3/30">·</span>
+        <span className="text-[10px] text-text-3 tracking-wide uppercase">Cards</span>
+        <span className="text-text-3/30">·</span>
+        <span className="text-[10px] text-text-3 tracking-wide uppercase">Netbanking</span>
+      </div>
       {error && (
         <p className="mt-3 text-[12px] text-red-500 text-center">{error}</p>
       )}

@@ -22,6 +22,10 @@ type CartStore = {
   createShopifyCheckout: () => Promise<void>;
 };
 
+// Debounce guard: prevent rapid double-fires from touch events
+const addItemCooldowns = new Map<string, number>();
+const ADD_COOLDOWN_MS = 300;
+
 export const useCart = create<CartStore>()(
   persist(
     (set, get) => ({
@@ -29,6 +33,11 @@ export const useCart = create<CartStore>()(
       shopifyCartId: null,
 
       addItem: (product) => {
+        const now = Date.now();
+        const lastAdd = addItemCooldowns.get(product.id) ?? 0;
+        if (now - lastAdd < ADD_COOLDOWN_MS) return; // skip duplicate rapid fire
+        addItemCooldowns.set(product.id, now);
+
         const existing = get().items.find(i => i.product.id === product.id);
         if (existing) {
           set(state => ({

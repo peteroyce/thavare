@@ -7,13 +7,13 @@ export function middleware(request: NextRequest) {
   // Content Security Policy
   const csp = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://a.klaviyo.com https://static.klaviyo.com",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://a.klaviyo.com https://static.klaviyo.com https://checkout.razorpay.com",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob: https://cdn.shopify.com https://www.googletagmanager.com https://www.google-analytics.com https://a.klaviyo.com https://static.klaviyo.com",
     "font-src 'self' data:",
-    "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://a.klaviyo.com https://static.klaviyo.com https://thavare-2.myshopify.com",
+    "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://a.klaviyo.com https://static.klaviyo.com https://thavare-2.myshopify.com https://api.razorpay.com https://lumberjack.razorpay.com",
     "media-src 'self' https://videos.pexels.com",
-    "frame-src 'self'",
+    "frame-src 'self' https://api.razorpay.com https://checkout.razorpay.com",
     "frame-ancestors 'none'",
   ].join('; ');
 
