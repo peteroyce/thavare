@@ -155,8 +155,8 @@ test.describe('Cart flow', () => {
     await expect(page.getByText('Subtotal')).toBeVisible();
     await expect(page.getByText('Shipping', { exact: true })).toBeVisible();
 
-    // "Proceed to Checkout" button exists and is enabled
-    const checkoutBtn = page.getByRole('button', { name: /proceed to checkout/i });
+    // "Pay Now" button exists and is enabled (Razorpay checkout)
+    const checkoutBtn = page.getByRole('button', { name: /pay now/i });
     await expect(checkoutBtn).toBeVisible();
     await expect(checkoutBtn).toBeEnabled();
   });
