@@ -86,22 +86,24 @@ export function Navbar() {
             </button>
 
             {shopOpen && (
-              <div className="absolute top-full left-0 mt-2 w-[220px] bg-navy-deep border border-white/10 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.4)] py-2 z-50">
-                {SHOP_CATEGORIES.map(({ label, href, sub }) => (
-                  <Link
-                    key={label}
-                    href={href}
-                    className="flex flex-col px-5 py-3 hover:bg-white/5 transition-colors duration-150 ease-[cubic-bezier(0.16,1,0.3,1)] group/item"
-                  >
-                    <span className="text-[12px] font-medium text-cream/80 group-hover/item:text-cream transition-colors">{label}</span>
-                    {sub && <span className="text-[10px] text-cream/35 mt-0.5">{sub}</span>}
-                  </Link>
-                ))}
-                <div className="border-t border-white/10 mt-2 pt-2">
-                  <Link href="/shop" className="flex items-center justify-between px-5 py-3 hover:bg-white/5 transition-colors duration-150 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                    <span className="text-[11px] font-semibold tracking-[1.5px] uppercase text-teal">View All Products</span>
-                    <span className="text-teal text-[10px]">→</span>
-                  </Link>
+              <div className="absolute top-full left-0 pt-3 w-[220px] z-50">
+                <div className="bg-navy-deep border border-white/10 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.4)] py-2">
+                  {SHOP_CATEGORIES.map(({ label, href, sub }) => (
+                    <Link
+                      key={label}
+                      href={href}
+                      className="flex flex-col px-5 py-3 hover:bg-white/5 transition-colors duration-150 ease-[cubic-bezier(0.16,1,0.3,1)] group/item"
+                    >
+                      <span className="text-[12px] font-medium text-cream/80 group-hover/item:text-cream transition-colors">{label}</span>
+                      {sub && <span className="text-[10px] text-cream/35 mt-0.5">{sub}</span>}
+                    </Link>
+                  ))}
+                  <div className="border-t border-white/10 mt-2 pt-2">
+                    <Link href="/shop" className="flex items-center justify-between px-5 py-3 hover:bg-white/5 transition-colors duration-150 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                      <span className="text-[11px] font-semibold tracking-[1.5px] uppercase text-teal">View All Products</span>
+                      <span className="text-teal text-[10px]">→</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             )}
