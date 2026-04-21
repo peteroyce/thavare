@@ -66,8 +66,17 @@ export function ProfilePanel({ open, onClose }: Props) {
   const wishlistItems = useWishlist(s => s.items);
 
   return (
+    <>
+    {/* Backdrop */}
+    {open && (
+      <div
+        className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+    )}
     <div
-      className={`fixed inset-0 z-50 md:hidden transition-transform duration-300 ease-in-out flex flex-col ${
+      className={`fixed inset-y-0 right-0 z-50 w-full sm:w-[380px] transition-transform duration-300 ease-in-out flex flex-col ${
         open ? 'translate-x-0' : 'translate-x-full'
       }`}
       style={{ background: 'rgba(15,25,48,0.98)', backdropFilter: 'blur(20px)' }}
@@ -215,5 +224,6 @@ export function ProfilePanel({ open, onClose }: Props) {
 
       </div>
     </div>
+    </>
   );
 }

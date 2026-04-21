@@ -67,7 +67,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
                 <div className="p-6">
                   <div className="text-[9px] font-medium tracking-[3px] uppercase text-[#7A5D3A] mb-1.5">{p.categoryLabel}</div>
                   <div className="font-serif text-[18px] font-medium leading-[1.25] text-navy mb-2">{p.name}</div>
-                  <div className="text-[13px] leading-relaxed text-text-2 mb-4">{p.description}</div>
+                  <div className="text-[13px] leading-relaxed text-text-2 mb-4 line-clamp-2">{p.description}</div>
                   <div className="flex items-center justify-between">
                     <div>
                       <span className="text-[19px] font-semibold text-terracotta">{'\u20B9'}{p.price}</span>

@@ -22,9 +22,9 @@ export function NewArrivals({ products }: { products: Product[] }) {
             New <em className="italic text-terracotta">Arrivals</em>
           </h2>
         </AnimatedSection>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {products.map((p, i) => (
-            <AnimatedSection key={p.id} delay={((i % 4) + 1) as 1|2|3|4}>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {products.slice(0, 6).map((p, i) => (
+            <AnimatedSection key={p.id} delay={((i % 3) + 1) as 1|2|3}>
               <Link
                 href={`/products/${p.slug}`}
                 className="block bg-white rounded-xl overflow-hidden md:md:hover:-translate-y-1.5 transition-all duration-300 group"

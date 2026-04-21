@@ -44,7 +44,7 @@ export function CategoryGrid() {
                 </div>
                 <div className="p-5 pb-6">
                   <div className="font-serif text-[17px] font-medium text-navy mb-1.5">{cat.name}</div>
-                  <div className="text-[13px] leading-relaxed text-text-2 mb-3 line-clamp-3 sm:line-clamp-none">{cat.desc}</div>
+                  <div className="text-[13px] leading-relaxed text-text-2 mb-3 line-clamp-2">{cat.desc}</div>
                   <span className="text-[10px] font-semibold tracking-[2px] uppercase text-teal">Explore →</span>
                 </div>
               </Link>
