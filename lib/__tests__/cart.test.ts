@@ -1,4 +1,4 @@
-import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 
 vi.mock('@/lib/shopify', () => ({
   shopifyFetch: vi.fn(),
@@ -6,7 +6,7 @@ vi.mock('@/lib/shopify', () => ({
 
 import { shopifyFetch } from '@/lib/shopify';
 import { act, renderHook } from '@testing-library/react';
-import { useCart } from '../cart';
+import { useCart, addItemCooldowns } from '../cart';
 import type { Product } from '../products';
 
 const p1: Product = {
@@ -26,7 +26,15 @@ const p2: Product = {
 };
 
 beforeEach(() => {
+  addItemCooldowns.clear();
   useCart.setState({ items: [] });
+  // Mock Date.now to auto-advance past the 300ms debounce on every call
+  let clock = 1000;
+  vi.spyOn(Date, 'now').mockImplementation(() => { clock += 301; return clock; });
+});
+
+afterEach(() => {
+  vi.restoreAllMocks();
 });
 
 describe('cart store', () => {
@@ -107,6 +115,7 @@ function makeProduct(overrides: Partial<Product> = {}): Product {
 
 describe('createShopifyCheckout', () => {
   beforeEach(() => {
+    addItemCooldowns.clear();
     useCart.getState().clearCart();
     vi.clearAllMocks();
   });

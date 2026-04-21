@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Button } from '@/components/ui/Button';
@@ -277,13 +278,15 @@ export default function FoundersPage() {
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
           {/* Left — founder photo placeholder */}
           <AnimatedSection direction="left">
-            <div className="w-full aspect-[3/4] rounded-2xl bg-gradient-to-br from-[#F5EFE7] to-[#EDE3D8] flex items-center justify-center border border-[#DDD0C0] relative overflow-hidden">
-              <div className="text-center">
-                <div className="font-serif text-[60px] text-[#C4A882] leading-none mb-2">
-                  M
-                </div>
-                <div className="text-[10px] tracking-[2px] uppercase text-[#A88F72]">Photo Coming Soon</div>
-              </div>
+            <div className="w-full aspect-[3/4] rounded-2xl relative overflow-hidden">
+              <Image
+                src="/images/founder-meena.jpg"
+                alt="Dr. Meena Ramaiah — Founder, Thavare"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover rounded-2xl"
+                priority
+              />
             </div>
           </AnimatedSection>
 

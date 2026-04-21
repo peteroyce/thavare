@@ -23,7 +23,8 @@ type CartStore = {
 };
 
 // Debounce guard: prevent rapid double-fires from touch events
-const addItemCooldowns = new Map<string, number>();
+// Exported for test access (clear between tests)
+export const addItemCooldowns = new Map<string, number>();
 const ADD_COOLDOWN_MS = 300;
 
 export const useCart = create<CartStore>()(

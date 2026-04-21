@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 // ─── Types ─────────────────────────────────────────────────────────────────
@@ -21,6 +22,7 @@ type ProductInfo = {
   handle: ProductHandle;
   name: string;
   tagline: string;
+  image: string;
   reason: (answers: string[]) => string;
 };
 
@@ -69,6 +71,7 @@ const PRODUCTS: Record<ProductHandle, ProductInfo> = {
     handle: 'thavare-body-lotion',
     name: 'Body Lotion',
     tagline: 'Deep Ayurvedic Hydration',
+    image: '/images/prod-kumkumadi.png',
     reason: (answers) => {
       if (answers[3] === 'Dry' || answers[1] === 'Dryness & Dehydration') {
         return 'Your dry skin profile needs deep, sustained moisture. Our Ayurvedic body lotion restores the skin barrier with Ashwagandha and Shea.';
@@ -83,6 +86,7 @@ const PRODUCTS: Record<ProductHandle, ProductInfo> = {
     handle: 'thavare-body-wash',
     name: 'Body Wash',
     tagline: 'Clarifying Neem & Turmeric Cleanse',
+    image: '/images/prod-bodywash-botanicals.png',
     reason: (answers) => {
       if (answers[1] === 'Sweat Breakouts & Acne') {
         return 'Sweat-triggered breakouts need an active cleanse. Our Neem and Turmeric formula clears pores without stripping skin.';
@@ -97,6 +101,7 @@ const PRODUCTS: Record<ProductHandle, ProductInfo> = {
     handle: 'thavare-sun-screen',
     name: 'Sunscreen',
     tagline: 'Broad Spectrum Active Protection',
+    image: '/images/prod-sunscreen.png',
     reason: (answers) => {
       if (answers[1] === 'Sun Damage & Pigmentation') {
         return 'Sun damage is cumulative. Our broad-spectrum sunscreen with Kumkumadi actives protects and gradually corrects pigmentation.';
@@ -111,6 +116,7 @@ const PRODUCTS: Record<ProductHandle, ProductInfo> = {
     handle: 'thavare-adolescent-sun-block',
     name: 'Adolescent Sun Block',
     tagline: 'Gentle Mineral Shield for Sensitive Skin',
+    image: '/images/cat-daily-sunblock-wall.jpg',
     reason: () =>
       'Sensitive skin needs mineral-based protection without chemical irritants. This sun block offers broad-spectrum coverage that is gentle enough for reactive skin.',
   },
@@ -221,20 +227,18 @@ function ProductCard({
       className="flex flex-col rounded-2xl border bg-white overflow-hidden shadow-[rgba(26,22,16,0.06)_0_4px_24px] hover:-translate-y-0.5 transition-all duration-300"
       style={{ borderColor: 'var(--border-m)' }}
     >
-      {/* Image area placeholder */}
+      {/* Product image */}
       <div
-        className="w-full aspect-[4/3] flex items-center justify-center"
-        style={{
-          background: 'linear-gradient(135deg, rgba(168,122,83,0.08), rgba(0,132,147,0.06))',
-          borderBottom: '1px solid var(--border-l)',
-        }}
+        className="relative w-full aspect-[4/3] overflow-hidden"
+        style={{ borderBottom: '1px solid var(--border-l)' }}
       >
-        <span
-          className="font-serif text-[72px] font-medium leading-none select-none"
-          style={{ color: 'var(--terracotta)', opacity: 0.55 }}
-        >
-          T
-        </span>
+        <Image
+          src={product.image}
+          alt={product.name}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover"
+        />
       </div>
 
       {/* Card content */}
