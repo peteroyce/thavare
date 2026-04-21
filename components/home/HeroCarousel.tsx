@@ -96,7 +96,7 @@ const CTA_STYLES: Record<CTA['variant'], string> = {
   dark:    'bg-navy text-cream hover:bg-navy/90',
 };
 
-const INTERVAL_MS = 7000;
+const INTERVAL_MS = 2500;
 
 export function HeroCarousel() {
   const [active, setActive] = useState(0);
