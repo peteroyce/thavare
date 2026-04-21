@@ -96,7 +96,7 @@ const CTA_STYLES: Record<CTA['variant'], string> = {
   dark:    'bg-navy text-cream hover:bg-navy/90',
 };
 
-const INTERVAL_MS = 5000;
+const INTERVAL_MS = 7000;
 
 export function HeroCarousel() {
   const [active, setActive] = useState(0);
@@ -152,7 +152,7 @@ export function HeroCarousel() {
 
   return (
     <section
-      className="relative w-full h-[100svh] min-h-[560px] max-h-[900px] overflow-hidden select-none group"
+      className="grain relative w-full h-[100svh] min-h-[560px] max-h-[900px] overflow-hidden select-none group"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onTouchStart={handleTouchStart}
@@ -163,6 +163,18 @@ export function HeroCarousel() {
         className="absolute inset-0"
         style={{ background: slide.bg, opacity: fading ? 0 : 1, transition: 'opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
       />
+
+      {/* Warm vignette on dark slides */}
+      {isDark && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.3) 100%)',
+            opacity: fading ? 0 : 1,
+            transition: 'opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+          }}
+        />
+      )}
 
       {/* Gold hairlines — dark slides only */}
       {isDark && (
@@ -189,7 +201,7 @@ export function HeroCarousel() {
               {slide.label}
             </div>
           )}
-          <h1 className={`font-serif text-[clamp(24px,5vw,72px)] font-medium leading-[1.08] mb-3 md:mb-4 ${textBase}`}>
+          <h1 className={`font-serif text-[clamp(24px,5vw,72px)] font-medium leading-[1.08] tracking-[-0.02em] mb-3 md:mb-4 ${textBase}`}>
             {slide.headline.map((line, i) => (
               <span key={i} className="block">
                 {slide.accentLine === i
@@ -260,10 +272,10 @@ export function HeroCarousel() {
             key={i}
             onClick={() => goTo(i)}
             aria-label={`Go to slide ${i + 1}`}
-            className={`h-[3px] rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-none ${
+            className={`h-[2px] rounded-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-none ${
               i === active
-                ? 'w-6 bg-cream'
-                : 'w-[6px] bg-cream/40 hover:bg-cream/60'
+                ? 'w-5 bg-cream'
+                : 'w-[5px] bg-cream/35 hover:bg-cream/55'
             }`}
           />
         ))}

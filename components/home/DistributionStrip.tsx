@@ -15,7 +15,7 @@ const ringHover = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px';
 
 export function DistributionStrip() {
   return (
-    <section className="bg-ivory py-10 px-4 md:px-10 lg:px-20 border-t border-[#E5DDD0]">
+    <section className="grain bg-ivory py-10 px-4 md:px-10 lg:px-20 border-t border-[#E5DDD0]">
       <AnimatedSection>
         <p className="text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-text-3 mb-6">
           Also Available At

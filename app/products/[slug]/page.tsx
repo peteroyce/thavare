@@ -94,7 +94,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const schemas = [productSchema, breadcrumbSchema];
 
   return (
-    <div className="bg-cream min-h-screen">
+    <div className="bg-cream min-h-screen grain">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
@@ -109,9 +109,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       </div>
 
       {/* Main grid */}
-      <div className="px-4 md:px-10 lg:px-20 py-8 md:py-14 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 max-w-[1200px] mx-auto">
+      <div className="px-4 md:px-10 lg:px-20 py-10 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 max-w-[1200px] mx-auto">
         {/* Image */}
-        <div className="bg-gradient-to-br from-ivory to-cream rounded-2xl flex items-center justify-center p-6 md:p-12 border border-[#E5DDD0] min-h-[300px] md:min-h-[500px]">
+        <div className="bg-gradient-to-b from-[#F5F0E8] to-[#EDE7DC] rounded-2xl flex items-center justify-center p-6 md:p-12 border border-[#E5DDD0] min-h-[300px] md:min-h-[500px]">
           <Image
             src={product.images.main}
             alt={product.name}
@@ -132,8 +132,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <ReviewsSection reviews={reviews} aggregate={aggregate} />
 
       {/* Related */}
-      <div className="px-4 md:px-10 lg:px-20 pb-14 md:pb-24 max-w-[1200px] mx-auto">
-        <h2 className="font-serif text-[28px] font-medium text-navy mb-8">You May Also Like</h2>
+      <div className="px-4 md:px-10 lg:px-20 pb-16 md:pb-28 pt-4 max-w-[1200px] mx-auto">
+        <h2 className="font-serif text-[28px] font-medium text-navy mb-10">You May Also Like</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {related.map(p => <ProductCard key={p.id} product={p} />)}
         </div>

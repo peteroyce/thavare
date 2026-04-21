@@ -11,7 +11,7 @@ const PRESS = [
 
 export function PressStrip() {
   return (
-    <section className="bg-ivory py-16 md:py-24 px-4 md:px-10 lg:px-20">
+    <section className="grain glow-warm-center bg-ivory py-16 md:py-24 px-4 md:px-10 lg:px-20">
       <div className="max-w-[1200px] mx-auto">
         <AnimatedSection>
           <p className="text-[10px] font-medium tracking-[4px] uppercase text-[#A87A53] mb-2.5 text-center">
@@ -21,6 +21,7 @@ export function PressStrip() {
             As Seen In
           </h2>
         </AnimatedSection>
+        <div className="divider-ornament mx-auto max-w-[200px] my-8"><span>&#9670;</span></div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {PRESS.map((item, i) => (
@@ -38,6 +39,7 @@ export function PressStrip() {
                   e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0';
                 }}
               >
+                <span className="font-serif text-[48px] leading-none text-camel/20 select-none" aria-hidden="true">&ldquo;</span>
                 <span className="font-serif text-[18px] text-[#A87A53] font-medium leading-snug">
                   {item.name}
                 </span>

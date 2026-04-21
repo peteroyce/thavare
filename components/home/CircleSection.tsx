@@ -16,7 +16,7 @@ const EXPERTS = [
 
 export function CircleSection() {
   return (
-    <section className="py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-teal">
+    <section className="grain py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-teal">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-20 items-center">
         <AnimatedSection direction="left">
           <div className="text-[10px] font-medium tracking-[4px] uppercase text-white/50 mb-3">Community</div>

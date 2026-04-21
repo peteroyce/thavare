@@ -25,7 +25,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
   }
 
   return (
-    <section className="py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-ivory">
+    <section className="grain glow-warm py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-ivory">
       <div className="max-w-[1200px] mx-auto">
         <AnimatedSection className="text-center mb-14">
           <div className="text-[10px] font-medium tracking-[4px] uppercase text-[#7A5D3A] mb-2.5">Most Loved</div>
@@ -33,6 +33,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
             Our <em className="italic text-terracotta">Bestsellers</em>
           </h2>
           <p className="text-[15px] leading-relaxed text-text-2 mt-3">Loved by athletes. Trusted by everyday movers.</p>
+          <div className="divider-ornament mx-auto max-w-[200px] my-8"><span>&#x25C6;</span></div>
         </AnimatedSection>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {products.map((p, i) => (
@@ -43,7 +44,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}
               >
-                <div className="h-[220px] bg-[#F0EBE0] flex items-center justify-center relative overflow-hidden">
+                <div className="h-[260px] bg-gradient-to-b from-[#F5F0E8] to-[#EDE7DC] flex items-center justify-center relative overflow-hidden">
                   {p.badge && (
                     <span className="absolute top-3.5 left-3.5 bg-terracotta text-white text-[9px] font-semibold tracking-[1.5px] uppercase px-3 py-1 rounded-full">
                       {p.badge}
@@ -84,9 +85,9 @@ export function Bestsellers({ products }: { products: Product[] }) {
             </AnimatedSection>
           ))}
         </div>
-        <AnimatedSection className="text-center mt-12">
+        <AnimatedSection className="text-center mt-14">
           <Link href="/shop">
-            <Button variant="outline">View All Products</Button>
+            <Button variant="outline" className="px-10 py-4 border-navy/20 hover:border-[#C4A882] hover:text-[#3D1F0A] transition-all duration-300">View All Products</Button>
           </Link>
         </AnimatedSection>
       </div>

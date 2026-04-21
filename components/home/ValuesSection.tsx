@@ -9,7 +9,7 @@ const VALUES = [
 
 export function ValuesSection() {
   return (
-    <section className="py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-ivory">
+    <section className="grain glow-warm-center py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-ivory">
       <div className="max-w-[1200px] mx-auto">
         <AnimatedSection className="text-center mb-14">
           <div className="text-[10px] font-medium tracking-[4px] uppercase text-[#7A5D3A] mb-2.5">The Thavare Difference</div>
@@ -17,10 +17,11 @@ export function ValuesSection() {
             Where the Apothecary<br /><em className="italic text-terracotta">Meets the Laboratory</em>
           </h2>
         </AnimatedSection>
+        <div className="divider-ornament mx-auto max-w-[200px] my-8"><span>&#9670;</span></div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {VALUES.map((v, i) => (
             <AnimatedSection key={v.title} delay={(i + 1) as 1|2|3} className="text-center group">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 border border-[#C4A882] bg-[#F9F6F1] group-hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-[#C4A882] bg-[#F9F6F1] shadow-[0_0_16px_rgba(200,168,130,0.12)] group-hover:scale-110 transition-transform duration-300">
                 <v.Icon />
               </div>
               <div className="font-serif text-[20px] font-medium text-navy mb-2.5">{v.title}</div>

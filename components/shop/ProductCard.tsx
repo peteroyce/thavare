@@ -41,13 +41,13 @@ export function ProductCard({ product: p }: { product: Product }) {
 
   return (
     <div
-      className="bg-[#FDFBF7] rounded-xl overflow-hidden hover:-translate-y-1.5 transition-all duration-300 group relative"
+      className="bg-[#FDFBF7] rounded-xl overflow-hidden hover:-translate-y-2 transition-all duration-300 group relative"
       style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
-      onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
+      onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, 0 4px 12px rgba(168,122,83,0.08), 0 16px 40px rgba(26,22,16,0.06)')}
       onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}
     >
       <Link href={`/products/${p.slug}`}>
-        <div className="h-[240px] bg-[#F0EBE0] flex items-center justify-center overflow-hidden relative">
+        <div className="h-[280px] bg-gradient-to-b from-[#F5F0E8] to-[#EDE7DC] flex items-center justify-center overflow-hidden relative">
           {p.badge && (
             <span className="absolute top-3 left-3 bg-terracotta text-white text-[9px] font-semibold tracking-[1.5px] uppercase px-3 py-1 rounded-full z-10">
               {p.badge}

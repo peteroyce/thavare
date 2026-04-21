@@ -99,7 +99,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-cream px-4 md:px-10 lg:px-20 py-8 md:py-14">
+    <div className="min-h-screen bg-cream px-4 md:px-10 lg:px-20 py-8 md:py-14 grain glow-warm">
       <div className="max-w-[1100px] mx-auto">
         <h1 className="font-serif text-[36px] font-medium text-navy mb-6 md:mb-10">Your Bag ({count})</h1>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 md:gap-12">
@@ -108,7 +108,7 @@ export default function CartPage() {
             {items.map(item => <CartItem key={item.product.id} item={item} />)}
           </div>
           {/* Summary */}
-          <div className="bg-ivory rounded-2xl p-8 border border-[#E5DDD0] h-fit mt-6 lg:mt-0">
+          <div className="bg-ivory rounded-2xl p-8 h-fit mt-6 lg:mt-0" style={{ boxShadow: '0 0 0 1px #E5DDD0, 0 4px 24px rgba(26,22,16,0.04)' }}>
             <h2 className="font-serif text-[22px] font-medium text-navy mb-6">Order Summary</h2>
             <div className="flex justify-between text-[14px] text-text-2 mb-3">
               <span>Subtotal</span><span>₹{total}</span>

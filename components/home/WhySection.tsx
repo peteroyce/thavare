@@ -12,7 +12,7 @@ const WHYS = [
 
 export function WhySection() {
   return (
-    <section className="py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-ivory">
+    <section className="grain py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-ivory">
       <div className="max-w-[1200px] mx-auto">
         <AnimatedSection className="text-center mb-14">
           <div className="text-[10px] font-medium tracking-[4px] uppercase text-[#7A5D3A] mb-2.5">Why Sport. Why Active.</div>
@@ -20,6 +20,7 @@ export function WhySection() {
             This Is <em className="italic text-terracotta">Sport Ayurveda.</em>
           </h2>
         </AnimatedSection>
+        <div className="divider-ornament mx-auto max-w-[200px] my-8"><span>&#9670;</span></div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-[900px] mx-auto">
           {WHYS.map((w, i) => (
             <AnimatedSection key={w.title} delay={(i + 1) as 1|2|3|4}>

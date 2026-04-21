@@ -13,7 +13,7 @@ const CATS = [
 
 export function CategoryGrid() {
   return (
-    <section className="py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-cream">
+    <section className="grain py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-cream">
       <div className="max-w-[1200px] mx-auto">
         <AnimatedSection className="text-center mb-14">
           <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-2.5">Find Your Ritual</div>
@@ -24,6 +24,7 @@ export function CategoryGrid() {
             Every body is different. Every movement demands different care.
           </p>
         </AnimatedSection>
+        <div className="divider-ornament mx-auto max-w-[200px] my-8"><span>&#9670;</span></div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {CATS.map((cat, i) => (
             <AnimatedSection key={cat.name} delay={(i + 1) as 1|2|3|4}>

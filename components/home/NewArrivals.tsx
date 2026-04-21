@@ -14,7 +14,7 @@ const BG = [
 
 export function NewArrivals({ products }: { products: Product[] }) {
   return (
-    <section className="py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-cream">
+    <section className="grain glow-warm py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-cream">
       <div className="max-w-[1200px] mx-auto">
         <AnimatedSection className="text-center mb-14">
           <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-2.5">Just Landed</div>
@@ -32,7 +32,7 @@ export function NewArrivals({ products }: { products: Product[] }) {
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}
               >
-                <div className={`h-[180px] flex items-center justify-center relative overflow-hidden ${BG[i % 4]}`}>
+                <div className={`h-[240px] flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-[#F5F0E8] to-[#EDE7DC]`}>
                   <span className="absolute top-2.5 left-2.5 bg-navy text-cream text-[8px] font-semibold tracking-[1.5px] uppercase px-2.5 py-1 rounded-full">
                     {p.badge ?? 'New'}
                   </span>
