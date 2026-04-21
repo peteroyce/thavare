@@ -160,8 +160,8 @@ export function HeroCarousel() {
     >
       {/* Background */}
       <div
-        className="absolute inset-0 transition-opacity duration-300"
-        style={{ background: slide.bg, opacity: fading ? 0 : 1 }}
+        className="absolute inset-0"
+        style={{ background: slide.bg, opacity: fading ? 0 : 1, transition: 'opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
       />
 
       {/* Gold hairlines — dark slides only */}
@@ -169,11 +169,11 @@ export function HeroCarousel() {
         <>
           <div
             className="absolute top-0 left-0 right-0 z-10 h-px"
-            style={{ background: 'linear-gradient(90deg, transparent, #C4A882, transparent)', opacity: fading ? 0 : 1, transition: 'opacity 0.3s' }}
+            style={{ background: 'linear-gradient(90deg, transparent, #C4A882, transparent)', opacity: fading ? 0 : 1, transition: 'opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
           />
           <div
             className="absolute bottom-0 left-0 right-0 z-10 h-px"
-            style={{ background: 'linear-gradient(90deg, transparent, #C4A882, transparent)', opacity: fading ? 0 : 1, transition: 'opacity 0.3s' }}
+            style={{ background: 'linear-gradient(90deg, transparent, #C4A882, transparent)', opacity: fading ? 0 : 1, transition: 'opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
           />
         </>
       )}
@@ -181,7 +181,7 @@ export function HeroCarousel() {
       {/* Content */}
       <div
         className="relative z-10 h-full flex items-center px-6 md:px-16 lg:px-24 max-w-[1400px] mx-auto"
-        style={{ opacity: fading ? 0 : 1, transition: 'opacity 0.3s' }}
+        style={{ opacity: fading ? 0 : 1, transition: 'opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
       >
         <div className="flex-1 max-w-[560px]">
           {slide.label && (
@@ -214,7 +214,7 @@ export function HeroCarousel() {
                 <Link
                   key={cta.href}
                   href={cta.href}
-                  className={`px-6 py-3 rounded-lg text-[11px] tracking-[1.5px] uppercase transition-all duration-200 cursor-none ${CTA_STYLES[cta.variant]}`}
+                  className={`px-6 py-3 rounded-lg text-[11px] tracking-[1.5px] uppercase transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-none ${CTA_STYLES[cta.variant]}`}
                 >
                   {cta.text}
                 </Link>
@@ -250,8 +250,8 @@ export function HeroCarousel() {
       </div>
 
       {/* Desktop-only prev/next arrows */}
-      <button onClick={prev} aria-label="Previous slide" className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 items-center justify-center text-black transition-all cursor-none opacity-0 group-hover:opacity-100 text-base">‹</button>
-      <button onClick={next} aria-label="Next slide" className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 items-center justify-center text-black transition-all cursor-none opacity-0 group-hover:opacity-100 text-base">›</button>
+      <button onClick={prev} aria-label="Previous slide" className={`hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 items-center justify-center transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-none opacity-0 group-hover:opacity-100 text-base ${textBase}`}>&#8249;</button>
+      <button onClick={next} aria-label="Next slide" className={`hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 items-center justify-center transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-none opacity-0 group-hover:opacity-100 text-base ${textBase}`}>&#8250;</button>
 
       {/* Dot indicators */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
@@ -260,10 +260,10 @@ export function HeroCarousel() {
             key={i}
             onClick={() => goTo(i)}
             aria-label={`Go to slide ${i + 1}`}
-            className={`h-[3px] rounded-full transition-all duration-300 cursor-none ${
+            className={`h-[3px] rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-none ${
               i === active
-                ? 'w-6 bg-white'
-                : 'w-[6px] bg-white/40 hover:bg-white/60'
+                ? 'w-6 bg-cream'
+                : 'w-[6px] bg-cream/40 hover:bg-cream/60'
             }`}
           />
         ))}

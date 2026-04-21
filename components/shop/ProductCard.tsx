@@ -41,7 +41,7 @@ export function ProductCard({ product: p }: { product: Product }) {
 
   return (
     <div
-      className="bg-white rounded-xl overflow-hidden hover:-translate-y-1.5 transition-all duration-300 group relative"
+      className="bg-[#FDFBF7] rounded-xl overflow-hidden hover:-translate-y-1.5 transition-all duration-300 group relative"
       style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
       onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
       onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}

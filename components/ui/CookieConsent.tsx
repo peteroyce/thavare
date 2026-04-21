@@ -25,7 +25,7 @@ export function CookieConsent() {
     // Disable GA by setting the opt-out window property
     const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
     if (gaId && typeof window !== 'undefined') {
-      (window as Record<string, unknown>)[`ga-disable-${gaId}`] = true;
+      (window as unknown as Record<string, unknown>)[`ga-disable-${gaId}`] = true;
     }
   }
 

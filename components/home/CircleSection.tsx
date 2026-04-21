@@ -16,11 +16,11 @@ const EXPERTS = [
 
 export function CircleSection() {
   return (
-    <section className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-teal">
+    <section className="py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-teal">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-20 items-center">
         <AnimatedSection direction="left">
           <div className="text-[10px] font-medium tracking-[4px] uppercase text-white/50 mb-3">Community</div>
-          <h2 className="font-serif text-[38px] font-medium leading-[1.15] text-white mb-4">
+          <h2 className="font-serif text-[clamp(28px,3vw,38px)] font-medium leading-[1.15] text-white mb-4">
             Join the<br /><em className="italic text-cream">Thavare Circle</em>
           </h2>
           <p className="text-[15px] leading-[1.7] text-white/75 font-light mb-8">

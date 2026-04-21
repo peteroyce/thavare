@@ -42,6 +42,8 @@ next-env.d.ts
 
 # local dev
 CLAUDE.md
+.claude/
+.impeccable.md
 .worktrees/
 
 # Business documents

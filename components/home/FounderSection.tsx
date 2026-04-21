@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/Button';
 
 export function FounderSection() {
   return (
-    <section className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-navy-deep">
+    <section className="py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-navy-deep">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
         <AnimatedSection direction="left">
           <div className="rounded-2xl overflow-hidden border border-white/5 shadow-[0_32px_80px_rgba(0,0,0,0.4)] relative group md:hover:scale-[1.02] transition-transform duration-300">

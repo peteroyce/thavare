@@ -38,7 +38,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
           {products.map((p, i) => (
             <AnimatedSection key={p.id} delay={(i + 1) as 1|2|3}>
               <div
-                className="bg-white rounded-xl overflow-hidden md:hover:-translate-y-1 transition-all duration-300 group relative cursor-none"
+                className="bg-[#FDFBF7] rounded-xl overflow-hidden md:hover:-translate-y-1 transition-all duration-300 group relative cursor-none"
                 style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}

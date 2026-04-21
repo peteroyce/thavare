@@ -69,7 +69,7 @@ export function Navbar() {
   return (
     <>
       <nav
-        className={`sticky top-0 z-50 h-[72px] flex items-center justify-between px-6 md:px-16 transition-all duration-300 border-b ${
+        className={`sticky top-0 z-50 h-[72px] flex items-center justify-between px-6 md:px-16 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] border-b ${
           scrolled
             ? 'bg-ivory/95 backdrop-blur-2xl border-[#E5DDD0]'
             : 'bg-navy-deep/92 backdrop-blur-md border-white/8'
@@ -79,10 +79,10 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-7">
           {/* Shop — hover-activated mega flyout */}
           <div className="relative" onMouseEnter={() => setShopOpen(true)} onMouseLeave={() => setShopOpen(false)}>
-            <button aria-expanded={shopOpen} aria-haspopup="true" className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 relative group flex items-center gap-1 cursor-none ${linkCls}`}>
+            <button aria-expanded={shopOpen} aria-haspopup="true" className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] relative group flex items-center gap-1 cursor-none ${linkCls}`}>
               Shop
-              <span className={`text-[8px] transition-transform duration-200 ${shopOpen ? 'rotate-180' : ''}`}>▾</span>
-              <span className="absolute bottom-0 left-0 w-0 h-px bg-teal group-hover:w-full transition-[width] duration-300" />
+              <span className={`text-[8px] transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${shopOpen ? 'rotate-180' : ''}`}>▾</span>
+              <span className="absolute bottom-0 left-0 w-0 h-px bg-teal group-hover:w-full transition-[width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
             </button>
 
             {shopOpen && (
@@ -91,14 +91,14 @@ export function Navbar() {
                   <Link
                     key={label}
                     href={href}
-                    className="flex flex-col px-5 py-3 hover:bg-white/5 transition-colors duration-150 group/item"
+                    className="flex flex-col px-5 py-3 hover:bg-white/5 transition-colors duration-150 ease-[cubic-bezier(0.16,1,0.3,1)] group/item"
                   >
                     <span className="text-[12px] font-medium text-cream/80 group-hover/item:text-cream transition-colors">{label}</span>
                     {sub && <span className="text-[10px] text-cream/35 mt-0.5">{sub}</span>}
                   </Link>
                 ))}
                 <div className="border-t border-white/10 mt-2 pt-2">
-                  <Link href="/shop" className="flex items-center justify-between px-5 py-3 hover:bg-white/5 transition-colors duration-150">
+                  <Link href="/shop" className="flex items-center justify-between px-5 py-3 hover:bg-white/5 transition-colors duration-150 ease-[cubic-bezier(0.16,1,0.3,1)]">
                     <span className="text-[11px] font-semibold tracking-[1.5px] uppercase text-teal">View All Products</span>
                     <span className="text-teal text-[10px]">→</span>
                   </Link>
@@ -112,17 +112,17 @@ export function Navbar() {
             <Link
               key={label}
               href={href}
-              className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 relative group ${linkCls}`}
+              className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] relative group ${linkCls}`}
             >
               {label}
-              <span className="absolute bottom-0 left-0 w-0 h-px bg-teal group-hover:w-full transition-[width] duration-300" />
+              <span className="absolute bottom-0 left-0 w-0 h-px bg-teal group-hover:w-full transition-[width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
             </Link>
           ))}
         </div>
 
         {/* Logo — centered on desktop, left-ish on mobile */}
         <Link href="/" className="flex items-center gap-3 no-underline group md:absolute md:left-1/2 md:-translate-x-1/2">
-          <div className="w-9 h-9 rounded-full border border-camel/50 flex items-center justify-center text-camel text-base transition-all duration-300 group-hover:border-camel group-hover:rotate-[20deg]">
+          <div className="w-9 h-9 rounded-full border border-camel/50 flex items-center justify-center text-camel text-base transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-camel group-hover:rotate-[20deg]">
             ◎
           </div>
           <div>
@@ -137,22 +137,22 @@ export function Navbar() {
             <Link
               key={label}
               href={href}
-              className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 relative group ${linkCls}`}
+              className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] relative group ${linkCls}`}
             >
               {label}
-              <span className="absolute bottom-0 left-0 w-0 h-px bg-teal group-hover:w-full transition-[width] duration-300" />
+              <span className="absolute bottom-0 left-0 w-0 h-px bg-teal group-hover:w-full transition-[width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
             </Link>
           ))}
           <Link
             href="/cart"
-            className={`px-5 py-2 rounded-lg border text-[11px] font-medium tracking-wide uppercase transition-all duration-200 ${bagCls}`}
+            className={`px-5 py-2 rounded-lg border text-[11px] font-medium tracking-wide uppercase transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${bagCls}`}
           >
             Bag ({mounted ? totalItems : 0})
           </Link>
           <button
             aria-label="My account"
             onClick={() => setProfileOpen(prev => !prev)}
-            className={`flex items-center justify-center w-8 h-8 transition-colors duration-200 ${scrolled ? 'text-navy/70 hover:text-navy' : 'text-cream/70 hover:text-cream'}`}
+            className={`flex items-center justify-center w-8 h-8 transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${scrolled ? 'text-navy/70 hover:text-navy' : 'text-cream/70 hover:text-cream'}`}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
               <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
@@ -164,7 +164,7 @@ export function Navbar() {
         <div className="flex md:hidden items-center gap-3.5 ml-auto">
           <Link
             href="/cart"
-            className={`text-[11px] font-medium tracking-wide uppercase transition-colors duration-200 ${mobileBagCls}`}
+            className={`text-[11px] font-medium tracking-wide uppercase transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${mobileBagCls}`}
           >
             Bag ({mounted ? totalItems : 0})
           </Link>
@@ -173,7 +173,7 @@ export function Navbar() {
           <button
             aria-label="My account"
             onClick={() => { setProfileOpen(true); setMenuOpen(false); }}
-            className={`flex items-center justify-center w-8 h-8 transition-colors duration-200 ${scrolled ? 'text-navy/70 hover:text-navy' : 'text-cream/70 hover:text-cream'}`}
+            className={`flex items-center justify-center w-8 h-8 transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${scrolled ? 'text-navy/70 hover:text-navy' : 'text-cream/70 hover:text-cream'}`}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
               <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
@@ -201,10 +201,10 @@ export function Navbar() {
 
       {/* Mobile menu drawer */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-transform duration-300 flex flex-col ${
+        className={`fixed inset-0 z-40 md:hidden transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
-        style={{ background: '#0E1930', backdropFilter: 'blur(20px)' }}
+        style={{ background: 'var(--navy-deep)', backdropFilter: 'blur(20px)' }}
         aria-hidden={!menuOpen}
         role="dialog"
         aria-label="Navigation menu"
@@ -311,10 +311,10 @@ export function Navbar() {
           <Link
             href="/cart"
             onClick={closeMenu}
-            className="flex items-center justify-between w-full px-6 py-4 rounded-2xl bg-teal text-white text-[12px] font-semibold tracking-[2px] uppercase"
+            className="flex items-center justify-between w-full px-6 py-4 rounded-2xl bg-teal text-cream text-[12px] font-semibold tracking-[2px] uppercase"
           >
             <span>My Bag</span>
-            <span className="bg-white/20 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full min-w-[24px] text-center">
+            <span className="bg-cream/20 text-cream text-[11px] font-bold px-2.5 py-0.5 rounded-full min-w-[24px] text-center">
               {mounted ? totalItems : 0}
             </span>
           </Link>

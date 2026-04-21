@@ -54,11 +54,33 @@ export function Footer() {
             >
               IG
             </a>
-            {['FB', 'YT', 'X'].map((icon) => (
-              <div key={icon} className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/50 cursor-not-allowed" aria-hidden="true">
-                {icon}
-              </div>
-            ))}
+            <a
+              href="https://www.facebook.com/thavare"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/50 hover:border-white/30 hover:text-cream/80 transition-all duration-200 cursor-none"
+              aria-label="Thavare on Facebook"
+            >
+              FB
+            </a>
+            <a
+              href="https://www.youtube.com/@thavare"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/50 hover:border-white/30 hover:text-cream/80 transition-all duration-200 cursor-none"
+              aria-label="Thavare on YouTube"
+            >
+              YT
+            </a>
+            <a
+              href="https://x.com/thavare"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/50 hover:border-white/30 hover:text-cream/80 transition-all duration-200 cursor-none"
+              aria-label="Thavare on X"
+            >
+              X
+            </a>
           </div>
         </div>
         {/* Shop column */}

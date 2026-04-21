@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Suspense } from 'react';
 import { OrderSuccessClearer } from './OrderSuccessClearer';
 import { Button } from '@/components/ui/Button';
 
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export default function OrderSuccessPage() {
   return (
     <div className="bg-cream min-h-[70vh] flex items-center justify-center px-4">
-      <OrderSuccessClearer />
+      <Suspense><OrderSuccessClearer /></Suspense>
       <div className="text-center max-w-[480px]">
         <div className="w-16 h-16 rounded-full bg-teal/10 border border-teal/20 flex items-center justify-center mx-auto mb-8">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-teal">

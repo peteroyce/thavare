@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 
@@ -8,6 +10,9 @@ const CHANNELS = [
   { name: 'Our Store',    url: '/shop',                          desc: 'Direct & Exclusive', external: false },
 ];
 
+const ringRest = '0px 0px 0px 1px #E5DDD0';
+const ringHover = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px';
+
 export function DistributionStrip() {
   return (
     <section className="bg-ivory py-10 px-4 md:px-10 lg:px-20 border-t border-[#E5DDD0]">
@@ -15,40 +20,52 @@ export function DistributionStrip() {
         <p className="text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-text-3 mb-6">
           Also Available At
         </p>
-        <div className="flex flex-wrap justify-center gap-3">
-          {CHANNELS.map(({ name, url, desc, external }) => {
-            const sharedClass =
-              'cursor-none inline-flex flex-col items-center px-6 py-3 rounded-xl border border-[#E5DDD0] bg-white hover:-translate-y-0.5 transition-all duration-200';
+      </AnimatedSection>
+      <div className="flex flex-wrap justify-center gap-3">
+        {CHANNELS.map(({ name, url, desc, external }, i) => {
+          const sharedClass =
+            'cursor-none inline-flex flex-col items-center px-6 py-3 rounded-xl bg-[#FDFBF7] hover:-translate-y-0.5 transition-all duration-200';
 
-            const inner = (
-              <>
-                <span className="text-navy text-[14px] font-semibold leading-snug">{name}</span>
-                <span className="text-text-3 text-[11px] mt-0.5 tracking-wide">{desc}</span>
-              </>
-            );
+          const sharedStyle = { boxShadow: ringRest };
+          const onEnter = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.boxShadow = ringHover; };
+          const onLeave = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.boxShadow = ringRest; };
 
-            if (external) {
-              return (
+          const inner = (
+            <>
+              <span className="text-navy text-[14px] font-semibold leading-snug">{name}</span>
+              <span className="text-text-3 text-[11px] mt-0.5 tracking-wide">{desc}</span>
+            </>
+          );
+
+          return (
+            <AnimatedSection key={name} delay={((i % 4) + 1) as 1|2|3|4}>
+              {external ? (
                 <a
-                  key={name}
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={sharedClass}
+                  style={sharedStyle}
+                  onMouseEnter={onEnter}
+                  onMouseLeave={onLeave}
                 >
                   {inner}
                 </a>
-              );
-            }
-
-            return (
-              <Link key={name} href={url} className={sharedClass}>
-                {inner}
-              </Link>
-            );
-          })}
-        </div>
-      </AnimatedSection>
+              ) : (
+                <Link
+                  href={url}
+                  className={sharedClass}
+                  style={sharedStyle}
+                  onMouseEnter={onEnter}
+                  onMouseLeave={onLeave}
+                >
+                  {inner}
+                </Link>
+              )}
+            </AnimatedSection>
+          );
+        })}
+      </div>
     </section>
   );
 }

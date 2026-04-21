@@ -27,7 +27,7 @@ export function NewArrivals({ products }: { products: Product[] }) {
             <AnimatedSection key={p.id} delay={((i % 3) + 1) as 1|2|3}>
               <Link
                 href={`/products/${p.slug}`}
-                className="block bg-white rounded-xl overflow-hidden md:md:hover:-translate-y-1.5 transition-all duration-300 group"
+                className="block bg-[#FDFBF7] rounded-xl overflow-hidden md:hover:-translate-y-1.5 transition-all duration-300 group"
                 style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}
