@@ -192,7 +192,7 @@ export function HeroCarousel() {
 
       {/* Content */}
       <div
-        className="relative z-10 h-full flex items-center px-6 md:px-16 lg:px-24 max-w-[1400px] mx-auto"
+        className="relative z-10 h-full flex items-center pb-20 md:pb-0 px-6 md:px-16 lg:px-24 max-w-[1400px] mx-auto"
         style={{ opacity: fading ? 0 : 1, transition: 'opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
       >
         <div className="flex-1 max-w-[560px]">

@@ -22,7 +22,7 @@ export function NewArrivals({ products }: { products: Product[] }) {
             New <em className="italic text-terracotta">Arrivals</em>
           </h2>
         </AnimatedSection>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
           {products.slice(0, 6).map((p, i) => (
             <AnimatedSection key={p.id} delay={((i % 3) + 1) as 1|2|3}>
               <Link

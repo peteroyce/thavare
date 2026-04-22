@@ -32,7 +32,7 @@ export function CookieConsent() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[9999] bg-navy-deep/97 backdrop-blur-md border-t border-white/10 px-4 md:px-10 py-4">
+    <div className="fixed bottom-0 left-0 right-0 z-[9999] bg-navy-deep/97 backdrop-blur-md border-t border-white/10 px-4 md:px-10 py-4 pb-8 sm:pb-4">
       <div className="max-w-[1200px] mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6">
         <p className="text-[13px] text-cream/70 leading-relaxed flex-1">
           We use cookies to improve your experience and analyse site traffic.{' '}

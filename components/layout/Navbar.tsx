@@ -203,7 +203,7 @@ export function Navbar() {
 
       {/* Mobile menu drawer */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col ${
+        className={`fixed inset-0 z-[60] md:hidden transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{ background: 'var(--navy-deep)', backdropFilter: 'blur(20px)' }}

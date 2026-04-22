@@ -23,7 +23,7 @@ export function PressStrip() {
         </AnimatedSection>
         <div className="divider-ornament mx-auto max-w-[200px] my-8"><span>&#9670;</span></div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
           {PRESS.map((item, i) => (
             <AnimatedSection key={item.name} delay={(i + 1) as 1 | 2 | 3 | 4}>
               <div

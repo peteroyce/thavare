@@ -68,7 +68,10 @@ export function ProductInfo({ product: p }: { product: Product }) {
           {has(p.id) ? 'Saved' : 'Save'}
         </button>
       </div>
-      <p className="text-[15px] leading-[1.75] text-text-2 mb-8">{p.longDescription}</p>
+      <div
+        className="text-[15px] leading-[1.75] text-text-2 mb-8 [&_p]:mb-3 [&_p:last-child]:mb-0 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5"
+        dangerouslySetInnerHTML={{ __html: p.longDescription ?? p.description }}
+      />
       {/* Ingredients */}
       <div className="mb-8">
         <div className="text-[10px] font-semibold tracking-[3px] uppercase text-text-3 mb-3">Key Ingredients</div>
