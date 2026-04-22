@@ -33,7 +33,7 @@ export function AnimatedSection({ children, direction = 'up', delay = 0, classNa
           obs.unobserve(el);
         }
       },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
     );
     obs.observe(el);
     return () => obs.disconnect();

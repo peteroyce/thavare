@@ -148,11 +148,11 @@ export default function FAQsPage() {
           </p>
         </AnimatedSection>
 
-        {FAQ_CATEGORIES.map((section, si) => (
+        {FAQ_CATEGORIES.map((section) => (
           <div key={section.category}>
             <div className="border-t border-[#E5DDD0] my-8" />
 
-            <AnimatedSection delay={(si % 3 + 1) as 1 | 2 | 3}>
+            <AnimatedSection>
               <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-5">
                 {section.category}
               </div>

@@ -115,12 +115,12 @@ export default function JournalPage() {
 
       {/* ─── FILTER PILLS ─── */}
       <section className="bg-ivory border-b border-[#E5DDD0] sticky top-[72px] z-30">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-10 lg:px-20 py-4 flex items-center gap-2 overflow-x-auto no-scrollbar">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-10 lg:px-20 py-4 flex flex-nowrap items-center gap-2 overflow-x-auto pb-2" style={{ WebkitOverflowScrolling: 'touch' }}>
           {(Object.keys(CATEGORY_LABELS) as Array<JournalArticle['category'] | 'all'>).map(cat => (
             <button
               key={cat}
               onClick={() => setActive(cat)}
-              className={`cursor-none whitespace-nowrap px-5 py-2 rounded-full text-[10px] font-semibold tracking-[1.5px] uppercase transition-all duration-200 border ${
+              className={`cursor-none whitespace-nowrap flex-shrink-0 px-5 py-2 rounded-full text-[10px] font-semibold tracking-[1.5px] uppercase transition-all duration-200 border ${
                 active === cat
                   ? 'bg-navy text-cream border-navy'
                   : 'bg-white text-navy/50 border-[#E5DDD0] hover:border-navy/30 hover:text-navy/80'
@@ -129,6 +129,8 @@ export default function JournalPage() {
               {CATEGORY_LABELS[cat]}
             </button>
           ))}
+          {/* Spacer to prevent last pill from being clipped at the edge */}
+          <div className="flex-shrink-0 w-1" aria-hidden="true" />
         </div>
       </section>
 

@@ -90,7 +90,7 @@ export default function CartPage() {
 
   if (count === 0) {
     return (
-      <div className="min-h-screen bg-cream flex flex-col items-center justify-center gap-6">
+      <div className="min-h-[60vh] bg-cream flex flex-col items-center justify-center gap-6">
         <h1 className="font-serif text-[32px] text-navy">Your bag is empty</h1>
         <p className="text-text-2">Discover our clinically crafted Ayurvedic range.</p>
         <Link href="/shop"><Button>Shop Now</Button></Link>
