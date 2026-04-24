@@ -34,7 +34,7 @@ export function NewArrivals({ products }: { products: Product[] }) {
               >
                 <div className={`h-[240px] flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-[#F2EBE0] to-[#EDE7DC]`}>
                   <span className="absolute top-2.5 left-2.5 bg-navy text-cream text-[8px] font-semibold tracking-[1.5px] uppercase px-2.5 py-1 rounded-full">
-                    {p.badge ?? 'New'}
+                    {p.badge || 'New'}
                   </span>
                   <Image
                     src={p.images.card}
