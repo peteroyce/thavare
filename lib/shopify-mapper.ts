@@ -44,6 +44,20 @@ function sanitizeBadge(raw?: string | null): string | undefined {
 const CATEGORY_LABEL_FIXES: Record<string, string> = {
   'Teal Ayurveda': 'Pure Ayurveda',
 };
+
+/**
+ * Correct MRP overrides — Shopify prices are wrong (placeholder amounts).
+ * TODO: Remove once Shopify Admin API prices are updated to match.
+ * Source: "Thavare Products_MRP and Brief Write-up.pdf" (April 2026)
+ */
+const PRICE_OVERRIDES: Record<string, number> = {
+  'thavare-body-wash': 1199,
+  'thavare-body-lotion': 1399,
+  'thavare-sun-screen': 899,            // 50ml variant; 100ml = 1499
+  'thavare-adolescent-sun-block': 999,   // 50ml variant; 100ml = 1799
+  'thavare-anti-perspirant-lotion': 558, // MRP 557.50 rounded
+  'thavare-kumkumadi-taila': 1999,
+};
 function isValidCategory(val: string | undefined): val is ProductCategory {
   return VALID_CATEGORIES.includes(val as ProductCategory);
 }
@@ -67,7 +81,7 @@ export function mapShopifyProduct(node: ShopifyProductNode): Product {
     longDescription: node.descriptionHtml,
     category: isValidCategory(node.category?.value) ? node.category!.value : 'daily-essentials',
     categoryLabel: CATEGORY_LABEL_FIXES[node.category_label?.value ?? ''] ?? node.category_label?.value ?? '',
-    price: Math.round(parseFloat(variant.price.amount)),
+    price: PRICE_OVERRIDES[node.handle] ?? Math.round(parseFloat(variant.price.amount)),
     variantId: variant.id,
     inStock: variant.availableForSale,
     ingredients: node.ingredients?.value ?? '',
