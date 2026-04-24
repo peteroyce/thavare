@@ -37,7 +37,7 @@ const CATEGORY_LABELS: Record<Ingredient['category'], string> = {
 };
 
 const CATEGORY_BADGE_COLORS: Record<Ingredient['category'], string> = {
-  herb:      'bg-[rgba(0,132,147,0.08)] text-teal border border-[rgba(0,132,147,0.2)]',
+  herb:      'bg-[rgba(166,69,44,0.08)] text-terracotta border border-[rgba(166,69,44,0.2)]',
   oil:       'bg-[rgba(168,122,83,0.1)] text-camel border border-[rgba(168,122,83,0.2)]',
   mineral:   'bg-[rgba(26,39,68,0.07)] text-navy border border-[rgba(26,39,68,0.12)]',
   botanical: 'bg-[rgba(179,95,66,0.08)] text-terracotta border border-[rgba(179,95,66,0.18)]',
@@ -69,7 +69,7 @@ export default async function IngredientPage(
         className="min-h-[62vh] bg-navy-deep flex flex-col justify-center px-4 md:px-10 lg:px-20 py-14 md:py-24 relative overflow-hidden"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(0,132,147,0.04) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(166,69,44,0.04) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       >
@@ -99,12 +99,12 @@ export default async function IngredientPage(
           >
             <Link
               href="/ingredients"
-              className="text-[10px] font-medium tracking-[3px] uppercase text-teal/70 hover:text-teal transition-colors cursor-none"
+              className="text-[10px] font-medium tracking-[3px] uppercase text-terracotta/70 hover:text-terracotta transition-colors cursor-none"
             >
               Ingredients
             </Link>
-            <span className="text-teal/30 text-[10px]">/</span>
-            <span className="text-[10px] font-medium tracking-[3px] uppercase text-teal">
+            <span className="text-terracotta/30 text-[10px]">/</span>
+            <span className="text-[10px] font-medium tracking-[3px] uppercase text-terracotta">
               {ingredient.name}
             </span>
           </div>
@@ -153,7 +153,7 @@ export default async function IngredientPage(
         </div>
 
         <div
-          className="absolute left-1/2 bottom-0 w-px h-0 bg-gradient-to-t from-teal to-transparent"
+          className="absolute left-1/2 bottom-0 w-px h-0 bg-gradient-to-t from-terracotta to-transparent"
           style={{ animation: 'line-grow 1.2s 0.8s var(--ease-out) forwards' }}
         />
       </section>
@@ -164,7 +164,7 @@ export default async function IngredientPage(
           {/* Left — description */}
           <div>
             <AnimatedSection direction="left">
-              <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+              <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
                 About this Ingredient
               </div>
               <h2 className="font-serif text-[clamp(26px,3vw,40px)] font-medium leading-[1.15] text-navy mb-6">
@@ -224,7 +224,7 @@ export default async function IngredientPage(
       <section className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-ivory">
         <div className="max-w-[1200px] mx-auto">
           <AnimatedSection className="mb-12">
-            <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+            <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
               Why It Works
             </div>
             <h2 className="font-serif text-[clamp(26px,3vw,40px)] font-medium leading-[1.15] text-navy">
@@ -251,9 +251,9 @@ export default async function IngredientPage(
                   <div
                     className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-serif text-[13px] font-medium"
                     style={{
-                      background: 'rgba(0,132,147,0.07)',
-                      border: '1px solid rgba(0,132,147,0.18)',
-                      color: 'var(--teal)',
+                      background: 'rgba(166,69,44,0.07)',
+                      border: '1px solid rgba(166,69,44,0.18)',
+                      color: 'var(--terracotta)',
                     }}
                   >
                     {String(i + 1).padStart(2, '0')}
@@ -273,7 +273,7 @@ export default async function IngredientPage(
         className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-navy relative overflow-hidden"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(0,132,147,0.04) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(166,69,44,0.04) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       >
@@ -281,13 +281,13 @@ export default async function IngredientPage(
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,132,147,0.05), transparent)',
+              'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(166,69,44,0.05), transparent)',
           }}
         />
 
         <div className="max-w-[1200px] mx-auto relative z-10">
           <AnimatedSection className="mb-10">
-            <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+            <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
               Find It In
             </div>
             <h2 className="font-serif text-[clamp(24px,2.5vw,36px)] font-medium leading-[1.2] text-cream">
@@ -311,7 +311,7 @@ export default async function IngredientPage(
                   {/* Teal dot */}
                   <div
                     className="w-1.5 h-1.5 rounded-full flex-shrink-0 group-hover:scale-125 transition-transform duration-200"
-                    style={{ background: 'var(--teal)' }}
+                    style={{ background: 'var(--terracotta)' }}
                   />
                   <span className="text-[12px] font-medium text-cream/75 group-hover:text-cream transition-colors duration-200 tracking-[0.5px]">
                     {PRODUCT_NAMES[handle] ?? handle}
@@ -319,7 +319,7 @@ export default async function IngredientPage(
                   {/* Arrow */}
                   <span
                     className="text-[10px] opacity-0 group-hover:opacity-60 group-hover:translate-x-0.5 transition-all duration-200"
-                    style={{ color: 'var(--teal)' }}
+                    style={{ color: 'var(--terracotta)' }}
                   >
                     →
                   </span>
@@ -334,7 +334,7 @@ export default async function IngredientPage(
       <section className="py-14 md:py-20 px-4 md:px-10 lg:px-20 bg-ivory">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
           <AnimatedSection direction="left">
-            <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+            <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
               The Full Picture
             </div>
             <h2 className="font-serif text-[clamp(26px,3vw,40px)] font-medium leading-[1.15] text-navy mb-5">

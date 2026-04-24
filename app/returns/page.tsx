@@ -41,7 +41,7 @@ export default function ReturnsPage() {
       <div className="max-w-[800px] mx-auto">
 
         <AnimatedSection>
-          <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+          <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
             Help
           </div>
           <h1 className="font-serif text-[clamp(32px,4vw,52px)] font-medium text-navy leading-[1.1] mb-3">
@@ -67,7 +67,7 @@ export default function ReturnsPage() {
           </p>
           <p className="text-[14px] leading-[1.75] text-text-2">
             Returns must be initiated by emailing us at{' '}
-            <a href="mailto:support@thavare.com" className="text-teal underline underline-offset-2">
+            <a href="mailto:support@thavare.com" className="text-terracotta underline underline-offset-2">
               support@thavare.com
             </a>{' '}
             within 7 days of the delivery date noted in your shipping confirmation. Requests received
@@ -93,7 +93,7 @@ export default function ReturnsPage() {
               'The product was received damaged, defective, or incorrect (wrong item sent).',
             ].map((point) => (
               <li key={point} className="flex items-start gap-3 text-[14px] leading-[1.75] text-text-2">
-                <span className="mt-[5px] w-1.5 h-1.5 rounded-full bg-teal flex-shrink-0" />
+                <span className="mt-[5px] w-1.5 h-1.5 rounded-full bg-terracotta flex-shrink-0" />
                 {point}
               </li>
             ))}
@@ -142,8 +142,8 @@ export default function ReturnsPage() {
           <div className="flex flex-col gap-5">
             {RETURN_STEPS.map((step) => (
               <div key={step.step} className="flex items-start gap-5">
-                <div className="flex-shrink-0 w-9 h-9 rounded-full border border-teal/30 flex items-center justify-center">
-                  <span className="text-[11px] font-semibold text-teal tracking-wider">
+                <div className="flex-shrink-0 w-9 h-9 rounded-full border border-terracotta/30 flex items-center justify-center">
+                  <span className="text-[11px] font-semibold text-terracotta tracking-wider">
                     {step.step}
                   </span>
                 </div>
@@ -176,7 +176,7 @@ export default function ReturnsPage() {
               'Wallets: 1\u20133 business days',
             ].map((point) => (
               <li key={point} className="flex items-start gap-3 text-[14px] leading-[1.75] text-text-2">
-                <span className="mt-[5px] w-1.5 h-1.5 rounded-full bg-teal flex-shrink-0" />
+                <span className="mt-[5px] w-1.5 h-1.5 rounded-full bg-terracotta flex-shrink-0" />
                 {point}
               </li>
             ))}
@@ -203,7 +203,7 @@ export default function ReturnsPage() {
           <p className="text-[14px] leading-[1.75] text-text-2">
             For damaged or incorrect items, we will arrange a priority replacement dispatch at no
             additional cost once the return is approved. Contact us at{' '}
-            <a href="mailto:support@thavare.com" className="text-teal underline underline-offset-2">
+            <a href="mailto:support@thavare.com" className="text-terracotta underline underline-offset-2">
               support@thavare.com
             </a>{' '}
             and include a photo of the damaged or incorrect item for fastest resolution.

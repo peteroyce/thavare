@@ -61,7 +61,7 @@ export default function CirclePage() {
         className="min-h-[65vh] bg-navy-deep flex flex-col justify-center px-4 md:px-10 lg:px-20 py-14 md:py-24 relative overflow-hidden"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(0,132,147,0.04) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(166,69,44,0.04) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       >
@@ -89,8 +89,8 @@ export default function CirclePage() {
             className="hero-entry inline-flex items-center gap-2.5 mb-5"
             style={{ animationDelay: '0.3s' }}
           >
-            <div className="w-7 h-px bg-teal" />
-            <span className="text-[10px] font-medium tracking-[4px] uppercase text-teal">
+            <div className="w-7 h-px bg-terracotta" />
+            <span className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta">
               The Thavare Circle
             </span>
           </div>
@@ -131,7 +131,7 @@ export default function CirclePage() {
               href="#join"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg
                          text-xs font-semibold tracking-widest uppercase transition-all duration-200
-                         cursor-none bg-teal text-cream hover:opacity-90"
+                         cursor-none bg-terracotta text-cream hover:opacity-90"
             >
               Join the Waitlist
             </a>
@@ -140,7 +140,7 @@ export default function CirclePage() {
 
         {/* Bottom line accent */}
         <div
-          className="absolute left-1/2 bottom-0 w-px h-0 bg-gradient-to-t from-teal to-transparent"
+          className="absolute left-1/2 bottom-0 w-px h-0 bg-gradient-to-t from-terracotta to-transparent"
           style={{ animation: 'line-grow 1.2s 0.9s var(--ease-out) forwards' }}
         />
       </section>
@@ -150,7 +150,7 @@ export default function CirclePage() {
         className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-navy relative overflow-hidden"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(0,132,147,0.035) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(166,69,44,0.035) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       >
@@ -159,14 +159,14 @@ export default function CirclePage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              'radial-gradient(ellipse 55% 45% at 50% 50%, rgba(0,132,147,0.05), transparent)',
+              'radial-gradient(ellipse 55% 45% at 50% 50%, rgba(166,69,44,0.05), transparent)',
           }}
         />
 
         <div className="max-w-[1200px] mx-auto relative z-10">
           {/* Section header */}
           <AnimatedSection className="text-center mb-14">
-            <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+            <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
               What&apos;s Inside
             </div>
             <h2 className="font-serif text-[clamp(28px,3vw,42px)] font-medium leading-[1.15] text-cream mb-5">
@@ -196,8 +196,8 @@ export default function CirclePage() {
                   <div
                     className="w-12 h-12 rounded-full flex items-center justify-center text-[22px] mb-5 group-hover:scale-110 transition-transform duration-300 flex-shrink-0"
                     style={{
-                      background: 'rgba(0,132,147,0.1)',
-                      border: '1px solid rgba(0,132,147,0.2)',
+                      background: 'rgba(166,69,44,0.1)',
+                      border: '1px solid rgba(166,69,44,0.2)',
                     }}
                   >
                     {b.icon}
@@ -220,7 +220,7 @@ export default function CirclePage() {
         <div className="max-w-[1200px] mx-auto">
           {/* Section header */}
           <AnimatedSection className="text-center mb-14">
-            <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+            <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
               Who It Is For
             </div>
             <h2 className="font-serif text-[clamp(28px,3vw,42px)] font-medium leading-[1.15] text-navy mb-5">
@@ -249,8 +249,8 @@ export default function CirclePage() {
                   <div
                     className="w-12 h-12 rounded-full flex items-center justify-center text-[22px] mb-5 group-hover:scale-110 transition-transform duration-300"
                     style={{
-                      background: 'rgba(0,132,147,0.07)',
-                      border: '1px solid rgba(0,132,147,0.15)',
+                      background: 'rgba(166,69,44,0.07)',
+                      border: '1px solid rgba(166,69,44,0.15)',
                     }}
                   >
                     {a.icon}
@@ -279,7 +279,7 @@ export default function CirclePage() {
       <section
         id="join"
         className="py-16 md:py-28 px-4 md:px-10 lg:px-20 relative overflow-hidden"
-        style={{ background: 'var(--teal-dark)' }}
+        style={{ background: 'var(--terracotta)' }}
       >
         {/* Subtle dot texture */}
         <div
@@ -294,7 +294,7 @@ export default function CirclePage() {
         <div
           className="absolute w-[700px] h-[700px] rounded-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, rgba(0,132,147,0.25), transparent 70%)',
+            background: 'radial-gradient(circle, rgba(166,69,44,0.25), transparent 70%)',
             filter: 'blur(60px)',
           }}
         />
@@ -348,9 +348,7 @@ export default function CirclePage() {
               className="text-[15px] leading-[1.8] max-w-[520px] mx-auto mb-12"
               style={{ color: 'rgba(234,228,211,0.6)' }}
             >
-              This is not a loyalty programme. It is not a discount club. It is a space where
-              what you carry alone — the confusion, the frustration, the quiet suffering of not
-              knowing — finally has somewhere to go.
+              A space that asks nothing of you except that you show up.
             </p>
 
             {/* Email waitlist form */}
@@ -362,8 +360,8 @@ export default function CirclePage() {
               />
               <button
                 type="submit"
-                className="px-6 py-3 rounded-r-lg text-xs font-semibold tracking-widest uppercase bg-white text-teal-dark hover:bg-cream transition-colors cursor-none whitespace-nowrap"
-                style={{ color: 'var(--teal-dark)' }}
+                className="px-6 py-3 rounded-r-lg text-xs font-semibold tracking-widest uppercase bg-white text-terracotta-dark hover:bg-cream transition-colors cursor-none whitespace-nowrap"
+                style={{ color: 'var(--terracotta)' }}
               >
                 Join Waitlist
               </button>

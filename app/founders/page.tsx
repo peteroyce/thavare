@@ -43,10 +43,9 @@ const CHAPTERS = [
 ] as const;
 
 const CREDENTIALS = [
-  { title: 'MD / MBBS', sub: 'Medical Practitioner' },
-  { title: 'Ayurvedic Practitioner', sub: 'Traditional Wellness' },
-  { title: 'Athlete', sub: 'Understanding the Body in Motion' },
-  { title: 'Formulator', sub: 'Clinically Crafted Actives' },
+  { title: 'Dr. Meena Ramaiah', sub: 'Founder & Formulator' },
+  { title: 'Medical Doctor', sub: 'Clinical Expertise' },
+  { title: 'In collaboration with a traditional Ayurvedic physician', sub: 'Ancient Wisdom Meets Modern Science' },
 ] as const;
 
 export default function FoundersPage() {
@@ -57,7 +56,7 @@ export default function FoundersPage() {
         className="min-h-[65vh] bg-navy-deep flex flex-col justify-center px-4 md:px-10 lg:px-20 py-14 md:py-24 relative overflow-hidden"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(0,132,147,0.04) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(166,69,44,0.04) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       >
@@ -85,8 +84,8 @@ export default function FoundersPage() {
             className="hero-entry inline-flex items-center gap-2.5 mb-5"
             style={{ animationDelay: '0.3s' }}
           >
-            <div className="w-7 h-px bg-teal" />
-            <span className="text-[10px] font-medium tracking-[4px] uppercase text-teal">
+            <div className="w-7 h-px bg-terracotta" />
+            <span className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta">
               The Founder&apos;s Story
             </span>
           </div>
@@ -120,7 +119,7 @@ export default function FoundersPage() {
 
         {/* Vertical teal line accent at bottom */}
         <div
-          className="absolute left-1/2 bottom-0 w-px h-0 bg-gradient-to-t from-teal to-transparent"
+          className="absolute left-1/2 bottom-0 w-px h-0 bg-gradient-to-t from-terracotta to-transparent"
           style={{ animation: 'line-grow 1.2s 0.9s var(--ease-out) forwards' }}
         />
       </section>
@@ -130,7 +129,7 @@ export default function FoundersPage() {
         className="py-16 md:py-28 px-4 md:px-10 lg:px-20 bg-navy relative overflow-hidden"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(0,132,147,0.035) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(166,69,44,0.035) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       >
@@ -139,14 +138,14 @@ export default function FoundersPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              'radial-gradient(ellipse 55% 45% at 50% 50%, rgba(0,132,147,0.05), transparent)',
+              'radial-gradient(ellipse 55% 45% at 50% 50%, rgba(166,69,44,0.05), transparent)',
           }}
         />
 
         <div className="max-w-[1100px] mx-auto relative z-10">
           {/* Section header */}
           <AnimatedSection className="text-center mb-20">
-            <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+            <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
               The Journey
             </div>
             <h2 className="font-serif text-[clamp(28px,3vw,42px)] font-medium leading-[1.15] text-cream">
@@ -162,7 +161,7 @@ export default function FoundersPage() {
               className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2"
               style={{
                 background:
-                  'linear-gradient(to bottom, rgba(0,132,147,0.15), rgba(0,132,147,0.7) 30%, rgba(0,132,147,0.7) 70%, rgba(0,132,147,0.15))',
+                  'linear-gradient(to bottom, rgba(166,69,44,0.15), rgba(166,69,44,0.7) 30%, rgba(166,69,44,0.7) 70%, rgba(166,69,44,0.15))',
               }}
             />
 
@@ -175,11 +174,11 @@ export default function FoundersPage() {
                     <div
                       className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10
                                  w-10 h-10 rounded-full flex items-center justify-center
-                                 font-sans text-[10px] font-bold tracking-[1px] text-teal"
+                                 font-sans text-[10px] font-bold tracking-[1px] text-terracotta"
                       style={{
                         background: 'var(--navy)',
-                        border: '1px solid rgba(0,132,147,0.55)',
-                        boxShadow: '0 0 0 4px rgba(0,132,147,0.07)',
+                        border: '1px solid rgba(166,69,44,0.55)',
+                        boxShadow: '0 0 0 4px rgba(166,69,44,0.07)',
                       }}
                     >
                       {chapter.number}
@@ -190,7 +189,7 @@ export default function FoundersPage() {
                       {isLeft && (
                         <AnimatedSection direction="left" delay={(i % 4) as 0 | 1 | 2 | 3}>
                           <div className="text-right">
-                            <div className="text-[10px] font-medium tracking-[3px] uppercase text-teal mb-2">
+                            <div className="text-[10px] font-medium tracking-[3px] uppercase text-terracotta mb-2">
                               {chapter.label}
                             </div>
                             <p className="text-[14px] leading-[1.8] text-cream/65">
@@ -206,7 +205,7 @@ export default function FoundersPage() {
                       {!isLeft && (
                         <AnimatedSection direction="right" delay={(i % 4) as 0 | 1 | 2 | 3}>
                           <div>
-                            <div className="text-[10px] font-medium tracking-[3px] uppercase text-teal mb-2">
+                            <div className="text-[10px] font-medium tracking-[3px] uppercase text-terracotta mb-2">
                               {chapter.label}
                             </div>
                             <p className="text-[14px] leading-[1.8] text-cream/65">
@@ -227,7 +226,7 @@ export default function FoundersPage() {
       {/* ─── 3. THE LESSON — breakout impact quote ─── */}
       <section
         className="py-16 md:py-28 px-4 md:px-10 lg:px-20 relative overflow-hidden"
-        style={{ background: 'var(--teal-dark)' }}
+        style={{ background: 'var(--terracotta)' }}
       >
         {/* Subtle texture */}
         <div
@@ -243,7 +242,7 @@ export default function FoundersPage() {
           className="absolute w-[700px] h-[700px] rounded-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
           style={{
             background:
-              'radial-gradient(circle, rgba(0,132,147,0.25), transparent 70%)',
+              'radial-gradient(circle, rgba(166,69,44,0.25), transparent 70%)',
             filter: 'blur(60px)',
           }}
         />
@@ -293,12 +292,12 @@ export default function FoundersPage() {
           {/* Right — story copy */}
           <div>
             <AnimatedSection direction="right">
-              <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+              <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
                 The Birth of Thavare
               </div>
               <h2 className="font-serif text-[clamp(28px,3vw,42px)] font-medium leading-[1.15] text-navy mb-6">
-                Born Not in Spite<br />
-                <em className="italic text-terracotta">of the Mud.</em>
+                The Lotus Blooms<br />
+                <em className="italic text-terracotta">Because of the Mud.</em>
               </h2>
             </AnimatedSection>
 
@@ -359,7 +358,7 @@ export default function FoundersPage() {
         className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-navy-deep relative overflow-hidden"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(0,132,147,0.04) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(166,69,44,0.04) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       >
@@ -368,14 +367,14 @@ export default function FoundersPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,132,147,0.04), transparent)',
+              'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(166,69,44,0.04), transparent)',
           }}
         />
 
         <div className="max-w-[1100px] mx-auto relative z-10 text-center">
           {/* Header */}
           <AnimatedSection className="mb-14">
-            <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+            <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
               Behind Every Formula
             </div>
             <h2 className="font-serif text-[clamp(24px,2.5vw,36px)] font-medium leading-[1.2] text-cream mb-5">
@@ -389,7 +388,7 @@ export default function FoundersPage() {
           </AnimatedSection>
 
           {/* Credential cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
             {CREDENTIALS.map((c, i) => (
               <AnimatedSection
                 key={c.title}
@@ -406,7 +405,7 @@ export default function FoundersPage() {
                   {/* Teal accent dot */}
                   <div
                     className="w-1.5 h-1.5 rounded-full mx-auto mb-4"
-                    style={{ background: 'var(--teal)', opacity: 0.7 }}
+                    style={{ background: 'var(--terracotta)', opacity: 0.7 }}
                   />
                   <div className="font-serif text-[16px] font-medium text-cream mb-1.5 leading-tight">
                     {c.title}

@@ -116,7 +116,7 @@ export function ProfilePanel({ open, onClose }: Props) {
           <Link
             href="/account/login"
             onClick={onClose}
-            className="flex-1 py-3.5 text-center rounded-xl bg-teal text-white text-[11px] font-semibold tracking-[2px] uppercase transition-opacity hover:opacity-85"
+            className="flex-1 py-3.5 text-center rounded-xl bg-terracotta text-white text-[11px] font-semibold tracking-[2px] uppercase transition-opacity hover:opacity-85"
           >
             Sign In
           </Link>

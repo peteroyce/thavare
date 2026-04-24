@@ -42,7 +42,7 @@ const CATEGORY_LABELS: Record<JournalArticle['category'], string> = {
 };
 
 const CATEGORY_COLORS: Record<JournalArticle['category'], string> = {
-  skincare: 'bg-teal/10 text-teal border border-teal/20',
+  skincare: 'bg-terracotta/10 text-terracotta border border-terracotta/20',
   ayurveda: 'bg-terracotta/10 text-terracotta border border-terracotta/20',
   sport:    'bg-navy/10 text-navy border border-navy/20',
   wellness: 'bg-camel/10 text-camel border border-camel/20',
@@ -122,15 +122,15 @@ export default async function ArticlePage({
           >
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center text-[18px] flex-shrink-0"
-              style={{ background: 'rgba(0,132,147,0.07)', border: '1px solid rgba(0,132,147,0.15)' }}
+              style={{ background: 'rgba(166,69,44,0.07)', border: '1px solid rgba(166,69,44,0.15)' }}
             >
               👩‍⚕️
             </div>
             <div>
               <div className="text-[13px] font-semibold text-navy leading-tight">Dr. Meena Ramaiah</div>
               <div className="text-[11px] text-text-3 mt-0.5 leading-relaxed">
-                Ayurvedic physician & formulator. 18 years of clinical practice in Ayurvedic dermatology.
-                Founder formulator at Thavare.
+                Physician & Formulator. 18 years of clinical practice, in collaboration with a traditional Ayurvedic physician.
+                Founder & Formulator at Thavare.
               </div>
             </div>
           </div>
@@ -172,7 +172,7 @@ export default async function ArticlePage({
         {related.length > 0 && (
           <section>
             <AnimatedSection className="mb-7">
-              <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-2">
+              <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-2">
                 Continue Reading
               </div>
               <h2 className="font-serif text-[24px] font-medium text-navy leading-tight">
@@ -206,7 +206,7 @@ export default async function ArticlePage({
                         </h3>
                         <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#E5DDD0]">
                           <span className="text-[10px] text-text-3">{rel.readTime} min read</span>
-                          <span className="text-[10px] font-semibold tracking-[1px] uppercase text-teal inline-flex items-center gap-1">
+                          <span className="text-[10px] font-semibold tracking-[1px] uppercase text-terracotta inline-flex items-center gap-1">
                             Read <span>→</span>
                           </span>
                         </div>
@@ -225,11 +225,11 @@ export default async function ArticlePage({
             className="rounded-2xl p-8 md:p-10 text-center border border-[#E5DDD0] bg-navy"
             style={{
               backgroundImage:
-                'radial-gradient(circle, rgba(0,132,147,0.06) 1px, transparent 1px)',
+                'radial-gradient(circle, rgba(166,69,44,0.06) 1px, transparent 1px)',
               backgroundSize: '28px 28px',
             }}
           >
-            <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+            <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
               Thavare Collection
             </div>
             <h3 className="font-serif text-[clamp(22px,3vw,32px)] font-medium text-cream leading-[1.2] mb-3">

@@ -46,7 +46,7 @@ export default function WhySportActivePage() {
         className="min-h-[70vh] bg-navy-deep flex flex-col justify-center px-4 md:px-10 lg:px-20 py-14 md:py-24 relative overflow-hidden"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(0,132,147,0.04) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(166,69,44,0.04) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       >
@@ -74,8 +74,8 @@ export default function WhySportActivePage() {
             className="hero-entry inline-flex items-center gap-2.5 mb-5"
             style={{ animationDelay: '0.3s' }}
           >
-            <div className="w-7 h-px bg-teal" />
-            <span className="text-[10px] font-medium tracking-[4px] uppercase text-teal">
+            <div className="w-7 h-px bg-terracotta" />
+            <span className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta">
               Why Sport. Why Active.
             </span>
           </div>
@@ -118,7 +118,7 @@ export default function WhySportActivePage() {
 
         {/* Vertical teal line accent at bottom */}
         <div
-          className="absolute left-1/2 bottom-0 w-px h-0 bg-gradient-to-t from-teal to-transparent"
+          className="absolute left-1/2 bottom-0 w-px h-0 bg-gradient-to-t from-terracotta to-transparent"
           style={{ animation: 'line-grow 1.2s 1.3s var(--ease-out) forwards' }}
         />
       </section>
@@ -128,7 +128,7 @@ export default function WhySportActivePage() {
         className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-navy relative overflow-hidden"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(0,132,147,0.035) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(166,69,44,0.035) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       >
@@ -137,14 +137,14 @@ export default function WhySportActivePage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,132,147,0.05), transparent)',
+              'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(166,69,44,0.05), transparent)',
           }}
         />
 
         <div className="max-w-[1200px] mx-auto relative z-10">
           {/* Section header */}
           <AnimatedSection className="text-center mb-14">
-            <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+            <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
               We Use Two Words Deliberately
             </div>
             <h2 className="font-serif text-[clamp(28px,3vw,42px)] font-medium leading-[1.15] text-cream">
@@ -218,8 +218,8 @@ export default function WhySportActivePage() {
               <div
                 className="rounded-xl p-10 border h-full flex flex-col hover:-translate-y-0.5 transition-all duration-300 cursor-none"
                 style={{
-                  background: 'rgba(0,132,147,0.06)',
-                  borderColor: 'rgba(0,132,147,0.3)',
+                  background: 'rgba(166,69,44,0.06)',
+                  borderColor: 'rgba(166,69,44,0.3)',
                 }}
               >
                 {/* Large label */}
@@ -227,7 +227,7 @@ export default function WhySportActivePage() {
                   className="font-serif font-medium leading-none mb-5 select-none"
                   style={{
                     fontSize: 'clamp(60px,6vw,80px)',
-                    color: 'var(--teal)',
+                    color: 'var(--terracotta)',
                   }}
                 >
                   Active
@@ -241,7 +241,7 @@ export default function WhySportActivePage() {
                 {/* Divider */}
                 <div
                   className="w-12 h-px mb-6"
-                  style={{ background: 'rgba(0,132,147,0.4)' }}
+                  style={{ background: 'rgba(166,69,44,0.4)' }}
                 />
 
                 {/* Body */}
@@ -254,7 +254,7 @@ export default function WhySportActivePage() {
                 {/* Who it&apos;s for */}
                 <div className="mt-auto">
                   <div className="text-[9px] font-semibold tracking-[3px] uppercase mb-4"
-                    style={{ color: 'rgba(0,132,147,0.65)' }}>
+                    style={{ color: 'rgba(166,69,44,0.65)' }}>
                     Built For
                   </div>
                   <div className="flex flex-col gap-3">
@@ -293,7 +293,7 @@ export default function WhySportActivePage() {
                 5000
               </div>
               {/* Label below */}
-              <div className="text-[10px] font-semibold tracking-[4px] uppercase text-teal mt-3">
+              <div className="text-[10px] font-semibold tracking-[4px] uppercase text-terracotta mt-3">
                 Years of Answers.
               </div>
             </div>
@@ -302,7 +302,7 @@ export default function WhySportActivePage() {
           {/* Right — copy */}
           <div>
             <AnimatedSection direction="right">
-              <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+              <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
                 Sport Ayurveda
               </div>
               <h2 className="font-serif text-[clamp(28px,3vw,42px)] font-medium leading-[1.15] text-navy mb-6">
@@ -346,7 +346,7 @@ export default function WhySportActivePage() {
         className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-navy-deep relative overflow-hidden"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(0,132,147,0.04) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(166,69,44,0.04) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       >
@@ -355,13 +355,13 @@ export default function WhySportActivePage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              'radial-gradient(ellipse 65% 55% at 50% 50%, rgba(0,132,147,0.06), transparent)',
+              'radial-gradient(ellipse 65% 55% at 50% 50%, rgba(166,69,44,0.06), transparent)',
           }}
         />
 
         <div className="max-w-[1200px] mx-auto relative z-10 text-center">
           <AnimatedSection>
-            <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-4">
+            <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-4">
               Start Here
             </div>
             <h2 className="font-serif text-[clamp(32px,4vw,56px)] font-medium leading-[1.1] text-cream mb-6">

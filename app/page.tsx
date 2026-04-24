@@ -9,7 +9,6 @@ import { FounderSection }  from '@/components/home/FounderSection';
 import { CircleSection }   from '@/components/home/CircleSection';
 import { NewArrivals }     from '@/components/home/NewArrivals';
 import { WhySection }        from '@/components/home/WhySection';
-import { PressStrip }        from '@/components/home/PressStrip';
 import { Newsletter }        from '@/components/home/Newsletter';
 import { DistributionStrip } from '@/components/home/DistributionStrip';
 import { getProducts }     from '@/lib/shopify';
@@ -28,9 +27,10 @@ export const metadata: Metadata = {
 const MARQUEE_ITEMS = [
   { label: 'Free Delivery ₹499+' },
   { label: 'Ayurvedic Actives' },
-  { label: 'Clinically Tested' },
+  { label: 'Clinically Formulated' },
   { label: 'Sustainable Packaging' },
   { label: 'Doctor Formulated' },
+  { label: 'Formulated in collaboration with an Ayurvedic physician' },
 ];
 
 export default async function HomePage() {
@@ -45,7 +45,7 @@ export default async function HomePage() {
   return (
     <>
       <HeroCarousel />
-      <MarqueeStrip items={MARQUEE_ITEMS} className="bg-teal py-3" />
+      <MarqueeStrip items={MARQUEE_ITEMS} className="bg-terracotta py-3" />
       <CategoryGrid />
       <Bestsellers products={featured} />
       <ValuesSection />
@@ -54,7 +54,6 @@ export default async function HomePage() {
       <CircleSection />
       <NewArrivals products={allProducts} />
       <WhySection />
-      <PressStrip />
       <Newsletter />
       <DistributionStrip />
     </>

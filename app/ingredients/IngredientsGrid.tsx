@@ -12,7 +12,7 @@ const CATEGORY_LABELS: Record<Ingredient['category'], string> = {
 };
 
 const CATEGORY_COLORS: Record<Ingredient['category'], string> = {
-  herb:      'bg-[rgba(0,132,147,0.08)] text-teal border border-[rgba(0,132,147,0.2)]',
+  herb:      'bg-[rgba(166,69,44,0.08)] text-terracotta border border-[rgba(166,69,44,0.2)]',
   oil:       'bg-[rgba(168,122,83,0.1)] text-camel border border-[rgba(168,122,83,0.2)]',
   mineral:   'bg-[rgba(26,39,68,0.07)] text-navy border border-[rgba(26,39,68,0.12)]',
   botanical: 'bg-[rgba(179,95,66,0.08)] text-terracotta border border-[rgba(179,95,66,0.18)]',
@@ -81,8 +81,8 @@ export function IngredientsGrid() {
             <div
               className="w-12 h-12 rounded-full flex items-center justify-center text-[22px] flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
               style={{
-                background: 'rgba(0,132,147,0.06)',
-                border: '1px solid rgba(0,132,147,0.13)',
+                background: 'rgba(166,69,44,0.06)',
+                border: '1px solid rgba(166,69,44,0.13)',
               }}
             >
               {CATEGORY_INITIALS[ingredient.category]}

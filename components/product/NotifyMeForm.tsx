@@ -25,7 +25,7 @@ export function NotifyMeForm({ productName }: { productName: string }) {
 
   if (submitted) {
     return (
-      <p className="text-[13px] text-teal font-medium text-center py-3">
+      <p className="text-[13px] text-terracotta font-medium text-center py-3">
         Got it! We&apos;ll email you at {email} when this is back in stock.
       </p>
     );
@@ -43,7 +43,7 @@ export function NotifyMeForm({ productName }: { productName: string }) {
         value={email}
         onChange={e => setEmail(e.target.value)}
         aria-label={`Notify me when ${productName} is back in stock`}
-        className="w-full px-4 py-3 rounded-lg border border-[#D4C8B8] bg-white text-[14px] text-navy focus:outline-none focus:border-teal transition-colors"
+        className="w-full px-4 py-3 rounded-lg border border-[#D4C8B8] bg-white text-[14px] text-navy focus:outline-none focus:border-terracotta transition-colors"
       />
       <button
         type="submit"

@@ -16,7 +16,7 @@ export function CategoryGrid() {
     <section className="grain py-16 md:py-24 px-4 md:px-10 lg:px-20 bg-cream">
       <div className="max-w-[1200px] mx-auto">
         <AnimatedSection className="text-center mb-14">
-          <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-2.5">Find Your Ritual</div>
+          <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-2.5">Find Your Ritual</div>
           <h2 className="font-serif text-[clamp(28px,3vw,42px)] font-medium leading-[1.15] text-navy">
             Shop by <em className="italic text-terracotta">Need</em>
           </h2>
@@ -46,7 +46,7 @@ export function CategoryGrid() {
                 <div className="p-5 pb-6">
                   <div className="font-serif text-[17px] font-medium text-navy mb-1.5">{cat.name}</div>
                   <div className="text-[13px] leading-relaxed text-text-2 mb-3 line-clamp-2">{cat.desc}</div>
-                  <span className="text-[10px] font-semibold tracking-[2px] uppercase text-teal">Explore →</span>
+                  <span className="text-[10px] font-semibold tracking-[2px] uppercase text-terracotta">Explore →</span>
                 </div>
               </Link>
             </AnimatedSection>

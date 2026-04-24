@@ -4,7 +4,7 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection';
 const PANELS = [
   { label: 'Sun Care',        name: 'Sun Screen\nSPF 30',    desc: 'Blue Lotus + Butter Tree. Mineral-rich Ayurvedic protection for the body in motion.', img: '/images/editorial-sunscreen-moody.jpg' },
   { label: 'Cleanse + Prime', name: 'Body Wash\n200ml',      desc: 'Blue Lotus + Wild Himalayan Cherry. Cleanses, primes, and fortifies skin before you move.', img: '/images/editorial-bodywash-seeds.jpg' },
-  { label: 'Teal Ayurveda',   name: 'Kumkumadi\nTaila',     desc: 'Cold-pressed oil. Processed with milk. Ancient recovery ritual for luminous skin.', img: '/images/editorial-kumkumadi-hand.jpg' },
+  { label: 'Pure Ayurveda',   name: 'Kumkumadi\nTaila',     desc: 'Cold-pressed oil. Processed with milk. Ancient recovery ritual for luminous skin.', img: '/images/editorial-kumkumadi-hand.jpg' },
 ];
 
 export function IngredientStrip() {
@@ -19,8 +19,8 @@ export function IngredientStrip() {
               fill
               className="object-cover md:group-hover:scale-[1.07] transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#111C35]/90 via-[#1A2744]/20 to-[#A87A53]/[0.06] flex flex-col justify-end p-5 md:p-9 md:px-8">
-              <div className="text-[9px] font-semibold tracking-[3px] uppercase text-teal mb-2">{panel.label}</div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/90 via-[#2C1810]/20 to-[#A5723C]/[0.06] flex flex-col justify-end p-5 md:p-9 md:px-8">
+              <div className="text-[9px] font-semibold tracking-[3px] uppercase text-terracotta mb-2">{panel.label}</div>
               <div className="font-serif text-2xl font-medium text-cream leading-[1.2] mb-2" style={{ whiteSpace: 'pre-line' }}>{panel.name}</div>
               <div className="text-[13px] leading-[1.6] text-cream/62 max-w-[230px]">{panel.desc}</div>
             </div>

@@ -82,7 +82,7 @@ export function Navbar() {
             <button aria-expanded={shopOpen} aria-haspopup="true" className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] relative group flex items-center gap-1 cursor-none ${linkCls}`}>
               Shop
               <span className={`text-[8px] transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${shopOpen ? 'rotate-180' : ''}`}>▾</span>
-              <span className="absolute bottom-0 left-0 w-0 h-px bg-teal group-hover:w-full transition-[width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+              <span className="absolute bottom-0 left-0 w-0 h-px bg-terracotta group-hover:w-full transition-[width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
             </button>
 
             {shopOpen && (
@@ -100,8 +100,8 @@ export function Navbar() {
                   ))}
                   <div className="border-t border-white/10 mt-2 pt-2">
                     <Link href="/shop" className="flex items-center justify-between px-5 py-3 hover:bg-white/5 transition-colors duration-150 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                      <span className="text-[11px] font-semibold tracking-[1.5px] uppercase text-teal">View All Products</span>
-                      <span className="text-teal text-[10px]">→</span>
+                      <span className="text-[11px] font-semibold tracking-[1.5px] uppercase text-terracotta">View All Products</span>
+                      <span className="text-terracotta text-[10px]">→</span>
                     </Link>
                   </div>
                 </div>
@@ -117,7 +117,7 @@ export function Navbar() {
               className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] relative group ${linkCls}`}
             >
               {label}
-              <span className="absolute bottom-0 left-0 w-0 h-px bg-teal group-hover:w-full transition-[width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+              <span className="absolute bottom-0 left-0 w-0 h-px bg-terracotta group-hover:w-full transition-[width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
             </Link>
           ))}
         </div>
@@ -142,7 +142,7 @@ export function Navbar() {
               className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] relative group ${linkCls}`}
             >
               {label}
-              <span className="absolute bottom-0 left-0 w-0 h-px bg-teal group-hover:w-full transition-[width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+              <span className="absolute bottom-0 left-0 w-0 h-px bg-terracotta group-hover:w-full transition-[width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
             </Link>
           ))}
           <Link
@@ -313,7 +313,7 @@ export function Navbar() {
           <Link
             href="/cart"
             onClick={closeMenu}
-            className="flex items-center justify-between w-full px-6 py-4 rounded-2xl bg-teal text-cream text-[12px] font-semibold tracking-[2px] uppercase"
+            className="flex items-center justify-between w-full px-6 py-4 rounded-2xl bg-terracotta text-cream text-[12px] font-semibold tracking-[2px] uppercase"
           >
             <span>My Bag</span>
             <span className="bg-cream/20 text-cream text-[11px] font-bold px-2.5 py-0.5 rounded-full min-w-[24px] text-center">

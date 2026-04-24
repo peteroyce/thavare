@@ -111,7 +111,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       {/* Main grid */}
       <div className="px-4 md:px-10 lg:px-20 py-10 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 max-w-[1200px] mx-auto">
         {/* Image */}
-        <div className="bg-gradient-to-b from-[#F5F0E8] to-[#EDE7DC] rounded-2xl flex items-center justify-center p-6 md:p-12 border border-[#E5DDD0] min-h-[300px] md:min-h-[500px]">
+        <div className="bg-gradient-to-b from-[#F2EBE0] to-[#EDE7DC] rounded-2xl flex items-center justify-center p-6 md:p-12 border border-[#E5DDD0] min-h-[300px] md:min-h-[500px]">
           <Image
             src={product.images.main}
             alt={product.name}

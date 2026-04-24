@@ -115,10 +115,10 @@ export default function CartPage() {
             </div>
             <div className="flex justify-between text-[14px] text-text-2 mb-6">
               <span>Shipping</span>
-              <span>{shipping === 0 ? <span className="text-teal font-medium">Free</span> : `₹${shipping}`}</span>
+              <span>{shipping === 0 ? <span className="text-terracotta font-medium">Free</span> : `₹${shipping}`}</span>
             </div>
             {shipping > 0 && (
-              <p className="text-[12px] text-teal mb-4">Add ₹{499 - total} more for free shipping</p>
+              <p className="text-[12px] text-terracotta mb-4">Add ₹{499 - total} more for free shipping</p>
             )}
             <div className="border-t border-[#D4C8B8] pt-5 mb-6">
               <div className="flex justify-between font-semibold text-[18px] text-navy">

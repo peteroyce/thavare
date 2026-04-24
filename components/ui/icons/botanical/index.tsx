@@ -2,7 +2,7 @@
 
 type IconProps = { className?: string };
 
-const STROKE = { stroke: '#A87A53', strokeWidth: '1.2', strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, fill: 'none' };
+const STROKE = { stroke: '#A5723C', strokeWidth: '1.2', strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, fill: 'none' };
 
 export function BotanicalLeaf({ className }: IconProps) {
   return (
@@ -21,7 +21,7 @@ export function BotanicalFlask({ className }: IconProps) {
       <path d="M9 3h6" />
       <path d="M10 3v5l-4 8a2 2 0 0 0 1.8 3h8.4a2 2 0 0 0 1.8-3l-4-8V3" />
       <path d="M8 17c1-1 2-1.5 4-1.5s3 .5 4 1.5" />
-      <circle cx="14" cy="14" r="0.5" fill="#A87A53" />
+      <circle cx="14" cy="14" r="0.5" fill="#A5723C" />
     </svg>
   );
 }

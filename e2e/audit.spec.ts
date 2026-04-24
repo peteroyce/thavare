@@ -285,7 +285,7 @@ test.describe('About & Founders', () => {
     const errors = watchErrors(page);
     await page.goto('/about');
     // Wait for page to fully load; certifications are lower on page
-    await expect(page.getByText('Clinically Tested')).toBeVisible({ timeout: 8000 });
+    await expect(page.getByText('Clinically Formulated').first()).toBeVisible({ timeout: 8000 });
     await expect(page.getByText('Cruelty Free')).toBeVisible({ timeout: 3000 });
     expect(errors.filter(e => !e.includes('net::ERR'))).toHaveLength(0);
   });

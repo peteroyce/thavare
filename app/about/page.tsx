@@ -39,9 +39,9 @@ const PILLARS = [
 ];
 
 const CERTIFICATIONS = [
-  { icon: '🔬', label: 'Clinically Tested', sub: 'Dermatologist validated formulations' },
+  { icon: '🔬', label: 'Clinically Formulated', sub: 'Physician-validated formulations' },
   { icon: '🌿', label: '100% Ayurvedic Actives', sub: 'No synthetic fragrances or harsh chemicals' },
-  { icon: '👩‍⚕️', label: 'Doctor Formulated', sub: 'By Dr. Meena Ramaiah, Ayurvedic physician' },
+  { icon: '👩‍⚕️', label: 'Doctor Formulated', sub: 'By Dr. Meena Ramaiah — Doctor & Formulator, in collaboration with a traditional Ayurvedic physician' },
   { icon: '♻️', label: 'Sustainable Packaging', sub: 'Recyclable materials, minimal plastic' },
   { icon: '🚫', label: 'Cruelty Free', sub: 'Never tested on animals' },
   { icon: '🇮🇳', label: 'Made in India', sub: 'Manufactured in GMP-certified facilities' },
@@ -70,7 +70,7 @@ export default function AboutPage() {
         className="min-h-[70vh] bg-navy-deep flex flex-col justify-center px-4 md:px-10 lg:px-20 py-14 md:py-24 relative overflow-hidden"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(0,132,147,0.04) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(166,69,44,0.04) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       >
@@ -98,8 +98,8 @@ export default function AboutPage() {
             className="hero-entry inline-flex items-center gap-2.5 mb-5"
             style={{ animationDelay: '0.3s' }}
           >
-            <div className="w-7 h-px bg-teal" />
-            <span className="text-[10px] font-medium tracking-[4px] uppercase text-teal">
+            <div className="w-7 h-px bg-terracotta" />
+            <span className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta">
               About Thavare
             </span>
           </div>
@@ -139,7 +139,7 @@ export default function AboutPage() {
 
         {/* Bottom line accent */}
         <div
-          className="absolute left-1/2 bottom-0 w-px h-0 bg-gradient-to-t from-teal to-transparent"
+          className="absolute left-1/2 bottom-0 w-px h-0 bg-gradient-to-t from-terracotta to-transparent"
           style={{ animation: 'line-grow 1.2s 0.8s var(--ease-out) forwards' }}
         />
       </section>
@@ -150,7 +150,7 @@ export default function AboutPage() {
           {/* Left col — story copy */}
           <div>
             <AnimatedSection direction="left">
-              <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+              <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
                 Our Mission
               </div>
               <h2 className="font-serif text-[clamp(28px,3vw,42px)] font-medium leading-[1.15] text-navy mb-6">
@@ -192,8 +192,8 @@ export default function AboutPage() {
                   <div
                     className="w-12 h-12 rounded-full flex items-center justify-center text-[22px] flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
                     style={{
-                      background: 'rgba(0,132,147,0.07)',
-                      border: '1px solid rgba(0,132,147,0.15)',
+                      background: 'rgba(166,69,44,0.07)',
+                      border: '1px solid rgba(166,69,44,0.15)',
                     }}
                   >
                     {p.icon}
@@ -216,7 +216,7 @@ export default function AboutPage() {
         className="py-14 md:py-24 px-4 md:px-10 lg:px-20 bg-navy relative overflow-hidden"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(0,132,147,0.04) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(166,69,44,0.04) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       >
@@ -225,14 +225,14 @@ export default function AboutPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,132,147,0.06), transparent)',
+              'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(166,69,44,0.06), transparent)',
           }}
         />
 
         <div className="max-w-[1200px] mx-auto relative z-10">
           {/* Centered header */}
           <AnimatedSection className="text-center mb-14">
-            <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+            <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
               Our Philosophy
             </div>
             <h2 className="font-serif text-[clamp(28px,3.5vw,48px)] font-medium leading-[1.12] text-cream mb-6">
@@ -329,7 +329,7 @@ export default function AboutPage() {
 
           {/* Right — promise text */}
           <AnimatedSection direction="right">
-            <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+            <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
               The Promise
             </div>
             <h2 className="font-serif text-[clamp(28px,3vw,42px)] font-medium leading-[1.15] text-navy mb-5">
@@ -370,7 +370,7 @@ export default function AboutPage() {
       <section className="py-14 md:py-20 px-4 md:px-10 lg:px-20 bg-ivory">
         <div className="max-w-[1200px] mx-auto">
           <AnimatedSection className="text-center mb-12">
-            <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">Our Standards</div>
+            <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">Our Standards</div>
             <h2 className="font-serif text-[clamp(24px,2.5vw,36px)] font-medium text-navy leading-[1.2]">
               What We Stand For
             </h2>

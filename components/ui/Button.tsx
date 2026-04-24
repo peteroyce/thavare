@@ -28,7 +28,7 @@ const variants: Record<Variant, string> = {
     'bg-transparent text-cream/75 border border-cream/20 ' +
     'hover:border-cream/45 hover:text-cream',
   white:
-    'bg-white text-teal-dark font-bold shadow-[0_0_0_1px_white,0_4px_20px_rgba(0,0,0,0.15)] ' +
+    'bg-white text-terracotta font-bold shadow-[0_0_0_1px_white,0_4px_20px_rgba(0,0,0,0.15)] ' +
     'hover:-translate-y-0.5 hover:shadow-[0_0_0_1px_white,0_8px_28px_rgba(0,0,0,0.2)]',
 };
 

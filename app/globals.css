@@ -5,22 +5,22 @@
    ============================================================ */
 @theme {
   /* Brand Colors */
-  --color-navy:        #1A2744;
-  --color-navy-deep:   #111C35;
-  --color-navy-mid:    #243058;
-  --color-cream:       #EAE4D3;
-  --color-ivory:       #F5F0E8;
-  --color-beige:       #D9C4A9;
+  --color-navy:        #2C1810;
+  --color-navy-deep:   #2C1810;
+  --color-navy-mid:    #5C3D2E;
+  --color-cream:       #FAF6F0;
+  --color-ivory:       #F2EBE0;
+  --color-beige:       #E8DDD0;
   --color-sand:        #C8B090;
-  --color-terracotta:  #B35F42;
-  --color-terra-h:     #9E4F35;
-  --color-camel:       #A87A53;
-  --color-olive:       #948C6A;
-  --color-teal:        #008493;
-  --color-teal-dark:   #006B78;
-  --color-text-1:      #1A1610;
-  --color-text-2:      #5C5448;
-  --color-text-3:      #8C7F72;
+  --color-terracotta:  #A6452C;
+  --color-terra-h:     #8B3520;
+  --color-camel:       #A5723C;
+  --color-olive:       #7F8A4B;
+  --color-teal:        #A6452C;
+  --color-teal-dark:   #8B3520;
+  --color-text-1:      #4A3728;
+  --color-text-2:      #5C3D2E;
+  --color-text-3:      #8B8068;
 
   /* Typography */
   --font-serif: var(--font-playfair), Georgia, serif;
@@ -35,30 +35,30 @@
    CSS CUSTOM PROPERTIES — for use in arbitrary CSS values
    ============================================================ */
 :root {
-  --navy:       #1A2744;
-  --navy-deep:  #111C35;
-  --navy-mid:   #243058;
-  --cream:      #EAE4D3;
-  --ivory:      #F5F0E8;
-  --beige:      #D9C4A9;
+  --navy:       #2C1810;
+  --navy-deep:  #2C1810;
+  --navy-mid:   #5C3D2E;
+  --cream:      #FAF6F0;
+  --ivory:      #F2EBE0;
+  --beige:      #E8DDD0;
   --sand:       #C8B090;
-  --terracotta: #B35F42;
-  --terra-h:    #9E4F35;
-  --camel:      #A87A53;
-  --olive:      #948C6A;
-  --teal:       #008493;
-  --teal-dark:  #006B78;
-  --text-1:     #1A1610;
-  --text-2:     #5C5448;
-  --text-3:     #8C7F72;
-  --text-dark:  #EAE4D3;
-  --text-dim:   rgba(217,196,169,0.55);
-  --border-l:   #E5DDD0;
-  --border-m:   #D4C8B8;
+  --terracotta: #A6452C;
+  --terra-h:    #8B3520;
+  --camel:      #A5723C;
+  --olive:      #7F8A4B;
+  --teal:       #A6452C;
+  --teal-dark:  #8B3520;
+  --text-1:     #4A3728;
+  --text-2:     #5C3D2E;
+  --text-3:     #8B8068;
+  --text-dark:  #FAF6F0;
+  --text-dim:   rgba(232,221,208,0.55);
+  --border-l:   #E8DDD0;
+  --border-m:   #D4C0AD;
   --border-d:   rgba(255,255,255,0.07);
   --border-d2:  rgba(255,255,255,0.13);
-  --shadow:     rgba(26,22,16,0.06) 0 4px 24px;
-  --shadow-h:   rgba(26,22,16,0.12) 0 12px 40px;
+  --shadow:     rgba(74,55,40,0.06) 0 4px 24px;
+  --shadow-h:   rgba(74,55,40,0.12) 0 12px 40px;
   --ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -136,8 +136,8 @@ body { -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 .pattern-animate { animation: pattern-scroll 18s linear infinite; }
 
 @keyframes pulse-teal {
-  0%, 100% { box-shadow: 0 0 0 1px var(--teal), 0 4px 12px rgba(0,132,147,0.4); }
-  50%       { box-shadow: 0 0 0 1px var(--teal), 0 4px 20px rgba(0,132,147,0.7); }
+  0%, 100% { box-shadow: 0 0 0 1px var(--terracotta), 0 4px 12px rgba(166,69,44,0.4); }
+  50%       { box-shadow: 0 0 0 1px var(--terracotta), 0 4px 20px rgba(166,69,44,0.7); }
 }
 .pulse-teal { animation: pulse-teal 2.5s ease-in-out infinite; }
 

@@ -35,7 +35,7 @@ export function Newsletter() {
           Join 12,000+ movers. Get early access, expert tips, and stories from the Thavare community.
         </p>
         {submitted ? (
-          <p className="mt-8 font-serif italic text-[18px] text-teal-dark">You're in. Welcome to the circle.</p>
+          <p className="mt-8 font-serif italic text-[18px] text-terracotta">You're in. Welcome to the circle.</p>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row mt-8 rounded-lg overflow-hidden shadow-[0_0_0_1px_#D4C8B8,0_2px_24px_rgba(168,122,83,0.08)]">
             <label htmlFor="newsletter-email" className="sr-only">Email address</label>
@@ -45,7 +45,7 @@ export function Newsletter() {
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder="Your email address"
-              className="flex-1 px-5 py-3.5 bg-ivory text-[14px] text-text-1 outline-none placeholder:text-text-3 focus:bg-[#FDFBF7] transition-colors rounded-lg sm:rounded-none sm:rounded-l-lg"
+              className="flex-1 px-5 py-3.5 bg-ivory text-[14px] text-text-1 outline-none placeholder:text-text-3 focus:bg-[#FAF4EE] transition-colors rounded-lg sm:rounded-none sm:rounded-l-lg"
               required
             />
             <button type="submit" disabled={loading} className="px-6 py-3.5 bg-navy text-cream font-sans text-[11px] font-semibold tracking-[1.5px] uppercase hover:bg-navy-mid transition-colors cursor-none rounded-lg sm:rounded-none sm:rounded-r-lg w-full sm:w-auto">

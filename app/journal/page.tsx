@@ -16,7 +16,7 @@ const CATEGORY_LABELS: Record<JournalArticle['category'] | 'all', string> = {
 };
 
 const CATEGORY_COLORS: Record<JournalArticle['category'], string> = {
-  skincare: 'bg-teal/10 text-teal border border-teal/20',
+  skincare: 'bg-terracotta/10 text-terracotta border border-terracotta/20',
   ayurveda: 'bg-terracotta/10 text-terracotta border border-terracotta/20',
   sport:    'bg-navy/10 text-navy border border-navy/20',
   wellness: 'bg-camel/10 text-camel border border-camel/20',
@@ -65,7 +65,7 @@ export default function JournalPage() {
         className="min-h-[52vh] bg-navy-deep flex flex-col justify-center px-4 md:px-10 lg:px-20 py-14 md:py-20 relative overflow-hidden"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(0,132,147,0.04) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(166,69,44,0.04) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       >
@@ -86,8 +86,8 @@ export default function JournalPage() {
 
         <div className="max-w-[1200px] mx-auto w-full relative z-10">
           <div className="hero-entry inline-flex items-center gap-2.5 mb-5" style={{ animationDelay: '0.3s' }}>
-            <div className="w-7 h-px bg-teal" />
-            <span className="text-[10px] font-medium tracking-[4px] uppercase text-teal">
+            <div className="w-7 h-px bg-terracotta" />
+            <span className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta">
               The Journal
             </span>
           </div>
@@ -108,7 +108,7 @@ export default function JournalPage() {
         </div>
 
         <div
-          className="absolute left-1/2 bottom-0 w-px h-0 bg-gradient-to-t from-teal to-transparent"
+          className="absolute left-1/2 bottom-0 w-px h-0 bg-gradient-to-t from-terracotta to-transparent"
           style={{ animation: 'line-grow 1.2s 0.8s var(--ease-out) forwards' }}
         />
       </section>
@@ -171,7 +171,7 @@ export default function JournalPage() {
                         <span className="text-[11px] text-cream/55 tracking-wide">
                           {displayFeatured.readTime} min read
                         </span>
-                        <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-[1.5px] uppercase text-teal group-hover:gap-2.5 transition-all duration-200">
+                        <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-[1.5px] uppercase text-terracotta group-hover:gap-2.5 transition-all duration-200">
                           Read Article <span>→</span>
                         </span>
                       </div>
@@ -216,7 +216,7 @@ export default function JournalPage() {
                             <span className="text-text-3/40 text-[9px]">•</span>
                             <span className="text-[11px] text-text-3">{formatDate(article.publishedAt)}</span>
                           </div>
-                          <span className="text-[11px] font-semibold tracking-[1px] uppercase text-teal group-hover:gap-2.5 transition-all duration-200 inline-flex items-center gap-1">
+                          <span className="text-[11px] font-semibold tracking-[1px] uppercase text-terracotta group-hover:gap-2.5 transition-all duration-200 inline-flex items-center gap-1">
                             Read <span>→</span>
                           </span>
                         </div>

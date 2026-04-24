@@ -25,7 +25,7 @@ export default function TrackOrderPage() {
       <div className="max-w-[800px] mx-auto">
 
         <AnimatedSection>
-          <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+          <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
             Help
           </div>
           <h1 className="font-serif text-[clamp(32px,4vw,52px)] font-medium text-navy leading-[1.1] mb-3">
@@ -56,7 +56,7 @@ export default function TrackOrderPage() {
                   onChange={(e) => setOrderNumber(e.target.value)}
                   placeholder="e.g. THV-10042"
                   required
-                  className="w-full bg-ivory border border-[#E5DDD0] rounded-lg px-4 py-3 text-[14px] text-navy placeholder:text-text-3 focus:outline-none focus:border-teal/50 focus:ring-1 focus:ring-teal/30 transition-colors duration-200"
+                  className="w-full bg-ivory border border-[#E5DDD0] rounded-lg px-4 py-3 text-[14px] text-navy placeholder:text-text-3 focus:outline-none focus:border-terracotta/50 focus:ring-1 focus:ring-terracotta/30 transition-colors duration-200"
                 />
               </div>
 
@@ -75,7 +75,7 @@ export default function TrackOrderPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="The email used to place your order"
                   required
-                  className="w-full bg-ivory border border-[#E5DDD0] rounded-lg px-4 py-3 text-[14px] text-navy placeholder:text-text-3 focus:outline-none focus:border-teal/50 focus:ring-1 focus:ring-teal/30 transition-colors duration-200"
+                  className="w-full bg-ivory border border-[#E5DDD0] rounded-lg px-4 py-3 text-[14px] text-navy placeholder:text-text-3 focus:outline-none focus:border-terracotta/50 focus:ring-1 focus:ring-terracotta/30 transition-colors duration-200"
                 />
               </div>
 
@@ -89,7 +89,7 @@ export default function TrackOrderPage() {
         ) : (
           <AnimatedSection delay={1}>
             <div className="bg-ivory border border-[#E5DDD0] rounded-xl px-7 py-8">
-              <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+              <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
                 Order Lookup
               </div>
               <p className="font-serif text-[18px] font-medium text-navy mb-3">
@@ -100,7 +100,7 @@ export default function TrackOrderPage() {
                 or contact us at{' '}
                 <a
                   href="mailto:support@thavare.com"
-                  className="text-teal underline underline-offset-2"
+                  className="text-terracotta underline underline-offset-2"
                 >
                   support@thavare.com
                 </a>{' '}
@@ -140,7 +140,7 @@ export default function TrackOrderPage() {
           </p>
           <p className="text-[14px] leading-[1.75] text-text-2">
             Still can&rsquo;t find it? Email us at{' '}
-            <a href="mailto:support@thavare.com" className="text-teal underline underline-offset-2">
+            <a href="mailto:support@thavare.com" className="text-terracotta underline underline-offset-2">
               support@thavare.com
             </a>{' '}
             with the name and email address used during checkout and we&rsquo;ll locate your order.

@@ -47,12 +47,12 @@ export function Bestsellers({ products }: { products: Product[] }) {
           {products.map((p, i) => (
             <AnimatedSection key={p.id} delay={(i + 1) as 1|2|3}>
               <div
-                className="bg-[#FDFBF7] rounded-xl overflow-hidden md:hover:-translate-y-1 transition-all duration-300 group relative cursor-none"
+                className="bg-[#FAF4EE] rounded-xl overflow-hidden md:hover:-translate-y-1 transition-all duration-300 group relative cursor-none"
                 style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}
               >
-                <div className="h-[260px] bg-gradient-to-b from-[#F5F0E8] to-[#EDE7DC] flex items-center justify-center relative overflow-hidden">
+                <div className="h-[260px] bg-gradient-to-b from-[#F2EBE0] to-[#EDE7DC] flex items-center justify-center relative overflow-hidden">
                   {p.badge && (
                     <span className="absolute top-3.5 left-3.5 bg-terracotta text-white text-[9px] font-semibold tracking-[1.5px] uppercase px-3 py-1 rounded-full">
                       {p.badge}

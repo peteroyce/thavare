@@ -34,7 +34,7 @@ export default function ShippingPage() {
       <div className="max-w-[800px] mx-auto">
 
         <AnimatedSection>
-          <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+          <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
             Help
           </div>
           <h1 className="font-serif text-[clamp(32px,4vw,52px)] font-medium text-navy leading-[1.1] mb-3">
@@ -61,7 +61,7 @@ export default function ShippingPage() {
           <p className="text-[14px] leading-[1.75] text-text-2">
             International shipping is coming soon. To be among the first to know when we ship to your
             country, join our{' '}
-            <a href="/circle" className="text-teal underline underline-offset-2">
+            <a href="/circle" className="text-terracotta underline underline-offset-2">
               Circle
             </a>
             .
@@ -101,7 +101,7 @@ export default function ShippingPage() {
                   >
                     <td className="px-5 py-4 font-medium text-navy">{row.method}</td>
                     <td className="px-5 py-4">{row.timeline}</td>
-                    <td className="px-5 py-4 font-semibold text-teal">{row.cost}</td>
+                    <td className="px-5 py-4 font-semibold text-terracotta">{row.cost}</td>
                     <td className="px-5 py-4 text-text-3 hidden sm:table-cell">{row.notes}</td>
                   </tr>
                 ))}
@@ -188,12 +188,12 @@ export default function ShippingPage() {
           </p>
           <p className="text-[14px] leading-[1.75] text-text-2">
             You can also track your order using our{' '}
-            <a href="/track-order" className="text-teal underline underline-offset-2">
+            <a href="/track-order" className="text-terracotta underline underline-offset-2">
               Track Order
             </a>{' '}
             page. If you have not received a tracking update within 3 business days of your shipping
             confirmation, please contact us at{' '}
-            <a href="mailto:support@thavare.com" className="text-teal underline underline-offset-2">
+            <a href="mailto:support@thavare.com" className="text-terracotta underline underline-offset-2">
               support@thavare.com
             </a>
             .

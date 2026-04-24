@@ -15,13 +15,13 @@ export default function OrderSuccessPage() {
     <div className="bg-cream min-h-[70vh] flex items-center justify-center px-4">
       <Suspense><OrderSuccessClearer /></Suspense>
       <div className="text-center max-w-[480px]">
-        <div className="w-16 h-16 rounded-full bg-teal/10 border border-teal/20 flex items-center justify-center mx-auto mb-8">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-teal">
+        <div className="w-16 h-16 rounded-full bg-terracotta/10 border border-terracotta/20 flex items-center justify-center mx-auto mb-8">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-terracotta">
             <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
 
-        <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+        <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
           Order Confirmed
         </div>
         <h1 className="font-serif text-[clamp(28px,4vw,42px)] font-medium text-navy leading-[1.12] mb-4">

@@ -13,7 +13,7 @@ export default function WishlistPage() {
       <div className="max-w-[1200px] mx-auto">
         <div className="flex items-center justify-between mb-8 md:mb-12">
           <div>
-            <div className="text-[10px] font-medium tracking-[3px] uppercase text-teal mb-2">Your Collection</div>
+            <div className="text-[10px] font-medium tracking-[3px] uppercase text-terracotta mb-2">Your Collection</div>
             <h1 className="font-serif text-[36px] md:text-[44px] font-medium text-navy leading-[1.1]">
               Saved Items ({items.length})
             </h1>

@@ -132,7 +132,7 @@ export function HeroCarousel() {
   const slide = SLIDES[active];
   const isDark = !slide.darkText; // dark bg = cream text
   const textBase = slide.darkText ? 'text-navy' : 'text-cream';
-  const labelColor = slide.darkText ? 'text-[#008493]' : 'text-[#C4A882]';
+  const labelColor = slide.darkText ? 'text-[#A6452C]' : 'text-[#C4A882]';
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
@@ -253,7 +253,7 @@ export function HeroCarousel() {
               priority={active === 0}
             />
             {slide.imageLabel && (
-              <span className="text-[11px] font-medium tracking-[2px] uppercase text-[#A87A53]">
+              <span className="text-[11px] font-medium tracking-[2px] uppercase text-[#A5723C]">
                 {slide.imageLabel}
               </span>
             )}

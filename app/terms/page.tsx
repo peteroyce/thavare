@@ -13,7 +13,7 @@ export default function TermsPage() {
       <div className="max-w-[800px] mx-auto">
 
         <AnimatedSection>
-          <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+          <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
             Legal
           </div>
           <h1 className="font-serif text-[clamp(32px,4vw,52px)] font-medium text-navy leading-[1.1] mb-3">
@@ -78,7 +78,7 @@ export default function TermsPage() {
           </h2>
           <p className="text-[14px] leading-[1.75] text-text-2">
             We ship to addresses across India. Delivery timelines are estimates and may vary due to logistics partner delays, public holidays, or events outside our control. Thavare is not liable for delays caused by courier partners or circumstances beyond our reasonable control. Title and risk of loss for all products pass to you upon dispatch. Please refer to our{' '}
-            <a href="/shipping" className="text-teal underline underline-offset-2">
+            <a href="/shipping" className="text-terracotta underline underline-offset-2">
               Shipping &amp; Delivery
             </a>{' '}
             page for full details on delivery timelines, costs, and free shipping thresholds.
@@ -94,7 +94,7 @@ export default function TermsPage() {
           </h2>
           <p className="text-[14px] leading-[1.75] text-text-2">
             We offer a 7-day return window from the date of delivery for eligible products. Due to the nature of skincare products and hygiene regulations, opened or used items cannot be returned. Products must be returned in their original, sealed packaging and in a resalable condition. Please refer to our{' '}
-            <a href="/returns" className="text-teal underline underline-offset-2">
+            <a href="/returns" className="text-terracotta underline underline-offset-2">
               Returns &amp; Refunds
             </a>{' '}
             page for full details on how to initiate a return and the refund process.
@@ -137,7 +137,7 @@ export default function TermsPage() {
           </p>
           <p className="text-[14px] leading-[1.75] text-text-2">
             If you have any questions about these Terms, please contact us at{' '}
-            <span className="text-teal">support@thavare.com</span>.
+            <span className="text-terracotta">support@thavare.com</span>.
           </p>
         </AnimatedSection>
 

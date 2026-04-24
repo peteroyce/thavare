@@ -3,7 +3,7 @@ import { BotanicalLeaf, BotanicalFlask, BotanicalWave } from '@/components/ui/ic
 
 const VALUES = [
   { Icon: BotanicalLeaf,  title: 'Bio-Active Ayurveda',   desc: 'We take time-tested Ayurvedic ingredients and extract their highest-performing actives using modern biotechnology. No fillers. No compromise.' },
-  { Icon: BotanicalFlask, title: 'Clinically Formulated', desc: 'Every Thavare formula is developed by Dr. Meena Ramaiah — dermatologist, Ayurvedic practitioner, athlete. Science and nature, carefully and honestly.' },
+  { Icon: BotanicalFlask, title: 'Clinically Formulated', desc: 'Every Thavare formula is developed by Dr. Meena Ramaiah, in collaboration with a traditional Ayurvedic physician. Science and nature, carefully and honestly.' },
   { Icon: BotanicalWave,  title: 'Built for Motion',      desc: 'Active skin faces sweat, sun, friction and wear. Thavare is the only Ayurvedic skincare range specifically engineered for the body in motion.' },
 ];
 

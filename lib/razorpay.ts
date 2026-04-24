@@ -88,7 +88,7 @@ export async function openRazorpayCheckout(
       name: 'Thavare',
       description: `${items.length} item${items.length > 1 ? 's' : ''} — Clinically Crafted Ayurveda`,
       order_id: orderId,
-      theme: { color: '#1A2744' }, // navy brand color
+      theme: { color: '#2C1810' }, // deep brown brand color
       handler: (response) => resolve(response),
       modal: { ondismiss: () => reject(new Error('Payment cancelled')) },
     };

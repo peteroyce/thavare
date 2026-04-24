@@ -132,7 +132,7 @@ export default function FAQsPage() {
       <div className="max-w-[800px] mx-auto">
 
         <AnimatedSection>
-          <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+          <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
             Help
           </div>
           <h1 className="font-serif text-[clamp(32px,4vw,52px)] font-medium text-navy leading-[1.1] mb-3">
@@ -141,7 +141,7 @@ export default function FAQsPage() {
           <p className="text-[14px] leading-[1.75] text-text-2">
             Everything you need to know about ordering, shipping, returns, and our products.
             Can&rsquo;t find your answer?{' '}
-            <a href="mailto:support@thavare.com" className="text-teal underline underline-offset-2">
+            <a href="mailto:support@thavare.com" className="text-terracotta underline underline-offset-2">
               Write to us
             </a>{' '}
             and we&rsquo;ll get back to you within one business day.
@@ -153,7 +153,7 @@ export default function FAQsPage() {
             <div className="border-t border-[#E5DDD0] my-8" />
 
             <AnimatedSection>
-              <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-5">
+              <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-5">
                 {section.category}
               </div>
 
@@ -170,7 +170,7 @@ export default function FAQsPage() {
 
         <AnimatedSection delay={1}>
           <div className="bg-ivory rounded-xl px-7 py-7 border border-[#E5DDD0]">
-            <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-2">
+            <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-2">
               Still need help?
             </div>
             <p className="text-[14px] leading-[1.75] text-text-2 mb-1">
@@ -178,7 +178,7 @@ export default function FAQsPage() {
             </p>
             <p className="text-[14px] leading-[1.75] text-text-2">
               Email us at{' '}
-              <a href="mailto:support@thavare.com" className="text-teal underline underline-offset-2">
+              <a href="mailto:support@thavare.com" className="text-terracotta underline underline-offset-2">
                 support@thavare.com
               </a>
             </p>

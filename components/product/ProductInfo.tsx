@@ -39,7 +39,7 @@ export function ProductInfo({ product: p }: { product: Product }) {
 
   return (
     <div>
-      <div className="text-[10px] font-medium tracking-[3px] uppercase text-teal mb-3">{p.categoryLabel}</div>
+      <div className="text-[10px] font-medium tracking-[3px] uppercase text-terracotta mb-3">{p.categoryLabel}</div>
       <h1 className="font-serif text-[40px] font-medium leading-[1.1] text-navy mb-2">{p.name}</h1>
       <p className="text-[16px] text-text-2 italic mb-6">{p.subtitle}</p>
       <div className="flex items-center justify-between mb-6">

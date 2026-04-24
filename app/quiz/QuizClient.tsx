@@ -181,7 +181,7 @@ function ProgressBar({ step }: { step: number }) {
   return (
     <div className="w-full h-1 bg-[#D4C8B8] rounded-full overflow-hidden">
       <div
-        className="h-full bg-teal rounded-full transition-all duration-500"
+        className="h-full bg-terracotta rounded-full transition-all duration-500"
         style={{ width: `${pct}%` }}
       />
     </div>
@@ -203,8 +203,8 @@ function OptionButton({
       className={[
         'px-6 py-4 rounded-xl border text-[14px] font-medium text-navy transition-all duration-200 cursor-none text-left',
         selected
-          ? 'border-teal bg-teal/5 shadow-[0_0_0_1px_var(--teal)]'
-          : 'border-[#D4C8B8] bg-white hover:border-teal hover:bg-teal/5',
+          ? 'border-terracotta bg-terracotta/5 shadow-[0_0_0_1px_var(--terracotta)]'
+          : 'border-[#D4C8B8] bg-white hover:border-terracotta hover:bg-terracotta/5',
       ].join(' ')}
     >
       {label}
@@ -243,7 +243,7 @@ function ProductCard({
 
       {/* Card content */}
       <div className="flex flex-col flex-1 p-6">
-        <div className="text-[10px] font-medium tracking-[3px] uppercase text-teal mb-1.5">
+        <div className="text-[10px] font-medium tracking-[3px] uppercase text-terracotta mb-1.5">
           Thavare
         </div>
         <h3 className="font-serif text-[20px] font-medium text-navy mb-0.5 leading-tight">
@@ -305,7 +305,7 @@ export default function QuizClient() {
         className="min-h-[92vh] bg-navy flex flex-col items-center justify-center px-4 md:px-10 py-20 relative overflow-hidden"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(0,132,147,0.04) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(166,69,44,0.04) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       >
@@ -333,11 +333,11 @@ export default function QuizClient() {
             className="hero-entry inline-flex items-center gap-2.5 mb-6 justify-center"
             style={{ animationDelay: '0.2s' }}
           >
-            <div className="w-7 h-px bg-teal" />
-            <span className="text-[10px] font-medium tracking-[4px] uppercase text-teal">
+            <div className="w-7 h-px bg-terracotta" />
+            <span className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta">
               Skincare Routine Finder
             </span>
-            <div className="w-7 h-px bg-teal" />
+            <div className="w-7 h-px bg-terracotta" />
           </div>
 
           {/* Heading */}
@@ -366,7 +366,7 @@ export default function QuizClient() {
               <div
                 key={n}
                 className="w-1.5 h-1.5 rounded-full"
-                style={{ background: 'rgba(0,132,147,0.4)' }}
+                style={{ background: 'rgba(166,69,44,0.4)' }}
               />
             ))}
           </div>
@@ -384,7 +384,7 @@ export default function QuizClient() {
 
         {/* Bottom teal line */}
         <div
-          className="absolute left-1/2 bottom-0 w-px h-0 bg-gradient-to-t from-teal to-transparent"
+          className="absolute left-1/2 bottom-0 w-px h-0 bg-gradient-to-t from-terracotta to-transparent"
           style={{ animation: 'line-grow 1.2s 0.8s var(--ease-out) forwards' }}
         />
       </section>
@@ -399,7 +399,7 @@ export default function QuizClient() {
           {/* Progress */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-[11px] font-medium tracking-[3px] uppercase text-teal">
+              <span className="text-[11px] font-medium tracking-[3px] uppercase text-terracotta">
                 Question {step} of 5
               </span>
               <span className="text-[11px] text-text-3">{Math.round((step / 5) * 100)}%</span>
@@ -470,11 +470,11 @@ export default function QuizClient() {
           {/* Header */}
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2.5 mb-5">
-              <div className="w-7 h-px bg-teal" />
-              <span className="text-[10px] font-medium tracking-[4px] uppercase text-teal">
+              <div className="w-7 h-px bg-terracotta" />
+              <span className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta">
                 Your Results
               </span>
-              <div className="w-7 h-px bg-teal" />
+              <div className="w-7 h-px bg-terracotta" />
             </div>
             <h1 className="font-serif text-[clamp(28px,3.5vw,48px)] font-medium leading-[1.12] text-navy mb-4">
               Your Personalised{' '}
@@ -509,9 +509,9 @@ export default function QuizClient() {
                 key={i}
                 className="text-[11px] font-medium px-3 py-1.5 rounded-full"
                 style={{
-                  background: 'rgba(0,132,147,0.07)',
-                  border: '1px solid rgba(0,132,147,0.18)',
-                  color: 'var(--teal)',
+                  background: 'rgba(166,69,44,0.07)',
+                  border: '1px solid rgba(166,69,44,0.18)',
+                  color: 'var(--terracotta)',
                 }}
               >
                 {ans}

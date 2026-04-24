@@ -17,7 +17,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
     <div className="bg-cream min-h-screen px-4 md:px-10 lg:px-20 py-14 md:py-24 grain glow-warm">
       <div className="max-w-[1200px] mx-auto">
         <div className="mb-16">
-          <div className="text-[10px] font-medium tracking-[4px] uppercase text-teal mb-3">
+          <div className="text-[10px] font-medium tracking-[4px] uppercase text-terracotta mb-3">
             The Collection
           </div>
           <h1 className="font-serif text-[clamp(32px,4vw,52px)] font-medium text-navy leading-[1.1]">

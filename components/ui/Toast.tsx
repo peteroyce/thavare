@@ -72,7 +72,7 @@ export function Toast({
   const content = (
     <div
       className={`flex flex-col overflow-hidden rounded-r-xl shadow-[0_6px_28px_rgba(0,0,0,0.11)] ${cfg.ctaHref ? 'hover:shadow-[0_8px_32px_rgba(0,0,0,0.16)] transition-shadow' : ''}`}
-      style={{ borderLeft: `3px solid ${cfg.borderColor}`, background: '#F5F0E8', width: 280 }}
+      style={{ borderLeft: `3px solid ${cfg.borderColor}`, background: '#F2EBE0', width: 280 }}
     >
       <div className="flex items-start gap-3 px-4 py-3">
         <div className="flex-1 min-w-0">
