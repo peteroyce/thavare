@@ -4,18 +4,18 @@ const COMPANY_LINKS: { label: string; href: string }[] = [
   { label: "About Thavare",    href: '/about' },
   { label: "Founder's Story",  href: '/founders' },
   { label: "The Circle",       href: '/circle' },
-  { label: "Our Ingredients",  href: '/why-sport-active' },
-  { label: "Clinical Research",href: '/why-sport-active' },
-  { label: "Contact Us",       href: '/about' },
+  { label: "Our Ingredients",  href: '/ingredients' },
+  { label: "Why Sport-Active", href: '/why-sport-active' },
+  { label: "Journal",          href: '/journal' },
 ];
 
 const SHOP_LINKS: { label: string; href: string }[] = [
-  { label: 'Pre-Sport',        href: '/shop?category=sport' },
-  { label: 'During Activity',  href: '/shop?category=sport' },
+  { label: 'All Products',     href: '/shop' },
+  { label: 'Sport',            href: '/shop?category=sport' },
+  { label: 'Sun Protection',   href: '/shop?category=sun-protection' },
   { label: 'Recovery',         href: '/shop?category=recovery' },
   { label: 'Daily Essentials', href: '/shop?category=daily-essentials' },
-  { label: 'Bestsellers',      href: '/shop' },
-  { label: 'New Arrivals',     href: '/shop' },
+  { label: 'Skin Quiz',        href: '/quiz' },
 ];
 
 const HELP_LINKS: { label: string; href: string }[] = [
