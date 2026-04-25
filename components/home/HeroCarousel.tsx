@@ -43,7 +43,7 @@ const SLIDES: Slide[] = [
   },
   {
     id: 2,
-    bg: 'linear-gradient(135deg, rgba(18,8,2,0.72) 35%, rgba(55,22,6,0.48)), url("/images/banner-9119.jpg") center / cover no-repeat',
+    bg: 'linear-gradient(135deg, rgba(18,8,2,0.72) 35%, rgba(55,22,6,0.48)), url("/images/banner-9119.jpg") center 35% / cover no-repeat',
     label: 'Pre-Sport Ritual',
     headline: ['Thavare', 'Body Wash'],
     accentLine: null,
