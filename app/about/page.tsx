@@ -22,29 +22,29 @@ const STATS = [
 
 const PILLARS = [
   {
-    icon: '◆',
+    icon: '🌿',
     title: 'Rooted in Nature',
     desc: 'Ayurvedic wisdom distilled from 5000 years of traditional practice — every ingredient chosen with purpose and respect.',
   },
   {
-    icon: '◇',
+    icon: '🔬',
     title: 'Proven by Science',
     desc: 'Modern biotechnology that extracts and elevates ancient actives, clinically validated so nature and science always work together.',
   },
   {
-    icon: '○',
+    icon: '💧',
     title: 'Built for Motion',
     desc: 'Engineered for the unique demands of active skin — sweat, sun, friction, and the wear of everyday movement.',
   },
 ];
 
 const CERTIFICATIONS = [
-  { icon: '✦', label: 'Clinically Formulated', sub: 'Physician-validated formulations' },
-  { icon: '◆', label: '100% Ayurvedic Actives', sub: 'No synthetic fragrances or harsh chemicals' },
-  { icon: '✧', label: 'Doctor Formulated', sub: 'By Dr. Meena Ramaiah — Doctor & Formulator, in collaboration with a traditional Ayurvedic physician' },
-  { icon: '○', label: 'Sustainable Packaging', sub: 'Recyclable materials, minimal plastic' },
-  { icon: '◇', label: 'Cruelty Free', sub: 'Never tested on animals' },
-  { icon: '▪', label: 'Made in India', sub: 'Manufactured in GMP-certified facilities' },
+  { icon: '🔬', label: 'Clinically Formulated', sub: 'Physician-validated formulations' },
+  { icon: '🌿', label: '100% Ayurvedic Actives', sub: 'No synthetic fragrances or harsh chemicals' },
+  { icon: '👩‍⚕️', label: 'Doctor Formulated', sub: 'By Dr. Meena Ramaiah — Doctor & Formulator, in collaboration with a traditional Ayurvedic physician' },
+  { icon: '♻️', label: 'Sustainable Packaging', sub: 'Recyclable materials, minimal plastic' },
+  { icon: '🚫', label: 'Cruelty Free', sub: 'Never tested on animals' },
+  { icon: '🇮🇳', label: 'Made in India', sub: 'Manufactured in GMP-certified facilities' },
 ];
 
 const PACE = [

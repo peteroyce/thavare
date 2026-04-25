@@ -124,7 +124,7 @@ export default async function ArticlePage({
               className="w-10 h-10 rounded-full flex items-center justify-center text-[18px] flex-shrink-0"
               style={{ background: 'rgba(166,69,44,0.07)', border: '1px solid rgba(166,69,44,0.15)' }}
             >
-              Dr
+              👩‍⚕️
             </div>
             <div>
               <div className="text-[13px] font-semibold text-navy leading-tight">Dr. Meena Ramaiah</div>

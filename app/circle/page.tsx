@@ -14,22 +14,22 @@ export const metadata: Metadata = {
 
 const BENEFITS = [
   {
-    icon: '✦',
+    icon: '🩺',
     title: 'Expert Answers',
     desc: 'Real questions answered by verified medical and wellness experts — honestly and personally.',
   },
   {
-    icon: '◆',
+    icon: '👥',
     title: 'A Real Community',
     desc: 'A community of people who move, struggle, heal and grow together — because none of us should carry it alone.',
   },
   {
-    icon: '◇',
+    icon: '🔄',
     title: 'Rotating Specialists',
     desc: 'Dermatologists, sports medicine doctors, Ayurvedic practitioners and more — rotating every week so the guidance never stops.',
   },
   {
-    icon: '○',
+    icon: '🛡️',
     title: 'Trusted Space',
     desc: 'Free from noise, sponsored content and generic advice. Just honest guidance from people who care.',
   },
@@ -37,17 +37,17 @@ const BENEFITS = [
 
 const AUDIENCE = [
   {
-    icon: '—',
+    icon: '🏆',
     label: 'The Athlete',
     desc: 'You push hard. You want to recover smarter — not guess your way through it.',
   },
   {
-    icon: '—',
+    icon: '🚶',
     label: 'The Active Person',
     desc: 'You move, you show up, and you want to understand what your body is telling you.',
   },
   {
-    icon: '—',
+    icon: '💔',
     label: 'The One Let Down',
     desc: 'By your skin, your body, or advice that simply did not work. You deserve answers that actually fit.',
   },

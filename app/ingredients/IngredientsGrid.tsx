@@ -19,10 +19,10 @@ const CATEGORY_COLORS: Record<Ingredient['category'], string> = {
 };
 
 const CATEGORY_INITIALS: Record<Ingredient['category'], string> = {
-  herb:      'H',
-  oil:       'O',
-  mineral:   'M',
-  botanical: 'B',
+  herb:      '🌿',
+  oil:       '🫙',
+  mineral:   '🪨',
+  botanical: '🌺',
 };
 
 type FilterCategory = Ingredient['category'] | 'all';

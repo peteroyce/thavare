@@ -3,9 +3,9 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Button } from '@/components/ui/Button';
 
 const FEATS = [
-  { icon: '✦', title: 'Verified Medical Experts',       desc: 'Dermatologists, sports medicine doctors, and Ayurvedic practitioners — answering personally.' },
-  { icon: '◇', title: 'Rotating Specialists Every Week', desc: 'New experts cycle in regularly — so the guidance never stops.' },
-  { icon: '○', title: 'Zero Noise. Zero Sponsorship.',   desc: 'A trusted space free from the content that clutters every other wellness community.' },
+  { icon: '👩‍⚕️', title: 'Verified Medical Experts',       desc: 'Dermatologists, sports medicine doctors, and Ayurvedic practitioners — answering personally.' },
+  { icon: '🔄', title: 'Rotating Specialists Every Week', desc: 'New experts cycle in regularly — so the guidance never stops.' },
+  { icon: '🛡️', title: 'Zero Noise. Zero Sponsorship.',   desc: 'A trusted space free from the content that clutters every other wellness community.' },
 ];
 
 const EXPERTS = [
@@ -47,7 +47,7 @@ export function CircleSection() {
             <div className="flex flex-col gap-3">
               {EXPERTS.map(e => (
                 <div key={e.name} className="bg-white/10 rounded-xl px-4 py-3.5 flex items-center gap-3.5 border border-white/10 hover:bg-white/18 transition-all">
-                  <div className="w-[42px] h-[42px] rounded-full bg-white/20 flex items-center justify-center text-lg flex-shrink-0">Dr</div>
+                  <div className="w-[42px] h-[42px] rounded-full bg-white/20 flex items-center justify-center text-lg flex-shrink-0">👩‍⚕️</div>
                   <div>
                     <div className="text-[13px] text-white font-semibold">{e.name}</div>
                     <div className="text-[11px] text-white/50 mt-0.5">{e.role}</div>

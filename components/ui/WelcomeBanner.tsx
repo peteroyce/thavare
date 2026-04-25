@@ -32,7 +32,7 @@ export function WelcomeBanner() {
   return (
     <div className="w-full bg-terracotta text-white py-2.5 px-4 flex items-center justify-center gap-3">
       <span className="text-[12px] font-medium tracking-wide text-center">
-        Welcome! Get 10% off your first order — use code{' '}
+        ✨ Welcome! Get 10% off your first order — use code{' '}
         <strong className="font-semibold">WELCOME10</strong> at checkout
       </span>
       <button
