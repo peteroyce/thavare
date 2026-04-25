@@ -76,14 +76,13 @@ const SLIDES: Slide[] = [
   },
   {
     id: 5,
-    bg: 'linear-gradient(135deg, rgba(72,15,32,0.82) 35%, rgba(100,22,45,0.65)), url("/images/editorial-kumkumadi-hand.jpg") center / cover no-repeat',
+    bg: 'linear-gradient(135deg, rgba(18,12,6,0.74) 30%, rgba(48,30,14,0.50)), url("/images/hero-kumkumadi.jpg") center / cover no-repeat',
     label: 'Signature Formulation',
     headline: ['Kumkumadi', 'Taila'],
     accentLine: 0,
     sub: 'Our most revered Ayurvedic oil. Cold-pressed and traditionally processed for radiant skin.',
     ctas: [{ text: 'Shop Kumkumadi Taila', href: '/products/thavare-kumkumadi-taila', variant: 'primary' }],
-    image: '/images/prod-kumkumadi.png',
-    imageLabel: 'Kumkumadi Face Oil',
+    image: null,
     darkText: false,
   },
 ];
