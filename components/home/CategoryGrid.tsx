@@ -6,7 +6,7 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection';
 
 const CATS = [
   { name: 'Pre-Sport',        desc: 'Prime your skin before training. Protective Ayurvedic actives that prep every layer.',     img: '/images/cat-presport-new.jpg',        href: '/shop?category=sport',            pos: 'object-center' },
-  { name: 'During Activity',  desc: 'Anti-chafe, anti-sweat, anti-friction. Formulated for the skin in motion.',                img: '/images/cat-during-gate.jpg',         href: '/shop?category=sport',            pos: 'object-center' },
+  { name: 'During Activity',  desc: 'Anti-chafe, anti-sweat, anti-friction. Formulated for the skin in motion.',                img: '/images/cat-during-new.jpg',          href: '/shop?category=sport',            pos: 'object-center' },
   { name: 'Recovery',         desc: 'Restore, repair, and renew. Deep Ayurvedic botanicals for post-workout skin.',             img: '/images/cat-recovery-kumkumadi.jpg',  href: '/shop?category=recovery',         pos: 'object-center' },
   { name: 'Daily Essentials', desc: 'For the everyday mover. Lightweight routines rooted in ancient wisdom.',                   img: '/images/cat-daily-sunblock-wall.jpg', href: '/shop?category=daily-essentials', pos: 'object-center' },
 ];
