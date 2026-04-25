@@ -29,7 +29,7 @@ type Slide = {
 const SLIDES: Slide[] = [
   {
     id: 1,
-    bg: 'linear-gradient(135deg, rgba(14,10,6,0.76) 30%, rgba(42,28,14,0.52)), url("/images/brand-slide-icon.png") center / cover no-repeat',
+    bg: 'linear-gradient(135deg, rgba(14,10,6,0.76) 30%, rgba(42,28,14,0.52)), url("/images/brand-slide-icon.jpg") center / cover no-repeat',
     label: '',
     headline: ['Clinically Crafted', 'Ayurveda', 'for the Active Body'],
     accentLine: 1,
@@ -65,7 +65,7 @@ const SLIDES: Slide[] = [
   },
   {
     id: 4,
-    bg: 'linear-gradient(135deg, rgba(18,12,6,0.74) 30%, rgba(48,30,14,0.50)), url("/images/brand-slide-warm.png") center / cover no-repeat',
+    bg: 'linear-gradient(135deg, rgba(18,12,6,0.74) 30%, rgba(48,30,14,0.50)), url("/images/brand-slide-warm.jpg") center / cover no-repeat',
     label: 'Personalised For You',
     headline: ['Find Your', 'Perfect Routine'],
     accentLine: null,

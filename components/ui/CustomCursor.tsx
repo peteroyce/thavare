@@ -25,8 +25,8 @@ export function CustomCursor() {
     const tick = () => {
       rx += (mx - rx) * 0.12;
       ry += (my - ry) * 0.12;
-      if (dotRef.current)  { dotRef.current.style.left  = mx + 'px'; dotRef.current.style.top  = my + 'px'; }
-      if (ringRef.current) { ringRef.current.style.left = rx + 'px'; ringRef.current.style.top = ry + 'px'; }
+      if (dotRef.current)  dotRef.current.style.transform  = `translate(${mx}px, ${my}px)`;
+      if (ringRef.current) ringRef.current.style.transform = `translate(${rx}px, ${ry}px)`;
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
@@ -39,11 +39,11 @@ export function CustomCursor() {
     <>
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 w-2.5 h-2.5 bg-terracotta rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2"
+        className="fixed top-0 left-0 w-2.5 h-2.5 bg-terracotta rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 will-change-transform"
       />
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 w-9 h-9 border border-terracotta/50 rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2"
+        className="fixed top-0 left-0 w-9 h-9 border border-terracotta/50 rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 will-change-transform"
       />
     </>
   );

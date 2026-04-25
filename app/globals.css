@@ -120,13 +120,14 @@ body { -webkit-font-smoothing: antialiased; overflow-x: hidden; }
    ANIMATIONS
    ============================================================ */
 @keyframes marquee { to { transform: translateX(-50%); } }
-.marquee-animate { animation: marquee 28s linear infinite; }
-.marquee-animate-slow { animation: marquee 38s linear infinite; }
+.marquee-animate { animation: marquee 28s linear infinite; will-change: transform; }
+.marquee-animate-slow { animation: marquee 38s linear infinite; will-change: transform; }
 
 @keyframes hero-up { to { opacity: 1; transform: none; } }
 .hero-entry {
   opacity: 0; transform: translateY(20px);
   animation: hero-up 0.8s var(--ease-out) forwards;
+  will-change: transform, opacity;
 }
 
 @keyframes orb-fade { to { opacity: 1; } }
