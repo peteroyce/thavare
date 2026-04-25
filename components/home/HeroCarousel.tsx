@@ -149,7 +149,7 @@ export function HeroCarousel() {
 
   return (
     <section
-      className="grain relative w-full h-[100svh] min-h-[560px] max-h-[900px] overflow-hidden select-none group"
+      className="grain relative w-full h-[60svh] min-h-[400px] max-h-[600px] overflow-hidden select-none group"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onTouchStart={handleTouchStart}
@@ -245,7 +245,7 @@ export function HeroCarousel() {
               alt={slide.headline.join(' ')}
               width={320}
               height={420}
-              className="h-[65vh] w-auto object-contain"
+              className="h-[45vh] max-h-[450px] w-auto object-contain"
               style={{ filter: isDark ? 'drop-shadow(0 8px 24px rgba(0,0,0,0.30))' : 'drop-shadow(0 6px 16px rgba(168,122,83,0.18))' }}
               priority={active === 0}
             />
