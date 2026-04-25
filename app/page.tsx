@@ -7,7 +7,6 @@ import { ValuesSection }   from '@/components/home/ValuesSection';
 import { IngredientStrip } from '@/components/home/IngredientStrip';
 import { CircleSection }   from '@/components/home/CircleSection';
 import { NewArrivals }     from '@/components/home/NewArrivals';
-import { WhySection }        from '@/components/home/WhySection';
 import { Newsletter }        from '@/components/home/Newsletter';
 import { DistributionStrip } from '@/components/home/DistributionStrip';
 import { getProducts }     from '@/lib/shopify';
@@ -51,7 +50,6 @@ export default async function HomePage() {
       <IngredientStrip />
       <CircleSection />
       <NewArrivals products={allProducts} />
-      <WhySection />
       <Newsletter />
       <DistributionStrip />
     </>
