@@ -9,8 +9,8 @@ export function OrderSuccessClearer() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Only clear cart if Shopify redirected back with a checkout key
-    const hasOrder = searchParams.has('key') || searchParams.has('order_id');
+    // Clear cart for Shopify checkout (key/order_id) or Razorpay (payment_id)
+    const hasOrder = searchParams.has('key') || searchParams.has('order_id') || searchParams.has('payment_id');
     if (hasOrder) {
       clearCart();
     }

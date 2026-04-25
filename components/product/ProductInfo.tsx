@@ -9,6 +9,15 @@ import { Button } from '@/components/ui/Button';
 import { NotifyMeForm } from '@/components/product/NotifyMeForm';
 
 export function ProductInfo({ product: p }: { product: Product }) {
+  const hasVariants = p.variants.length > 1;
+  const [selectedVariantIdx, setSelectedVariantIdx] = useState(0);
+  const selectedVariant = hasVariants ? p.variants[selectedVariantIdx] : null;
+
+  // Use selected variant's values when available, otherwise fall back to product defaults
+  const activePrice = selectedVariant?.price ?? p.price;
+  const activeVariantId = selectedVariant?.id ?? p.variantId;
+  const activeInStock = selectedVariant?.inStock ?? p.inStock;
+
   const [qty, setQty] = useState(1);
   const [adding, setAdding] = useState(false);
   const addItem = useCart(s => s.addItem);
@@ -19,20 +28,31 @@ export function ProductInfo({ product: p }: { product: Product }) {
   const handleAdd = () => {
     if (adding) return;
     setAdding(true);
-    const current = useCart.getState().items.find(i => i.product.id === p.id);
+
+    // Build a product copy with the selected variant's price and variantId
+    const productForCart: Product = {
+      ...p,
+      price: activePrice,
+      variantId: activeVariantId,
+      // For multi-variant products, use variant title as ID suffix to keep them separate in cart
+      id: hasVariants ? `${p.id}--${activeVariantId}` : p.id,
+      name: hasVariants ? `${p.name} (${selectedVariant!.title})` : p.name,
+    };
+
+    const cartId = productForCart.id;
+    const current = useCart.getState().items.find(i => i.product.id === cartId);
     if (current) {
       const newQty = current.quantity + qty;
-      updateQuantity(p.id, newQty);
+      updateQuantity(cartId, newQty);
       const newCount = useCart.getState().totalItems();
-      addToast({ type: 'cart-update', productName: p.name, count: newCount, quantity: newQty });
+      addToast({ type: 'cart-update', productName: productForCart.name, count: newCount, quantity: newQty });
     } else {
-      addItem(p);
+      addItem(productForCart);
       if (qty > 1) {
-        // Schedule quantity update after addItem's state settles
-        setTimeout(() => updateQuantity(p.id, qty), 0);
+        setTimeout(() => updateQuantity(cartId, qty), 0);
       }
       const newCount = useCart.getState().totalItems();
-      addToast({ type: 'cart-add', productName: p.name, count: newCount });
+      addToast({ type: 'cart-add', productName: productForCart.name, count: newCount });
     }
     setTimeout(() => setAdding(false), 600);
   };
@@ -42,8 +62,33 @@ export function ProductInfo({ product: p }: { product: Product }) {
       <div className="text-[10px] font-medium tracking-[3px] uppercase text-terracotta mb-3">{p.categoryLabel}</div>
       <h1 className="font-serif text-[40px] font-medium leading-[1.1] text-navy mb-2">{p.name}</h1>
       <p className="text-[16px] text-text-2 italic mb-6">{p.subtitle}</p>
+
+      {/* Variant selector */}
+      {hasVariants && (
+        <div className="mb-6">
+          <div className="text-[10px] font-semibold tracking-[3px] uppercase text-text-3 mb-3">Size</div>
+          <div className="flex gap-2">
+            {p.variants.map((v, idx) => (
+              <button
+                key={v.id}
+                onClick={() => { setSelectedVariantIdx(idx); setQty(1); }}
+                className={`px-5 py-2.5 rounded-lg border text-[13px] font-medium transition-all duration-200 ${
+                  idx === selectedVariantIdx
+                    ? 'border-terracotta bg-terracotta/5 text-terracotta'
+                    : 'border-[#D4C8B8] text-text-2 hover:border-terracotta/40'
+                } ${!v.inStock ? 'opacity-50 line-through' : ''}`}
+                disabled={!v.inStock}
+                aria-label={`Select ${v.title}${!v.inStock ? ' (out of stock)' : ''}`}
+              >
+                {v.title} — ₹{v.price}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="flex items-center justify-between mb-6">
-        <span className="text-[28px] font-semibold text-terracotta">₹{p.price}</span>
+        <span className="text-[28px] font-semibold text-terracotta">₹{activePrice}</span>
         <button
           onClick={() => {
             const wasWishlisted = has(p.id);
@@ -68,6 +113,7 @@ export function ProductInfo({ product: p }: { product: Product }) {
           {has(p.id) ? 'Saved' : 'Save'}
         </button>
       </div>
+      {/* Description — Shopify-managed trusted HTML content */}
       <div
         className="text-[15px] leading-[1.75] text-text-2 mb-8 [&_p]:mb-3 [&_p:last-child]:mb-0 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5"
         dangerouslySetInnerHTML={{ __html: p.longDescription ?? p.description }}
@@ -91,7 +137,7 @@ export function ProductInfo({ product: p }: { product: Product }) {
         </div>
       )}
       {/* Qty + Add */}
-      {p.inStock ? (
+      {activeInStock ? (
         <div className="flex gap-4 items-center">
           <div className="flex items-center border border-[#D4C8B8] rounded-lg overflow-hidden">
             <button onClick={() => setQty(q => Math.max(1, q - 1))} aria-label="Decrease quantity" className="w-11 h-11 text-[18px] text-text-2 hover:bg-cream transition-colors">−</button>

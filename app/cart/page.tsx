@@ -6,6 +6,7 @@ import { useCart } from '@/lib/cart';
 import { CartItem } from '@/components/cart/CartItem';
 import { Button } from '@/components/ui/Button';
 import { openRazorpayCheckout, verifyRazorpayPayment } from '@/lib/razorpay';
+import type { CartItemForCheckout } from '@/lib/razorpay';
 
 function CheckoutButton() {
   const items = useCart(s => s.items);
@@ -13,8 +14,24 @@ function CheckoutButton() {
   const clearCart = useCart(s => s.clearCart);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState<string | null>(null);
+
+  function validateEmail(value: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
 
   async function handleCheckout() {
+    setEmailError(null);
+    if (!email.trim()) {
+      setEmailError('Email is required for order confirmation');
+      return;
+    }
+    if (!validateEmail(email.trim())) {
+      setEmailError('Please enter a valid email address');
+      return;
+    }
+
     setLoading(true);
     setError(null);
     try {
@@ -28,12 +45,25 @@ function CheckoutButton() {
         price: i.product.price,
       }));
 
-      const response = await openRazorpayCheckout(amount, cartItems);
-      const result = await verifyRazorpayPayment(response);
+      const response = await openRazorpayCheckout(amount, cartItems, email.trim());
+
+      // Build items with variantIds for Shopify order creation
+      const checkoutItems: CartItemForCheckout[] = items.map(i => ({
+        variantId: i.variantId,
+        name: i.product.name,
+        quantity: i.quantity,
+        price: i.product.price,
+      }));
+
+      const result = await verifyRazorpayPayment(response, email.trim(), checkoutItems);
 
       if (result.verified) {
         clearCart();
-        window.location.href = `/order-success?payment_id=${result.paymentId}`;
+        const params = new URLSearchParams({ payment_id: result.paymentId });
+        if (result.orderNumber) params.set('order_number', String(result.orderNumber));
+        if (result.orderName) params.set('order_name', result.orderName);
+        params.set('email', email.trim());
+        window.location.href = `/order-success?${params.toString()}`;
       } else {
         setError('Payment verification failed. Please contact support.');
         setLoading(false);
@@ -49,6 +79,24 @@ function CheckoutButton() {
 
   return (
     <div>
+      {/* Email input */}
+      <div className="mb-4">
+        <label htmlFor="checkout-email" className="block text-[11px] font-semibold tracking-widest uppercase text-text-3 mb-2">
+          Email for Order Confirmation
+        </label>
+        <input
+          id="checkout-email"
+          type="email"
+          value={email}
+          onChange={(e) => { setEmail(e.target.value); setEmailError(null); }}
+          placeholder="you@example.com"
+          className="w-full px-4 py-3 rounded-lg border border-[#D4C8B8] bg-cream text-[14px] text-text-1 placeholder:text-text-3/50 focus:outline-none focus:border-terracotta/50 focus:ring-1 focus:ring-terracotta/20 transition-colors"
+        />
+        {emailError && (
+          <p className="mt-1.5 text-[12px] text-red-500">{emailError}</p>
+        )}
+      </div>
+
       <button
         onClick={handleCheckout}
         disabled={loading || items.length === 0}

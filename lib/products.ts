@@ -6,6 +6,13 @@ export type ProductCategory =
   | 'recovery'
   | 'sun-protection';
 
+export type ProductVariant = {
+  id:      string;   // Shopify variant GID
+  title:   string;   // e.g. "50ml", "100ml"
+  price:   number;
+  inStock: boolean;
+};
+
 export type Product = {
   id:            string;
   slug:          string;
@@ -18,9 +25,10 @@ export type Product = {
   category:      ProductCategory;
   categoryLabel: string;
   price:         number;
-  variantId:     string;   // Shopify variant GID - required for checkout
+  variantId:     string;   // Shopify variant GID - required for checkout (default variant)
   inStock:       boolean;
   ingredients:   string;
+  variants:      ProductVariant[];  // All variants — length > 1 means variant selector needed
   images: {
     main: string;
     card: string;

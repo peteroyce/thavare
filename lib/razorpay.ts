@@ -27,6 +27,13 @@ export interface RazorpayResponse {
   razorpay_signature: string;
 }
 
+export type CartItemForCheckout = {
+  variantId: string;
+  name: string;
+  quantity: number;
+  price: number;
+};
+
 function loadRazorpayScript(): Promise<void> {
   return new Promise((resolve, reject) => {
     if (typeof window !== 'undefined' && window.Razorpay) {
@@ -58,12 +65,14 @@ export async function createRazorpayOrder(
 }
 
 export async function verifyRazorpayPayment(
-  response: RazorpayResponse
-): Promise<{ verified: boolean; paymentId: string; orderId: string }> {
+  response: RazorpayResponse,
+  email: string,
+  items: CartItemForCheckout[]
+): Promise<{ verified: boolean; paymentId: string; orderId: string; orderNumber?: number; orderName?: string }> {
   const res = await fetch('/api/razorpay/verify', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(response),
+    body: JSON.stringify({ ...response, email, items }),
   });
   if (!res.ok) {
     const data = await res.json().catch(() => ({}));
@@ -74,7 +83,8 @@ export async function verifyRazorpayPayment(
 
 export async function openRazorpayCheckout(
   amount: number,
-  items: Array<{ name: string; quantity: number; price: number }>
+  items: Array<{ name: string; quantity: number; price: number }>,
+  email?: string
 ): Promise<RazorpayResponse> {
   await loadRazorpayScript();
 
@@ -88,6 +98,7 @@ export async function openRazorpayCheckout(
       name: 'Thavare',
       description: `${items.length} item${items.length > 1 ? 's' : ''} — Clinically Crafted Ayurveda`,
       order_id: orderId,
+      prefill: email ? { email } : undefined,
       theme: { color: '#2C1810' }, // deep brown brand color
       handler: (response) => resolve(response),
       modal: { ondismiss: () => reject(new Error('Payment cancelled')) },

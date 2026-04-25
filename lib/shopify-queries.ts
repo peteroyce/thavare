@@ -17,8 +17,8 @@ export const GET_PRODUCTS = `
           ingredients: metafield(namespace: "custom", key: "ingredients") { value }
           how_to_use: metafield(namespace: "custom", key: "how_to_use") { value }
           images(first: 2) { edges { node { url altText } } }
-          variants(first: 1) {
-            edges { node { id price { amount currencyCode } availableForSale } }
+          variants(first: 10) {
+            edges { node { id title price { amount currencyCode } availableForSale } }
           }
         }
       }

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import { OrderSuccessClearer } from './OrderSuccessClearer';
+import { OrderDetails } from './OrderDetails';
 import { Button } from '@/components/ui/Button';
 
 export const metadata: Metadata = {
@@ -27,6 +28,11 @@ export default function OrderSuccessPage() {
         <h1 className="font-serif text-[clamp(28px,4vw,42px)] font-medium text-navy leading-[1.12] mb-4">
           Thank You for Your Order
         </h1>
+
+        <Suspense>
+          <OrderDetails />
+        </Suspense>
+
         <p className="text-[14px] leading-[1.75] text-text-2 mb-10">
           Your Thavare products are on their way. You will receive a confirmation email
           shortly with your order details and tracking information.

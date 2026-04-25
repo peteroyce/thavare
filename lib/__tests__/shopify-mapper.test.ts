@@ -14,6 +14,7 @@ function makeNode(overrides: Partial<ShopifyProductNode> = {}): ShopifyProductNo
     category: { value: 'sport' },
     category_label: { value: 'Sport' },
     ingredients: { value: 'Neem, Tulsi' },
+    how_to_use: null,
     images: {
       edges: [
         { node: { url: 'https://cdn.shopify.com/s/files/main.jpg', altText: 'Body Wash' } },
@@ -24,6 +25,7 @@ function makeNode(overrides: Partial<ShopifyProductNode> = {}): ShopifyProductNo
       edges: [{
         node: {
           id: 'gid://shopify/ProductVariant/1',
+          title: 'Default',
           price: { amount: '599.00', currencyCode: 'INR' },
           availableForSale: true,
         },
@@ -63,7 +65,7 @@ describe('mapShopifyProduct', () => {
   it('maps inStock false from availableForSale false', () => {
     const p = mapShopifyProduct(makeNode({
       variants: {
-        edges: [{ node: { id: 'gid://shopify/ProductVariant/1', price: { amount: '599.00', currencyCode: 'INR' }, availableForSale: false } }],
+        edges: [{ node: { id: 'gid://shopify/ProductVariant/1', title: 'Default', price: { amount: '599.00', currencyCode: 'INR' }, availableForSale: false } }],
       },
     }));
     expect(p.inStock).toBe(false);

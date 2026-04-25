@@ -1,5 +1,5 @@
 // lib/shopify-mapper.ts
-import type { Product, ProductCategory } from './products';
+import type { Product, ProductCategory, ProductVariant } from './products';
 
 export type ShopifyProductNode = {
   id: string;
@@ -20,6 +20,7 @@ export type ShopifyProductNode = {
     edges: Array<{
       node: {
         id: string;
+        title: string;
         price: { amount: string; currencyCode: string };
         availableForSale: boolean;
       };
@@ -58,6 +59,13 @@ export function mapShopifyProduct(node: ShopifyProductNode): Product {
   const mainImage = node.images.edges[0]?.node.url ?? '';
   const cardImage = node.images.edges[1]?.node.url ?? mainImage;
 
+  const variants: ProductVariant[] = node.variants.edges.map(e => ({
+    id: e.node.id,
+    title: e.node.title,
+    price: Math.round(parseFloat(e.node.price.amount)),
+    inStock: e.node.availableForSale,
+  }));
+
   return {
     id: node.handle,
     slug: node.handle,
@@ -73,6 +81,7 @@ export function mapShopifyProduct(node: ShopifyProductNode): Product {
     inStock: variant.availableForSale,
     ingredients: node.ingredients?.value ?? '',
     howToUse: node.how_to_use?.value ?? undefined,
+    variants,
     images: { main: mainImage, card: cardImage },
   };
 }
