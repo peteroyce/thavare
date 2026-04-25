@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/lib/cart';
@@ -16,8 +16,15 @@ type Props = {
 export function QuickViewModal({ product: p, onClose }: Props) {
   const addItem = useCart(s => s.addItem);
   const addToast = useToast(s => s.add);
+  const [added, setAdded] = useState(false);
+  const addingRef = useRef(false);
 
   function handleAddToCart() {
+    if (addingRef.current) return;
+    addingRef.current = true;
+    setAdded(true);
+    setTimeout(() => { addingRef.current = false; setAdded(false); }, 800);
+
     const wasInCart = useCart.getState().items.some(i => i.product.id === p.id);
     addItem(p);
     const newCount = useCart.getState().totalItems();
@@ -190,7 +197,7 @@ export function QuickViewModal({ product: p, onClose }: Props) {
                 disabled={!p.inStock}
                 className="w-full py-3 text-[11px] font-semibold tracking-[1.5px] uppercase rounded-xl transition-all disabled:cursor-not-allowed bg-terracotta text-white hover:opacity-90 disabled:bg-[#D4C8B8] disabled:text-text-3"
               >
-                {p.inStock ? 'Add to Bag' : 'Out of Stock'}
+                {!p.inStock ? 'Out of Stock' : added ? 'Added ✓' : 'Add to Bag'}
               </button>
 
               {/* View Full Details */}
