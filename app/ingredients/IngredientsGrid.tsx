@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { INGREDIENTS, type Ingredient } from '@/lib/ingredients';
+import { Leaf, Jar, Diamond, Flower } from '@phosphor-icons/react';
 
 const CATEGORY_LABELS: Record<Ingredient['category'], string> = {
   herb:      'Herb',
@@ -18,11 +19,11 @@ const CATEGORY_COLORS: Record<Ingredient['category'], string> = {
   botanical: 'bg-[rgba(179,95,66,0.08)] text-terracotta border border-[rgba(179,95,66,0.18)]',
 };
 
-const CATEGORY_INITIALS: Record<Ingredient['category'], string> = {
-  herb:      '🌿',
-  oil:       '🫙',
-  mineral:   '🪨',
-  botanical: '🌺',
+const CATEGORY_INITIALS: Record<Ingredient['category'], ReactNode> = {
+  herb:      <Leaf size={18} weight="light" />,
+  oil:       <Jar size={18} weight="light" />,
+  mineral:   <Diamond size={18} weight="light" />,
+  botanical: <Flower size={18} weight="light" />,
 };
 
 type FilterCategory = Ingredient['category'] | 'all';

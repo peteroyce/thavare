@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
+import { Stethoscope } from '@/components/ui/Icons';
 import { Button } from '@/components/ui/Button';
 import { ARTICLES } from '@/lib/journal';
 import type { JournalArticle } from '@/lib/journal';
@@ -124,7 +125,7 @@ export default async function ArticlePage({
               className="w-10 h-10 rounded-full flex items-center justify-center text-[18px] flex-shrink-0"
               style={{ background: 'rgba(166,69,44,0.07)', border: '1px solid rgba(166,69,44,0.15)' }}
             >
-              👩‍⚕️
+              <Stethoscope size={20} weight="light" className="text-terracotta" />
             </div>
             <div>
               <div className="text-[13px] font-semibold text-navy leading-tight">Dr. Meena Ramaiah</div>

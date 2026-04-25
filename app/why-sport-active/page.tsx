@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Button } from '@/components/ui/Button';
+import { Trophy, Target, Lightning, Person, Bicycle, Sparkle } from '@/components/ui/Icons';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -21,15 +22,15 @@ const KINETIC_WORDS = [
 ];
 
 const SPORT_BULLETS = [
-  { icon: '🏆', label: 'The Professional' },
-  { icon: '🎯', label: 'The Dedicated' },
-  { icon: '💪', label: 'The Competitor' },
+  { icon: <Trophy size={18} weight="light" />, label: 'The Professional' },
+  { icon: <Target size={18} weight="light" />, label: 'The Dedicated' },
+  { icon: <Lightning size={18} weight="light" />, label: 'The Competitor' },
 ];
 
 const ACTIVE_BULLETS = [
-  { icon: '🚶', label: 'The Walker' },
-  { icon: '🚴', label: 'The Cyclist' },
-  { icon: '💃', label: 'The One Who Shows Up' },
+  { icon: <Person size={18} weight="light" />, label: 'The Walker' },
+  { icon: <Bicycle size={18} weight="light" />, label: 'The Cyclist' },
+  { icon: <Sparkle size={18} weight="light" />, label: 'The One Who Shows Up' },
 ];
 
 const DECLARATIONS = [

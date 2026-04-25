@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Button } from '@/components/ui/Button';
+import { Leaf, Flask, Drop, Stethoscope, Recycle, PawPrint, MapPin } from '@/components/ui/Icons';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -22,29 +23,29 @@ const STATS = [
 
 const PILLARS = [
   {
-    icon: '🌿',
+    icon: <Leaf size={24} weight="light" />,
     title: 'Rooted in Nature',
     desc: 'Ayurvedic wisdom distilled from 5000 years of traditional practice — every ingredient chosen with purpose and respect.',
   },
   {
-    icon: '🔬',
+    icon: <Flask size={24} weight="light" />,
     title: 'Proven by Science',
     desc: 'Modern biotechnology that extracts and elevates ancient actives, clinically validated so nature and science always work together.',
   },
   {
-    icon: '💧',
+    icon: <Drop size={24} weight="light" />,
     title: 'Built for Motion',
     desc: 'Engineered for the unique demands of active skin — sweat, sun, friction, and the wear of everyday movement.',
   },
 ];
 
 const CERTIFICATIONS = [
-  { icon: '🔬', label: 'Clinically Formulated', sub: 'Physician-validated formulations' },
-  { icon: '🌿', label: '100% Ayurvedic Actives', sub: 'No synthetic fragrances or harsh chemicals' },
-  { icon: '👩‍⚕️', label: 'Doctor Formulated', sub: 'By Dr. Meena Ramaiah — Doctor & Formulator, in collaboration with a traditional Ayurvedic physician' },
-  { icon: '♻️', label: 'Sustainable Packaging', sub: 'Recyclable materials, minimal plastic' },
-  { icon: '🚫', label: 'Cruelty Free', sub: 'Never tested on animals' },
-  { icon: '🇮🇳', label: 'Made in India', sub: 'Manufactured in GMP-certified facilities' },
+  { icon: <Flask size={22} weight="light" />, label: 'Clinically Formulated', sub: 'Physician-validated formulations' },
+  { icon: <Leaf size={22} weight="light" />, label: '100% Ayurvedic Actives', sub: 'No synthetic fragrances or harsh chemicals' },
+  { icon: <Stethoscope size={22} weight="light" />, label: 'Doctor Formulated', sub: 'By Dr. Meena Ramaiah — Doctor & Formulator, in collaboration with a traditional Ayurvedic physician' },
+  { icon: <Recycle size={22} weight="light" />, label: 'Sustainable Packaging', sub: 'Recyclable materials, minimal plastic' },
+  { icon: <PawPrint size={22} weight="light" />, label: 'Cruelty Free', sub: 'Never tested on animals' },
+  { icon: <MapPin size={22} weight="light" />, label: 'Made in India', sub: 'Manufactured in GMP-certified facilities' },
 ];
 
 const PACE = [
