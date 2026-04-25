@@ -21,15 +21,15 @@ const KINETIC_WORDS = [
 ];
 
 const SPORT_BULLETS = [
-  { icon: '🏆', label: 'The Professional' },
-  { icon: '🎯', label: 'The Dedicated' },
-  { icon: '💪', label: 'The Competitor' },
+  { icon: '—', label: 'The Professional' },
+  { icon: '—', label: 'The Dedicated' },
+  { icon: '—', label: 'The Competitor' },
 ];
 
 const ACTIVE_BULLETS = [
-  { icon: '🚶', label: 'The Walker' },
-  { icon: '🚴', label: 'The Cyclist' },
-  { icon: '💃', label: 'The One Who Shows Up' },
+  { icon: '—', label: 'The Walker' },
+  { icon: '—', label: 'The Cyclist' },
+  { icon: '—', label: 'The One Who Shows Up' },
 ];
 
 const DECLARATIONS = [
