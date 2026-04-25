@@ -48,7 +48,7 @@ export function ProductCard({ product: p }: { product: Product }) {
 
   return (
     <div
-      className="bg-[#FAF4EE] rounded-xl overflow-hidden hover:-translate-y-2 transition-all duration-300 group relative"
+      className="bg-[#FAF4EE] rounded-xl overflow-hidden hover:-translate-y-2 transition-all duration-300 group relative flex flex-col h-full"
       style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
       onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, 0 4px 12px rgba(168,122,83,0.08), 0 16px 40px rgba(26,22,16,0.06)')}
       onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}
@@ -89,13 +89,13 @@ export function ProductCard({ product: p }: { product: Product }) {
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
         </svg>
       </button>
-      <div className="p-5">
+      <div className="p-5 flex-1 flex flex-col">
         <div className="text-[9px] font-medium tracking-[2.5px] uppercase text-camel mb-1.5">{p.categoryLabel}</div>
         <Link href={`/products/${p.slug}`}>
           <div className="font-serif text-[17px] font-medium text-navy mb-1.5 leading-[1.25] hover:text-terracotta transition-colors">{p.name}</div>
         </Link>
         <div className="text-[13px] leading-relaxed text-text-2 mb-4 line-clamp-2">{p.description}</div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-auto">
           <span className="text-[18px] font-semibold text-terracotta">₹{p.price}</span>
           <button
             onClick={handleAddToCart}

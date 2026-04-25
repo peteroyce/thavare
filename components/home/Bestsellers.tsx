@@ -47,7 +47,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
           {products.map((p, i) => (
             <AnimatedSection key={p.id} delay={(i + 1) as 1|2|3}>
               <div
-                className="bg-[#FAF4EE] rounded-xl overflow-hidden md:hover:-translate-y-1 transition-all duration-300 group relative cursor-none"
+                className="bg-[#FAF4EE] rounded-xl overflow-hidden md:hover:-translate-y-1 transition-all duration-300 group relative cursor-none flex flex-col h-full"
                 style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}
@@ -73,11 +73,11 @@ export function Bestsellers({ products }: { products: Product[] }) {
                     Quick Add to Bag
                   </button>
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex-1 flex flex-col">
                   <div className="text-[9px] font-medium tracking-[3px] uppercase text-[#7A5D3A] mb-1.5">{p.categoryLabel}</div>
                   <div className="font-serif text-[18px] font-medium leading-[1.25] text-navy mb-2">{p.name}</div>
                   <div className="text-[13px] leading-relaxed text-text-2 mb-4 line-clamp-2">{p.description}</div>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mt-auto">
                     <div>
                       <span className="text-[19px] font-semibold text-terracotta">{'\u20B9'}{p.price}</span>
                     </div>

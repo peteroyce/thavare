@@ -27,7 +27,7 @@ export function NewArrivals({ products }: { products: Product[] }) {
             <AnimatedSection key={p.id} delay={((i % 3) + 1) as 1|2|3}>
               <Link
                 href={`/products/${p.slug}`}
-                className="block bg-[#FAF4EE] rounded-xl overflow-hidden md:hover:-translate-y-1.5 transition-all duration-300 group"
+                className="block bg-[#FAF4EE] rounded-xl overflow-hidden md:hover:-translate-y-1.5 transition-all duration-300 group flex flex-col h-full"
                 style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}
@@ -45,10 +45,10 @@ export function NewArrivals({ products }: { products: Product[] }) {
                     style={{ filter: 'drop-shadow(0 4px 14px rgba(0,0,0,0.12))' }}
                   />
                 </div>
-                <div className="p-4 pb-5">
+                <div className="p-4 pb-5 flex-1 flex flex-col">
                   <div className="text-[9px] font-medium tracking-[2.5px] uppercase text-camel mb-1.5">{p.categoryLabel}</div>
                   <div className="font-serif text-[15px] font-medium text-navy mb-2 leading-[1.3]">{p.name}</div>
-                  <div className="text-[15px] font-semibold text-terracotta">{'\u20B9'}{p.price}</div>
+                  <div className="text-[15px] font-semibold text-terracotta mt-auto">{'\u20B9'}{p.price}</div>
                 </div>
               </Link>
             </AnimatedSection>
