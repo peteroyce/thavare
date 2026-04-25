@@ -69,14 +69,14 @@ export function Navbar() {
   return (
     <>
       <nav
-        className={`sticky top-0 z-50 h-[72px] flex items-center justify-between px-6 md:px-16 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] border-b ${
+        className={`sticky top-0 z-50 h-[72px] flex md:grid md:grid-cols-[1fr_auto_1fr] items-center justify-between px-6 md:px-16 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] border-b ${
           scrolled
             ? 'bg-ivory/95 backdrop-blur-2xl border-[#E5DDD0]'
             : 'bg-navy-deep/92 backdrop-blur-md border-white/8'
         }`}
       >
         {/* Left links — desktop only */}
-        <div className="hidden md:flex items-center gap-4 lg:gap-7">
+        <div className="hidden md:flex items-center gap-4 lg:gap-7 justify-self-start">
           {/* Shop — hover-activated mega flyout */}
           <div className="relative" onMouseEnter={() => setShopOpen(true)} onMouseLeave={() => setShopOpen(false)}>
             <button aria-expanded={shopOpen} aria-haspopup="true" className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] relative group flex items-center gap-1 ${linkCls}`}>
@@ -123,7 +123,7 @@ export function Navbar() {
         </div>
 
         {/* Logo — centered on desktop, left-ish on mobile */}
-        <Link href="/" className="flex items-center gap-3 no-underline group md:absolute md:left-1/2 md:-translate-x-1/2 z-10 flex-shrink-0">
+        <Link href="/" className="flex items-center gap-3 no-underline group md:justify-self-center flex-shrink-0">
           <img src="/images/thavare-icon.svg" alt="" className="w-9 h-9 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-[20deg]" style={{ color: 'var(--camel)' }} />
           <div>
             <span className={`block font-serif text-lg font-medium tracking-[5px] leading-none whitespace-nowrap ${logoCls}`}>THAVARE</span>
@@ -132,7 +132,7 @@ export function Navbar() {
         </Link>
 
         {/* Right links — desktop only */}
-        <div className="hidden md:flex items-center gap-4 lg:gap-7">
+        <div className="hidden md:flex items-center gap-4 lg:gap-7 justify-self-end">
           {RIGHT_LINKS.map(({ label, href }) => (
             <Link
               key={label}
