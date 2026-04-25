@@ -79,7 +79,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-7">
           {/* Shop — hover-activated mega flyout */}
           <div className="relative" onMouseEnter={() => setShopOpen(true)} onMouseLeave={() => setShopOpen(false)}>
-            <button aria-expanded={shopOpen} aria-haspopup="true" className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] relative group flex items-center gap-1 cursor-none ${linkCls}`}>
+            <button aria-expanded={shopOpen} aria-haspopup="true" className={`text-[11px] font-medium tracking-[1.5px] uppercase transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] relative group flex items-center gap-1 ${linkCls}`}>
               Shop
               <span className={`text-[8px] transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${shopOpen ? 'rotate-180' : ''}`}>▾</span>
               <span className="absolute bottom-0 left-0 w-0 h-px bg-terracotta group-hover:w-full transition-[width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
@@ -124,9 +124,7 @@ export function Navbar() {
 
         {/* Logo — centered on desktop, left-ish on mobile */}
         <Link href="/" className="flex items-center gap-3 no-underline group md:absolute md:left-1/2 md:-translate-x-1/2">
-          <div className="w-9 h-9 rounded-full border border-camel/50 flex items-center justify-center text-camel text-base transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-camel group-hover:rotate-[20deg]">
-            ◎
-          </div>
+          <img src="/images/thavare-icon.svg" alt="" className="w-9 h-9 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-[20deg]" style={{ color: 'var(--camel)' }} />
           <div>
             <span className={`block font-serif text-lg font-medium tracking-[5px] leading-none ${logoCls}`}>THAVARE</span>
             <span className={`block text-[8px] tracking-[2px] uppercase mt-0.5 ${logoSubCls}`}>Clinically Crafted Ayurveda</span>
@@ -214,7 +212,7 @@ export function Navbar() {
         {/* Drawer header */}
         <div className="flex items-center justify-between px-5 h-[68px] border-b border-white/8 shrink-0">
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-full border border-camel/40 flex items-center justify-center text-camel text-xs">◎</div>
+            <img src="/images/thavare-icon.svg" alt="" className="w-7 h-7" style={{ color: 'var(--camel)' }} />
             <span className="font-serif text-[15px] tracking-[4px] text-cream/80">THAVARE</span>
           </div>
           <button onClick={closeMenu} aria-label="Close menu" className="w-8 h-8 flex items-center justify-center text-cream/40 text-lg">✕</button>

@@ -24,7 +24,7 @@ export function DistributionStrip() {
       <div className="flex flex-wrap justify-center gap-3">
         {CHANNELS.map(({ name, url, desc, external }, i) => {
           const sharedClass =
-            'cursor-none inline-flex flex-col items-center px-6 py-3 rounded-xl bg-[#FAF4EE] hover:-translate-y-0.5 transition-all duration-200';
+            'inline-flex flex-col items-center px-6 py-3 rounded-xl bg-[#FAF4EE] hover:-translate-y-0.5 transition-all duration-200';
 
           const sharedStyle = { boxShadow: ringRest };
           const onEnter = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.boxShadow = ringHover; };

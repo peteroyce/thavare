@@ -97,7 +97,7 @@ export function QuickViewModal({ product: p, onClose }: Props) {
         <button
           ref={closeRef}
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-ivory border border-[#E5DDD0] flex items-center justify-center text-text-3 hover:text-navy transition-colors cursor-none z-10"
+          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-ivory border border-[#E5DDD0] flex items-center justify-center text-text-3 hover:text-navy transition-colors z-10"
           aria-label="Close quick view"
         >
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
@@ -145,7 +145,7 @@ export function QuickViewModal({ product: p, onClose }: Props) {
                       addToast({ type: 'wishlist-add', productName: p.name, count: newCount });
                     }
                   }}
-                className={`mt-1 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 cursor-none flex-shrink-0 ${
+                className={`mt-1 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 flex-shrink-0 ${
                   has(p.id)
                     ? 'bg-terracotta text-white shadow-md'
                     : 'bg-white/80 text-text-3 hover:bg-white hover:text-terracotta'
@@ -188,7 +188,7 @@ export function QuickViewModal({ product: p, onClose }: Props) {
               <button
                 onClick={handleAddToCart}
                 disabled={!p.inStock}
-                className="w-full py-3 text-[11px] font-semibold tracking-[1.5px] uppercase rounded-xl transition-all cursor-none disabled:cursor-not-allowed bg-terracotta text-white hover:opacity-90 disabled:bg-[#D4C8B8] disabled:text-text-3"
+                className="w-full py-3 text-[11px] font-semibold tracking-[1.5px] uppercase rounded-xl transition-all disabled:cursor-not-allowed bg-terracotta text-white hover:opacity-90 disabled:bg-[#D4C8B8] disabled:text-text-3"
               >
                 {p.inStock ? 'Add to Bag' : 'Out of Stock'}
               </button>
@@ -197,7 +197,7 @@ export function QuickViewModal({ product: p, onClose }: Props) {
               <Link
                 href={`/products/${p.slug}`}
                 onClick={onClose}
-                className="w-full py-3 text-[11px] font-semibold tracking-[1.5px] uppercase rounded-xl border border-navy text-navy text-center hover:bg-navy hover:text-cream transition-all duration-200 cursor-none"
+                className="w-full py-3 text-[11px] font-semibold tracking-[1.5px] uppercase rounded-xl border border-navy text-navy text-center hover:bg-navy hover:text-cream transition-all duration-200"
               >
                 View Full Details →
               </Link>

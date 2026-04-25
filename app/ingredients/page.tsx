@@ -182,10 +182,10 @@ export default function IngredientsPage() {
               targeted, balanced, and clinically validated for the body in motion.
             </p>
             <div className="flex gap-3 flex-wrap justify-center">
-              <a href="/shop" className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 cursor-none bg-terracotta text-ivory shadow-[0_0_0_1px_var(--terracotta)] hover:-translate-y-px hover:shadow-[0_0_0_1px_var(--terra-h),0_6px_20px_rgba(179,95,66,0.35)]">
+              <a href="/shop" className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 bg-terracotta text-ivory shadow-[0_0_0_1px_var(--terracotta)] hover:-translate-y-px hover:shadow-[0_0_0_1px_var(--terra-h),0_6px_20px_rgba(179,95,66,0.35)]">
                 Shop the Range
               </a>
-              <a href="/about" className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 cursor-none bg-transparent text-cream/75 border border-cream/20 hover:border-cream/45 hover:text-cream hover:bg-cream/5">
+              <a href="/about" className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 bg-transparent text-cream/75 border border-cream/20 hover:border-cream/45 hover:text-cream hover:bg-cream/5">
                 Our Philosophy
               </a>
             </div>

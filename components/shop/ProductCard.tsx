@@ -70,7 +70,7 @@ export function ProductCard({ product: p }: { product: Product }) {
           />
           <button
             onClick={(e) => { e.preventDefault(); e.stopPropagation(); setQuickViewOpen(true); }}
-            className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm text-navy text-[10px] font-semibold tracking-[1.5px] uppercase px-4 py-2 rounded-full border border-[#E5DDD0] opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 cursor-none whitespace-nowrap z-10"
+            className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm text-navy text-[10px] font-semibold tracking-[1.5px] uppercase px-4 py-2 rounded-full border border-[#E5DDD0] opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 whitespace-nowrap z-10"
           >
             Quick View
           </button>
@@ -78,7 +78,7 @@ export function ProductCard({ product: p }: { product: Product }) {
       </Link>
       <button
         onClick={handleWishlistToggle}
-        className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 cursor-none ${
+        className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
           has(p.id)
             ? 'bg-terracotta text-white shadow-md'
             : 'bg-white/80 text-text-3 hover:bg-white hover:text-terracotta'
@@ -100,7 +100,7 @@ export function ProductCard({ product: p }: { product: Product }) {
           <button
             onClick={handleAddToCart}
             disabled={!p.inStock}
-            className="px-4 py-2 text-[10px] font-semibold tracking-wide uppercase rounded-lg transition-all cursor-none disabled:cursor-not-allowed bg-navy text-cream hover:bg-navy/90 disabled:bg-[#D4C8B8] disabled:text-text-3"
+            className="px-4 py-2 text-[10px] font-semibold tracking-wide uppercase rounded-lg transition-all disabled:cursor-not-allowed bg-navy text-cream hover:bg-navy/90 disabled:bg-[#D4C8B8] disabled:text-text-3"
           >
             {!p.inStock ? 'Out of Stock' : added ? 'Added ✓' : 'Add to Bag'}
           </button>

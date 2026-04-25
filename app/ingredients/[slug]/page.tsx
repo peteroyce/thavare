@@ -99,7 +99,7 @@ export default async function IngredientPage(
           >
             <Link
               href="/ingredients"
-              className="text-[10px] font-medium tracking-[3px] uppercase text-terracotta/70 hover:text-terracotta transition-colors cursor-none"
+              className="text-[10px] font-medium tracking-[3px] uppercase text-terracotta/70 hover:text-terracotta transition-colors"
             >
               Ingredients
             </Link>
@@ -241,7 +241,7 @@ export default async function IngredientPage(
                 delay={(Math.min(i, 4)) as 0 | 1 | 2 | 3 | 4}
               >
                 <div
-                  className="flex items-start gap-4 p-5 rounded-xl border bg-white hover:-translate-y-0.5 transition-all duration-300 cursor-none"
+                  className="flex items-start gap-4 p-5 rounded-xl border bg-white hover:-translate-y-0.5 transition-all duration-300"
                   style={{
                     borderColor: 'var(--border-l)',
                     boxShadow: 'var(--shadow)',
@@ -302,7 +302,7 @@ export default async function IngredientPage(
                 <Link
                   key={handle}
                   href={`/products/${handle}`}
-                  className="group inline-flex items-center gap-2.5 px-5 py-3 rounded-xl border transition-all duration-200 cursor-none hover:-translate-y-0.5"
+                  className="group inline-flex items-center gap-2.5 px-5 py-3 rounded-xl border transition-all duration-200 hover:-translate-y-0.5"
                   style={{
                     borderColor: 'rgba(255,255,255,0.1)',
                     background: 'rgba(255,255,255,0.04)',
@@ -351,7 +351,7 @@ export default async function IngredientPage(
                 <Button variant="primary">Explore the Collection</Button>
               </Link>
               <Link href="/ingredients">
-                <button className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 cursor-none border border-navy/20 text-navy/70 hover:border-navy/40 hover:text-navy bg-transparent">
+                <button className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 border border-navy/20 text-navy/70 hover:border-navy/40 hover:text-navy bg-transparent">
                   All Ingredients
                 </button>
               </Link>
@@ -365,7 +365,7 @@ export default async function IngredientPage(
                 <Link
                   key={other.slug}
                   href={`/ingredients/${other.slug}`}
-                  className="group relative w-14 h-14 rounded-full flex items-center justify-center border transition-all duration-200 cursor-none hover:scale-105 hover:-translate-y-0.5"
+                  className="group relative w-14 h-14 rounded-full flex items-center justify-center border transition-all duration-200 hover:scale-105 hover:-translate-y-0.5"
                   style={{
                     borderColor: 'rgba(168,122,83,0.25)',
                     background: 'rgba(168,122,83,0.06)',

@@ -39,7 +39,7 @@ export default function OrderSuccessPage() {
             <Button variant="primary">Continue Shopping</Button>
           </Link>
           <Link href="/">
-            <button className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 cursor-none border border-navy/20 text-navy/70 hover:border-navy/40 hover:text-navy bg-transparent">
+            <button className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 border border-navy/20 text-navy/70 hover:border-navy/40 hover:text-navy bg-transparent">
               Back to Home
             </button>
           </Link>

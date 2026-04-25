@@ -131,7 +131,7 @@ export default function CirclePage() {
               href="#join"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg
                          text-xs font-semibold tracking-widest uppercase transition-all duration-200
-                         cursor-none bg-terracotta text-cream hover:opacity-90"
+                         bg-terracotta text-cream hover:opacity-90"
             >
               Join the Waitlist
             </a>
@@ -189,7 +189,7 @@ export default function CirclePage() {
                 delay={(i % 4) as 0 | 1 | 2 | 3}
               >
                 <div
-                  className="rounded-xl p-8 border border-white/8 group hover:bg-white/5 hover:-translate-y-0.5 transition-all duration-300 cursor-none"
+                  className="rounded-xl p-8 border border-white/8 group hover:bg-white/5 hover:-translate-y-0.5 transition-all duration-300"
                   style={{ background: 'rgba(255,255,255,0.03)' }}
                 >
                   {/* Icon */}
@@ -238,7 +238,7 @@ export default function CirclePage() {
                 delay={(i + 1) as 1 | 2 | 3}
               >
                 <div
-                  className="rounded-xl p-8 border group hover:-translate-y-0.5 transition-all duration-300 cursor-none"
+                  className="rounded-xl p-8 border group hover:-translate-y-0.5 transition-all duration-300"
                   style={{
                     borderColor: 'var(--border-m)',
                     background: 'rgba(255,255,255,0.6)',
@@ -360,7 +360,7 @@ export default function CirclePage() {
               />
               <button
                 type="submit"
-                className="px-6 py-3 rounded-r-lg text-xs font-semibold tracking-widest uppercase bg-white text-terracotta-dark hover:bg-cream transition-colors cursor-none whitespace-nowrap"
+                className="px-6 py-3 rounded-r-lg text-xs font-semibold tracking-widest uppercase bg-white text-terracotta-dark hover:bg-cream transition-colors whitespace-nowrap"
                 style={{ color: 'var(--terracotta)' }}
               >
                 Join Waitlist

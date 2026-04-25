@@ -35,7 +35,7 @@ export function Footer() {
         {/* Brand */}
         <div className="md:col-span-2 lg:col-span-1">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-9 h-9 rounded-full border border-camel/50 flex items-center justify-center text-camel">◎</div>
+            <img src="/images/thavare-icon.svg" alt="Thavare" className="w-9 h-9" />
             <div>
               <span className="block font-serif text-lg font-medium tracking-[5px] text-cream">THAVARE</span>
               <span className="block text-[8px] tracking-[2px] uppercase text-cream/40">Clinically Crafted Ayurveda</span>
@@ -50,7 +50,7 @@ export function Footer() {
               href="https://www.instagram.com/thavare_ayurveda"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/50 hover:border-white/30 hover:text-cream/80 transition-all duration-200 cursor-none"
+              className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/50 hover:border-white/30 hover:text-cream/80 transition-all duration-200"
               aria-label="Thavare on Instagram"
             >
               IG
@@ -59,7 +59,7 @@ export function Footer() {
               href="https://www.facebook.com/thavare"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/50 hover:border-white/30 hover:text-cream/80 transition-all duration-200 cursor-none"
+              className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/50 hover:border-white/30 hover:text-cream/80 transition-all duration-200"
               aria-label="Thavare on Facebook"
             >
               FB
@@ -68,7 +68,7 @@ export function Footer() {
               href="https://www.youtube.com/@thavare"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/50 hover:border-white/30 hover:text-cream/80 transition-all duration-200 cursor-none"
+              className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/50 hover:border-white/30 hover:text-cream/80 transition-all duration-200"
               aria-label="Thavare on YouTube"
             >
               YT
@@ -77,7 +77,7 @@ export function Footer() {
               href="https://x.com/thavare"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/50 hover:border-white/30 hover:text-cream/80 transition-all duration-200 cursor-none"
+              className="w-[34px] h-[34px] rounded-full border border-white/10 flex items-center justify-center text-[11px] text-cream/50 hover:border-white/30 hover:text-cream/80 transition-all duration-200"
               aria-label="Thavare on X"
             >
               X

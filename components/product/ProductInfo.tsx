@@ -55,7 +55,7 @@ export function ProductInfo({ product: p }: { product: Product }) {
               addToast({ type: 'wishlist-add', productName: p.name, count: newCount });
             }
           }}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-all duration-200 cursor-none text-[11px] font-semibold tracking-wide uppercase ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-all duration-200 text-[11px] font-semibold tracking-wide uppercase ${
             has(p.id)
               ? 'border-terracotta bg-terracotta/5 text-terracotta'
               : 'border-[#D4C8B8] text-text-3 hover:border-terracotta/50 hover:text-terracotta'
@@ -94,9 +94,9 @@ export function ProductInfo({ product: p }: { product: Product }) {
       {p.inStock ? (
         <div className="flex gap-4 items-center">
           <div className="flex items-center border border-[#D4C8B8] rounded-lg overflow-hidden">
-            <button onClick={() => setQty(q => Math.max(1, q - 1))} aria-label="Decrease quantity" className="w-11 h-11 text-[18px] text-text-2 hover:bg-cream transition-colors cursor-none">−</button>
+            <button onClick={() => setQty(q => Math.max(1, q - 1))} aria-label="Decrease quantity" className="w-11 h-11 text-[18px] text-text-2 hover:bg-cream transition-colors">−</button>
             <span className="w-10 text-center text-[15px] font-medium text-text-1">{qty}</span>
-            <button onClick={() => setQty(q => q + 1)} aria-label="Increase quantity" className="w-11 h-11 text-[18px] text-text-2 hover:bg-cream transition-colors cursor-none">+</button>
+            <button onClick={() => setQty(q => q + 1)} aria-label="Increase quantity" className="w-11 h-11 text-[18px] text-text-2 hover:bg-cream transition-colors">+</button>
           </div>
           <Button onClick={handleAdd} disabled={adding} className="flex-1">{adding ? 'Adding…' : 'Add to Bag'}</Button>
         </div>

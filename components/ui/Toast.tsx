@@ -104,7 +104,7 @@ export function Toast({
         <button
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); onDismiss(toast.id); }}
           aria-label="Dismiss notification"
-          className="w-6 h-6 rounded-full border border-[#D4C8B8] flex items-center justify-center text-text-3 text-[13px] flex-shrink-0 mt-0.5 cursor-none hover:border-[#B4A898] transition-colors"
+          className="w-6 h-6 rounded-full border border-[#D4C8B8] flex items-center justify-center text-text-3 text-[13px] flex-shrink-0 mt-0.5 hover:border-[#B4A898] transition-colors"
         >
           ×
         </button>

@@ -30,7 +30,7 @@ export function FloatingVideo() {
     return (
       <button
         onClick={() => setStatus('expanded')}
-        className="fixed bottom-6 right-6 z-[9998] w-14 h-14 rounded-full bg-navy shadow-[0_4px_16px_rgba(0,0,0,0.25)] flex items-center justify-center cursor-none hover:scale-105 transition-transform toast-slide-in"
+        className="fixed bottom-6 right-6 z-[9998] w-14 h-14 rounded-full bg-navy shadow-[0_4px_16px_rgba(0,0,0,0.25)] flex items-center justify-center hover:scale-105 transition-transform toast-slide-in"
         aria-label="Expand video"
       >
         <span className="text-cream text-xl leading-none">▶</span>
@@ -54,14 +54,14 @@ export function FloatingVideo() {
           <button
             onClick={() => setStatus('minimised')}
             aria-label="Minimise video"
-            className="w-5 h-5 rounded bg-black/60 text-white text-[11px] flex items-center justify-center cursor-none hover:bg-black/80 transition-colors leading-none"
+            className="w-5 h-5 rounded bg-black/60 text-white text-[11px] flex items-center justify-center hover:bg-black/80 transition-colors leading-none"
           >
             −
           </button>
           <button
             onClick={dismiss}
             aria-label="Dismiss video"
-            className="w-5 h-5 rounded bg-black/60 text-white text-[11px] flex items-center justify-center cursor-none hover:bg-black/80 transition-colors leading-none"
+            className="w-5 h-5 rounded bg-black/60 text-white text-[11px] flex items-center justify-center hover:bg-black/80 transition-colors leading-none"
           >
             ×
           </button>

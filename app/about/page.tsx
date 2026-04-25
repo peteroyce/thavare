@@ -182,7 +182,7 @@ export default function AboutPage() {
             {PILLARS.map((p, i) => (
               <AnimatedSection key={p.title} direction="right" delay={(i + 1) as 1 | 2 | 3}>
                 <div
-                  className="flex items-start gap-5 p-6 rounded-xl border group hover:-translate-y-0.5 transition-all duration-300 cursor-none"
+                  className="flex items-start gap-5 p-6 rounded-xl border group hover:-translate-y-0.5 transition-all duration-300"
                   style={{
                     borderColor: 'var(--border-m)',
                     background: 'rgba(255,255,255,0.6)',
@@ -262,7 +262,7 @@ export default function AboutPage() {
                 className="text-center"
               >
                 <div
-                  className="rounded-xl p-8 border border-white/8 group hover:bg-white/5 hover:-translate-y-0.5 transition-all duration-300 cursor-none"
+                  className="rounded-xl p-8 border border-white/8 group hover:bg-white/5 hover:-translate-y-0.5 transition-all duration-300"
                   style={{
                     background: 'rgba(255,255,255,0.03)',
                   }}
@@ -357,7 +357,7 @@ export default function AboutPage() {
                 <Button variant="primary">Meet Our Founders</Button>
               </Link>
               <Link href="/circle">
-                <button className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 cursor-none border border-navy/20 text-navy/70 hover:border-navy/40 hover:text-navy bg-transparent">
+                <button className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 border border-navy/20 text-navy/70 hover:border-navy/40 hover:text-navy bg-transparent">
                   Join the Circle
                 </button>
               </Link>
@@ -378,7 +378,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {CERTIFICATIONS.map((cert, i) => (
               <AnimatedSection key={cert.label} delay={(i % 4 + 1) as 1|2|3|4}>
-                <div className="flex flex-col items-center text-center p-5 rounded-xl bg-white border border-[#E5DDD0] shadow-[rgba(26,22,16,0.04)_0_2px_12px] hover:-translate-y-0.5 transition-all duration-300 cursor-none h-full">
+                <div className="flex flex-col items-center text-center p-5 rounded-xl bg-white border border-[#E5DDD0] shadow-[rgba(26,22,16,0.04)_0_2px_12px] hover:-translate-y-0.5 transition-all duration-300 h-full">
                   <div className="text-[28px] mb-3">{cert.icon}</div>
                   <div className="font-semibold text-[12px] text-navy mb-1.5 leading-tight">{cert.label}</div>
                   <div className="text-[11px] text-text-3 leading-relaxed">{cert.sub}</div>

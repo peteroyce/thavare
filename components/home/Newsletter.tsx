@@ -48,7 +48,7 @@ export function Newsletter() {
               className="flex-1 px-5 py-3.5 bg-ivory text-[14px] text-text-1 outline-none placeholder:text-text-3 focus:bg-[#FAF4EE] transition-colors rounded-lg sm:rounded-none sm:rounded-l-lg"
               required
             />
-            <button type="submit" disabled={loading} className="px-6 py-3.5 bg-navy text-cream font-sans text-[11px] font-semibold tracking-[1.5px] uppercase hover:bg-navy-mid transition-colors cursor-none rounded-lg sm:rounded-none sm:rounded-r-lg w-full sm:w-auto">
+            <button type="submit" disabled={loading} className="px-6 py-3.5 bg-navy text-cream font-sans text-[11px] font-semibold tracking-[1.5px] uppercase hover:bg-navy-mid transition-colors rounded-lg sm:rounded-none sm:rounded-r-lg w-full sm:w-auto">
               {loading ? 'Subscribing...' : 'Subscribe'}
             </button>
           </form>

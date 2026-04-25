@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Thavare Icon: botanical leaf merged with oil droplet in circular motion -->
+  <!-- Outer circle arc (open at bottom-right) -->
+  <path
+    d="M100 12 C50 12, 12 50, 12 100 C12 150, 50 188, 100 188 C130 188, 156 174, 172 152"
+    stroke="#C4A882"
+    stroke-width="14"
+    stroke-linecap="round"
+    fill="none"
+  />
+  <!-- Inner leaf/droplet flowing shape -->
+  <path
+    d="M145 55 C130 45, 108 48, 95 65 C78 88, 72 108, 80 135 C85 152, 100 162, 118 158 C138 153, 148 135, 145 115 C142 98, 128 85, 115 82 C102 79, 92 88, 92 100 C92 112, 102 120, 112 118"
+    stroke="#C4A882"
+    stroke-width="12"
+    stroke-linecap="round"
+    fill="none"
+  />
+</svg>

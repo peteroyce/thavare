@@ -28,7 +28,7 @@ export function ShopGrid({ products, defaultCategory }: { products: Product[]; d
             key={c.value}
             onClick={() => setActive(c.value)}
             className={[
-              'px-5 py-2 rounded-full text-[11px] font-semibold tracking-widest uppercase transition-all duration-200 cursor-none border',
+              'px-5 py-2 rounded-full text-[11px] font-semibold tracking-widest uppercase transition-all duration-200 border',
               active === c.value
                 ? 'bg-navy text-cream border-navy'
                 : 'bg-transparent text-navy/60 border-navy/20 hover:border-navy/40 hover:text-navy',

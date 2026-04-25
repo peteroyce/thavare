@@ -52,7 +52,7 @@ export function IngredientsGrid() {
             key={f.value}
             onClick={() => setActive(f.value)}
             className={[
-              'px-5 py-2 rounded-full text-[11px] font-semibold tracking-[1.5px] uppercase transition-all duration-200 cursor-none border',
+              'px-5 py-2 rounded-full text-[11px] font-semibold tracking-[1.5px] uppercase transition-all duration-200 border',
               active === f.value
                 ? 'bg-navy text-cream border-navy'
                 : 'bg-white text-text-2 border-[#E5DDD0] hover:border-navy/30 hover:text-navy',
@@ -75,7 +75,7 @@ export function IngredientsGrid() {
           <Link
             key={ingredient.slug}
             href={`/ingredients/${ingredient.slug}`}
-            className="group bg-white rounded-xl border border-[#E5DDD0] p-6 hover:-translate-y-0.5 transition-all duration-300 cursor-none flex flex-col gap-4 shadow-[rgba(26,22,16,0.04)_0_2px_12px] hover:shadow-[rgba(26,22,16,0.09)_0_8px_28px]"
+            className="group bg-white rounded-xl border border-[#E5DDD0] p-6 hover:-translate-y-0.5 transition-all duration-300 flex flex-col gap-4 shadow-[rgba(26,22,16,0.04)_0_2px_12px] hover:shadow-[rgba(26,22,16,0.09)_0_8px_28px]"
           >
             {/* Icon area */}
             <div

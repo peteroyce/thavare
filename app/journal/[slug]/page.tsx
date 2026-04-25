@@ -85,9 +85,9 @@ export default async function ArticlePage({
       {/* ─── BREADCRUMB ─── */}
       <div className="max-w-[760px] mx-auto px-4 md:px-6 pt-8 pb-2">
         <nav className="flex items-center gap-2 text-[11px] text-text-3 tracking-wide">
-          <Link href="/" className="cursor-none hover:text-navy transition-colors duration-150">Home</Link>
+          <Link href="/" className="hover:text-navy transition-colors duration-150">Home</Link>
           <span className="text-text-3/40">›</span>
-          <Link href="/journal" className="cursor-none hover:text-navy transition-colors duration-150">Journal</Link>
+          <Link href="/journal" className="hover:text-navy transition-colors duration-150">Journal</Link>
           <span className="text-text-3/40">›</span>
           <span className="text-navy/60 truncate max-w-[200px]">{article.title}</span>
         </nav>
@@ -183,7 +183,7 @@ export default async function ArticlePage({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {related.map((rel, i) => (
                 <AnimatedSection key={rel.slug} direction="up" delay={(i + 1) as 1 | 2}>
-                  <Link href={`/journal/${rel.slug}`} className="cursor-none group block">
+                  <Link href={`/journal/${rel.slug}`} className="group block">
                     <article className="bg-white rounded-xl overflow-hidden border border-[#E5DDD0] hover:-translate-y-1 transition-all duration-300 h-full flex flex-col shadow-[0_2px_12px_rgba(26,22,16,0.05)]">
                       <div className="relative w-full h-[140px] overflow-hidden flex-shrink-0">
                         <Image

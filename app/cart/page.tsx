@@ -52,7 +52,7 @@ function CheckoutButton() {
       <button
         onClick={handleCheckout}
         disabled={loading || items.length === 0}
-        className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 cursor-none bg-navy text-cream hover:bg-navy/90 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg text-xs font-semibold tracking-widest uppercase transition-all duration-200 bg-navy text-cream hover:bg-navy/90 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {loading ? 'Processing...' : 'Pay Now'}
       </button>

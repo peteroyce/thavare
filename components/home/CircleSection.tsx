@@ -46,7 +46,7 @@ export function CircleSection() {
             <div className="text-[9px] font-semibold tracking-[3px] uppercase text-white/40 text-center mb-4">This Week's Experts</div>
             <div className="flex flex-col gap-3">
               {EXPERTS.map(e => (
-                <div key={e.name} className="bg-white/10 rounded-xl px-4 py-3.5 flex items-center gap-3.5 border border-white/10 hover:bg-white/18 transition-all cursor-none">
+                <div key={e.name} className="bg-white/10 rounded-xl px-4 py-3.5 flex items-center gap-3.5 border border-white/10 hover:bg-white/18 transition-all">
                   <div className="w-[42px] h-[42px] rounded-full bg-white/20 flex items-center justify-center text-lg flex-shrink-0">👩‍⚕️</div>
                   <div>
                     <div className="text-[13px] text-white font-semibold">{e.name}</div>

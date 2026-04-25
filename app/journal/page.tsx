@@ -120,7 +120,7 @@ export default function JournalPage() {
             <button
               key={cat}
               onClick={() => setActive(cat)}
-              className={`cursor-none whitespace-nowrap flex-shrink-0 px-5 py-2 rounded-full text-[10px] font-semibold tracking-[1.5px] uppercase transition-all duration-200 border ${
+              className={`whitespace-nowrap flex-shrink-0 px-5 py-2 rounded-full text-[10px] font-semibold tracking-[1.5px] uppercase transition-all duration-200 border ${
                 active === cat
                   ? 'bg-navy text-cream border-navy'
                   : 'bg-white text-navy/50 border-[#E5DDD0] hover:border-navy/30 hover:text-navy/80'
@@ -140,7 +140,7 @@ export default function JournalPage() {
           {/* ─── FEATURED ARTICLE ─── */}
           {displayFeatured && (
             <AnimatedSection className="mb-14 md:mb-20">
-              <Link href={`/journal/${displayFeatured.slug}`} className="cursor-none group block">
+              <Link href={`/journal/${displayFeatured.slug}`} className="group block">
                 <div className="relative w-full rounded-2xl overflow-hidden border border-[#E5DDD0] bg-white shadow-[0_4px_32px_rgba(26,22,16,0.07)] group-hover:-translate-y-1 transition-all duration-300">
                   {/* Cover image */}
                   <div className="relative w-full h-[320px] md:h-[480px] overflow-hidden">
@@ -187,7 +187,7 @@ export default function JournalPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
               {displayGrid.map((article, i) => (
                 <AnimatedSection key={article.slug} direction="up" delay={((i % 2) + 1) as 1 | 2}>
-                  <Link href={`/journal/${article.slug}`} className="cursor-none group block h-full">
+                  <Link href={`/journal/${article.slug}`} className="group block h-full">
                     <article className="bg-white rounded-xl overflow-hidden border border-[#E5DDD0] hover:-translate-y-1 transition-all duration-300 h-full flex flex-col shadow-[0_2px_16px_rgba(26,22,16,0.05)]">
                       {/* Card image */}
                       <div className="relative w-full h-[220px] overflow-hidden flex-shrink-0">

@@ -47,7 +47,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
           {products.map((p, i) => (
             <AnimatedSection key={p.id} delay={(i + 1) as 1|2|3}>
               <div
-                className="bg-[#FAF4EE] rounded-xl overflow-hidden md:hover:-translate-y-1 transition-all duration-300 group relative cursor-none flex flex-col h-full"
+                className="bg-[#FAF4EE] rounded-xl overflow-hidden md:hover:-translate-y-1 transition-all duration-300 group relative flex flex-col h-full"
                 style={{ boxShadow: '0px 0px 0px 1px #E5DDD0' }}
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #C4A882, rgba(26,22,16,0.04) 0px 4px 16px')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0px 0px 0px 1px #E5DDD0')}
@@ -68,7 +68,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
                   />
                   <button
                     onClick={(e) => handleQuickAdd(p, e)}
-                    className="absolute bottom-0 left-0 right-0 bg-terracotta text-white text-[11px] font-semibold tracking-[1.5px] uppercase py-3.5 text-center translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-300 cursor-none"
+                    className="absolute bottom-0 left-0 right-0 bg-terracotta text-white text-[11px] font-semibold tracking-[1.5px] uppercase py-3.5 text-center translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-300"
                   >
                     Quick Add to Bag
                   </button>

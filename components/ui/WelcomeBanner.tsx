@@ -38,7 +38,7 @@ export function WelcomeBanner() {
       <button
         onClick={dismiss}
         aria-label="Dismiss welcome banner"
-        className="ml-auto shrink-0 text-white/70 hover:text-white text-[16px] leading-none cursor-none transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
+        className="ml-auto shrink-0 text-white/70 hover:text-white text-[16px] leading-none transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
       >
         ×
       </button>

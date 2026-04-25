@@ -158,7 +158,7 @@ export default function WhySportActivePage() {
             {/* Card A — Sport */}
             <AnimatedSection direction="left" delay={1}>
               <div
-                className="rounded-xl p-10 border border-white/8 h-full flex flex-col hover:-translate-y-0.5 transition-all duration-300 cursor-none"
+                className="rounded-xl p-10 border border-white/8 h-full flex flex-col hover:-translate-y-0.5 transition-all duration-300"
                 style={{
                   background: 'rgba(179,95,66,0.06)',
                   borderColor: 'rgba(179,95,66,0.3)',
@@ -216,7 +216,7 @@ export default function WhySportActivePage() {
             {/* Card B — Active */}
             <AnimatedSection direction="right" delay={1}>
               <div
-                className="rounded-xl p-10 border h-full flex flex-col hover:-translate-y-0.5 transition-all duration-300 cursor-none"
+                className="rounded-xl p-10 border h-full flex flex-col hover:-translate-y-0.5 transition-all duration-300"
                 style={{
                   background: 'rgba(166,69,44,0.06)',
                   borderColor: 'rgba(166,69,44,0.3)',

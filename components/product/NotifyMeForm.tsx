@@ -48,7 +48,7 @@ export function NotifyMeForm({ productName }: { productName: string }) {
       <button
         type="submit"
         disabled={loading}
-        className="w-full py-3 rounded-lg bg-navy text-cream text-[11px] font-semibold tracking-widest uppercase hover:bg-navy/90 transition-colors cursor-none"
+        className="w-full py-3 rounded-lg bg-navy text-cream text-[11px] font-semibold tracking-widest uppercase hover:bg-navy/90 transition-colors"
       >
         {loading ? 'Saving...' : 'Notify Me'}
       </button>

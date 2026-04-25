@@ -21,7 +21,7 @@ export default function WishlistPage() {
           {items.length > 0 && (
             <button
               onClick={clear}
-              className="text-[11px] font-medium tracking-wide uppercase text-text-3 hover:text-terracotta transition-colors cursor-none"
+              className="text-[11px] font-medium tracking-wide uppercase text-text-3 hover:text-terracotta transition-colors"
             >
               Clear All
             </button>

@@ -338,7 +338,7 @@ export default function FoundersPage() {
                   <button
                     className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg
                                text-xs font-semibold tracking-widest uppercase transition-all
-                               duration-200 cursor-none border bg-transparent"
+                               duration-200 border bg-transparent"
                     style={{
                       borderColor: 'rgba(26,39,68,0.18)',
                       color: 'rgba(26,39,68,0.65)',
@@ -396,7 +396,7 @@ export default function FoundersPage() {
                 delay={(i % 4) as 0 | 1 | 2 | 3}
               >
                 <div
-                  className="rounded-xl px-6 py-7 border text-center group hover:-translate-y-0.5 transition-all duration-300 cursor-none"
+                  className="rounded-xl px-6 py-7 border text-center group hover:-translate-y-0.5 transition-all duration-300"
                   style={{
                     borderColor: 'rgba(255,255,255,0.08)',
                     background: 'rgba(255,255,255,0.03)',

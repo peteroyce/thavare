@@ -224,7 +224,7 @@ export function HeroCarousel() {
                 <Link
                   key={cta.href}
                   href={cta.href}
-                  className={`px-6 py-3 rounded-lg text-[11px] tracking-[1.5px] uppercase transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-none ${CTA_STYLES[cta.variant]}`}
+                  className={`px-6 py-3 rounded-lg text-[11px] tracking-[1.5px] uppercase transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${CTA_STYLES[cta.variant]}`}
                 >
                   {cta.text}
                 </Link>
@@ -260,8 +260,8 @@ export function HeroCarousel() {
       </div>
 
       {/* Desktop-only prev/next arrows */}
-      <button onClick={prev} aria-label="Previous slide" className={`hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 items-center justify-center transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-none opacity-0 group-hover:opacity-100 text-base ${textBase}`}>&#8249;</button>
-      <button onClick={next} aria-label="Next slide" className={`hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 items-center justify-center transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-none opacity-0 group-hover:opacity-100 text-base ${textBase}`}>&#8250;</button>
+      <button onClick={prev} aria-label="Previous slide" className={`hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 items-center justify-center transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 group-hover:opacity-100 text-base ${textBase}`}>&#8249;</button>
+      <button onClick={next} aria-label="Next slide" className={`hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 items-center justify-center transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 group-hover:opacity-100 text-base ${textBase}`}>&#8250;</button>
 
       {/* Dot indicators */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
@@ -270,7 +270,7 @@ export function HeroCarousel() {
             key={i}
             onClick={() => goTo(i)}
             aria-label={`Go to slide ${i + 1}`}
-            className={`h-[2px] rounded-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-none ${
+            className={`h-[2px] rounded-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               i === active
                 ? 'w-5 bg-cream'
                 : 'w-[5px] bg-cream/35 hover:bg-cream/55'

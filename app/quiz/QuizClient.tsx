@@ -201,7 +201,7 @@ function OptionButton({
     <button
       onClick={onClick}
       className={[
-        'px-6 py-4 rounded-xl border text-[14px] font-medium text-navy transition-all duration-200 cursor-none text-left',
+        'px-6 py-4 rounded-xl border text-[14px] font-medium text-navy transition-all duration-200 text-left',
         selected
           ? 'border-terracotta bg-terracotta/5 shadow-[0_0_0_1px_var(--terracotta)]'
           : 'border-[#D4C8B8] bg-white hover:border-terracotta hover:bg-terracotta/5',
@@ -255,7 +255,7 @@ function ProductCard({
         <p className="text-[13px] leading-[1.65] text-text-2 mb-5 flex-1">{reason}</p>
         <Link
           href={`/products/${handle}`}
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-[11px] font-semibold tracking-widest uppercase transition-all duration-200 cursor-none bg-terracotta text-ivory hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(179,95,66,0.35)] w-full"
+          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-[11px] font-semibold tracking-widest uppercase transition-all duration-200 bg-terracotta text-ivory hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(179,95,66,0.35)] w-full"
         >
           Shop Now →
         </Link>
@@ -375,7 +375,7 @@ export default function QuizClient() {
           <div className="hero-entry" style={{ animationDelay: '0.75s' }}>
             <button
               onClick={() => setStep(1)}
-              className="inline-flex items-center justify-center gap-2 px-9 py-4 rounded-lg text-[11px] font-semibold tracking-widest uppercase transition-all duration-200 cursor-none bg-terracotta text-ivory shadow-[0_0_0_1px_var(--terracotta)] hover:-translate-y-px hover:shadow-[0_0_0_1px_var(--terra-h),0_6px_24px_rgba(179,95,66,0.4)] active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 px-9 py-4 rounded-lg text-[11px] font-semibold tracking-widest uppercase transition-all duration-200 bg-terracotta text-ivory shadow-[0_0_0_1px_var(--terracotta)] hover:-translate-y-px hover:shadow-[0_0_0_1px_var(--terra-h),0_6px_24px_rgba(179,95,66,0.4)] active:translate-y-0"
             >
               Start Quiz →
             </button>
@@ -436,7 +436,7 @@ export default function QuizClient() {
                   setSelected(answers[step - 2] ?? null);
                   setStep(step - 1);
                 }}
-                className="text-[12px] font-medium text-text-3 hover:text-navy transition-colors cursor-none"
+                className="text-[12px] font-medium text-text-3 hover:text-navy transition-colors"
               >
                 ← Back
               </button>
@@ -448,7 +448,7 @@ export default function QuizClient() {
               onClick={handleNext}
               disabled={!selected}
               className={[
-                'inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg text-[11px] font-semibold tracking-widest uppercase transition-all duration-200 cursor-none',
+                'inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg text-[11px] font-semibold tracking-widest uppercase transition-all duration-200',
                 selected
                   ? 'bg-terracotta text-ivory shadow-[0_0_0_1px_var(--terracotta)] hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(179,95,66,0.35)]'
                   : 'bg-[#D4C8B8] text-[#8C7F72] pointer-events-none',
@@ -523,13 +523,13 @@ export default function QuizClient() {
           <div className="flex gap-3 justify-center flex-wrap">
             <button
               onClick={handleRetake}
-              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-[11px] font-semibold tracking-widest uppercase transition-all duration-200 cursor-none border border-navy/25 text-navy/70 hover:border-navy/45 hover:text-navy bg-transparent"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-[11px] font-semibold tracking-widest uppercase transition-all duration-200 border border-navy/25 text-navy/70 hover:border-navy/45 hover:text-navy bg-transparent"
             >
               Retake Quiz
             </button>
             <Link
               href="/shop"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-[11px] font-semibold tracking-widest uppercase transition-all duration-200 cursor-none bg-terracotta text-ivory shadow-[0_0_0_1px_var(--terracotta)] hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(179,95,66,0.35)]"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-[11px] font-semibold tracking-widest uppercase transition-all duration-200 bg-terracotta text-ivory shadow-[0_0_0_1px_var(--terracotta)] hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(179,95,66,0.35)]"
             >
               Shop All Products
             </Link>
