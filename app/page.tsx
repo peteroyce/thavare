@@ -5,7 +5,6 @@ import { CategoryGrid }    from '@/components/home/CategoryGrid';
 import { Bestsellers }     from '@/components/home/Bestsellers';
 import { ValuesSection }   from '@/components/home/ValuesSection';
 import { IngredientStrip } from '@/components/home/IngredientStrip';
-import { FounderSection }  from '@/components/home/FounderSection';
 import { CircleSection }   from '@/components/home/CircleSection';
 import { NewArrivals }     from '@/components/home/NewArrivals';
 import { WhySection }        from '@/components/home/WhySection';
@@ -50,7 +49,6 @@ export default async function HomePage() {
       <Bestsellers products={featured} />
       <ValuesSection />
       <IngredientStrip />
-      <FounderSection />
       <CircleSection />
       <NewArrivals products={allProducts} />
       <WhySection />
