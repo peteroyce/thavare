@@ -68,7 +68,7 @@ export function Bestsellers({ products }: { products: Product[] }) {
                   />
                   <button
                     onClick={(e) => handleQuickAdd(p, e)}
-                    className="absolute bottom-0 left-0 right-0 bg-terracotta text-white text-[11px] font-semibold tracking-[1.5px] uppercase py-3.5 text-center translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-300"
+                    className="absolute bottom-0 left-0 right-0 bg-terracotta text-white text-[11px] font-semibold tracking-[1.5px] uppercase py-3.5 text-center hidden md:block md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-300"
                   >
                     Quick Add to Bag
                   </button>
