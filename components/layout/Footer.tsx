@@ -5,7 +5,7 @@ const COMPANY_LINKS: { label: string; href: string }[] = [
   { label: "Founder's Story",  href: '/founders' },
   { label: "The Circle",       href: '/circle' },
   { label: "Our Ingredients",  href: '/ingredients' },
-  { label: "Why Sport-Active", href: '/why-sport-active' },
+  { label: "Our Philosophy",   href: '/why-sport-active' },
   { label: "Journal",          href: '/journal' },
 ];
 
